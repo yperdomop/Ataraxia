@@ -18,4 +18,4 @@
             </label>
         </div>                    
     @endforeach
-{!! Form::submit('Guardar', ['class'=>'btn btn-primary']) !!}
+{!! Form::submit('Guardar', ['class'=>'btn', 'style'=>"color: black; background-color:#FFAA37;"]) !!}

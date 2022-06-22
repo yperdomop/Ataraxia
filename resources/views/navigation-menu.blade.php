@@ -3,7 +3,7 @@
     <div class="container">
         <!-- Logo -->
         <a class="navbar-brand me-4" href="/">
-            <x-jet-application-mark width="36" />
+            <img src="{{asset('img/logo-header.png')}}" width="150px" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -28,6 +28,12 @@
                         {{'Roles'}}
                     </x-jet-nav-link>
                 @endcan
+
+                @can('admin.roles.index')
+                <x-jet-nav-link href="{{ route('admin.permisos.index') }}" :active="request()->routeIs('admin.permisos.index')">
+                    {{'Permisos'}}
+                </x-jet-nav-link>
+            @endcan
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -81,7 +87,7 @@
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <img class="rounded-circle" width="32" height="32" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                             @else
-                                {{ Auth::user()->name }}
+                                {{ Auth::user()->first_name}} {{Auth::user()->last_name}}
 
                                 <svg class="ms-2" width="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />

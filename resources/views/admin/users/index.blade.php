@@ -5,9 +5,10 @@
         </div>    
     @endif
     <h1>Usuarios</h1>
-    <a href="{{route('admin.users.create')}}" class="btn btn-success">Crear usuarios</a>
-    <table class="table table-bordered border-primary">
-        <thead>
+    <a href="{{route('admin.users.create')}}" style="background-color:#FFAA37;" class="btn">Crear usuarios</a>
+    <br>
+    <table class="table table-bordered"><br>
+        <thead class="thead-dark">
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Nombre</th>
@@ -25,13 +26,13 @@
                         {{$role->name}}
                     @endforeach</td>
                     <td width="10px">
-                        <a href="{{ route('admin.users.edit', $user)}}" class="btn btn-outline-primary" title="Editar"><i class="fa-solid fa-pencil"></i></a>
+                        <a href="{{ route('admin.users.edit', $user)}}" style="color: black; border-color:#FFAA37;" class="btn btn-outline-primary" title="Editar"><i class="bi bi-pencil-square"></i></a>
                     </td>
                     <td width="10px">
                         <form action="{{ route('admin.users.destroy', $user) }}" method="post" onSubmit="return confirm('Seguro desea eliminar?')">
                             @csrf
                             @method('delete')
-                                <button type="submit" class="btn btn-outline-danger" title="Eliminar"><i class="fa-solid fa-trash-can"></i></button>
+                                <button type="submit" class="btn btn-outline-danger" style="color: black; border-color:#FFAA37;" title="Eliminar"><i class="bi bi-trash3-fill"></i></button>
                         </form>
                     </td>
                 </tr>

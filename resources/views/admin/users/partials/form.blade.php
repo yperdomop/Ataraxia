@@ -26,4 +26,4 @@
             </label>
         </div>                    
     @endforeach
-{!! Form::submit('Enviar', ['class'=>'btn btn-primary']) !!}
+{!! Form::submit('Enviar', ['class'=>'btn', 'style'=>"color: black; background-color:#FFAA37;" ]) !!}

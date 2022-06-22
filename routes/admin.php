@@ -4,6 +4,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\AhorroController;
+use App\Http\Controllers\Admin\CreditoController;
+use App\Http\Controllers\Admin\MicrocreditoController;
+use App\Http\Controllers\Admin\InversionController;
+use App\Http\Controllers\Admin\InversionCryptoController;
+use App\Http\Controllers\Admin\OrganizarEventoController;
+use App\Http\Controllers\Admin\AsistirEventoController;
+use App\Http\Controllers\Admin\BecasController;
+use App\Http\Controllers\Admin\EdutechController;
+use App\Http\Controllers\Admin\MallController;
+use App\Http\Controllers\Admin\PermisoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,24 +33,24 @@ Route::resource('users', UserController::class)->except('show')->names('admin.us
 
 Route::resource('roles', RoleController::class)->except('show')->names('admin.roles');
 
-/* Route::resource('ahorros', RoleController::class)->except('show')->names('admin.roles');
+Route::resource('ahorros', AhorroController::class)->middleware('can:ahorros')->except('show')->names('admin.ahorros');
 
-Route::resource('créditos', RoleController::class)->except('show')->names('admin.roles');
+Route::resource('creditos', CreditoController::class)->middleware('can:creditos')->except('show')->names('admin.creditos');
 
-Route::resource('microcréditos', RoleController::class)->except('show')->names('admin.roles');
+Route::resource('microcreditos', MicrocreditoController::class)->middleware('can:microcreditos')->except('show')->names('admin.microcreditos');
 
-Route::resource('inversiones ', RoleController::class)->except('show')->names('admin.roles');
+Route::resource('inversiones ', InversionController::class)->middleware('can:inversiones')->except('show')->names('admin.inversiones');
 
-Route::resource('inversionescripto', RoleController::class)->except('show')->names('admin.roles');
+Route::resource('inversionescripto', InversionCryptoController::class)->middleware('can:inversionescripto')->except('show')->names('admin.inversionescripto');
 
-Route::resource('organizarevento', RoleController::class)->except('show')->names('admin.roles');
+Route::resource('organizarevento', OrganizarEventoController::class)->middleware('can:organizarevento')->except('show')->names('admin.organizarevento');
 
-Route::resource('asistiraeventos', RoleController::class)->except('show')->names('admin.roles');
+Route::resource('asistireventos', AsistirEventoController::class)->middleware('can:asistirevento')->except('show')->names('admin.asistirevento');
 
-Route::resource('becas', RoleController::class)->except('show')->names('admin.roles');
+Route::resource('becas', BecasController::class)->middleware('can:becas')->except('show')->names('admin.becas');
 
-Route::resource('edutechs', RoleController::class)->except('show')->names('admin.roles');
+Route::resource('edutech', EdutechController::class)->middleware('can:edutech')->except('show')->names('admin.edutech');
 
-Route::resource('malls', RoleController::class)->except('show')->names('admin.roles');
+Route::resource('mall', MallController::class)->middleware('can:mall')->except('show')->names('admin.mall');
 
- */
+Route::resource('permisos', PermisoController::class)->middleware('can:permisos')->except('show')->names('admin.permisos');

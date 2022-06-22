@@ -16,7 +16,7 @@
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
-    <body class="font-sans antialiased" style="background-image:url({{asset('img/fondo-login.png')}})">
+    <body class="font-sans antialiased fondoimg" style="background-image:url({{asset('img/fondo-login.png')}});">
         {{ $slot }}
     </body>
 </html>

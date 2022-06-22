@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-jet-authentication-card>
-
+        <img src="{{asset('img/logo-header.png')}}" class="mx-auto m20" width="80%" alt="">
         <div class="card-body">
 
             <x-jet-validation-errors class="mb-3 rounded-0" />

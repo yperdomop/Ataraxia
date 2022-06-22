@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Controller\Admin\HomeController;
+use App\Http\Controllers\Ecommerce\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +14,9 @@ use App\Controller\Admin\HomeController;
 |
 */
 
-Route::middleware(['auth:sanctum', 'web', 'role'])->get('/', function () {
-    return view('welcome');
-});
+Route::middleware(['auth:sanctum', 'web', 'role'])->get('/', [RegisterController::class, 'membership'])->name('ecommerce.membership');
+Route::middleware(['auth:sanctum', 'verified'])->get('completar-registro/{membership}', [RegisterController::class, 'register'])->name('ecommerce.register');
+Route::middleware(['auth:sanctum', 'verified'])->post('resumen-membresia', [RegisterController::class, 'summary'])->name('ecommerce.register.summary');
 
 Route::middleware([
     'auth:sanctum',

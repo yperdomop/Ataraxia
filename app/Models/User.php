@@ -26,9 +26,21 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'company_datum_id',
+        'first_name',
+        'last_name',
         'email',
+        'login_user',
         'password',
+        'city_id',
+        'phone',
+        'area_id',
+        'scholarship_id',
+        'identification_document',
+        'birth_date',
+        'gender',
+        'postal_code',
+        'registred'
     ];
 
     /**
@@ -60,4 +72,21 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    //uno a muchos inverso
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    //uno a muchos polimorfico
+    public function documents()
+    {
+        return $this->morphMany(Document::class, 'documentable');
+    }
 }
