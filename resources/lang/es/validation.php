@@ -130,9 +130,15 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'periodo' => [
+            'required' => 'Debe seleccionar la vigencia de la  membresía',
         ],
+        'ciudad' => [
+            'required' => 'Debe seleccionar una ciudad',
+        ],
+        'deporte' => [
+            'required' => 'Debe seleccionar un deporte',
+        ]
     ],
 
     /*
@@ -147,8 +153,11 @@ return [
     */
 
     'attributes' => [
-        'name'=>'nombre',
-        'email'=>'correo electrónico'
+        'name' => 'nombre',
+        'email' => 'correo electrónico',
+        'cedula' => 'cédula',
+        'telefono' => 'teléfono',
+        'direccion' => 'dirección'
     ],
 
 ];

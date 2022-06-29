@@ -14,9 +14,11 @@ use App\Http\Controllers\Ecommerce\RegisterController;
 |
 */
 
-Route::middleware(['auth:sanctum', 'web', 'role'])->get('/', [RegisterController::class, 'membership'])->name('ecommerce.membership');
-Route::middleware(['auth:sanctum', 'verified'])->get('completar-registro/{membership}', [RegisterController::class, 'register'])->name('ecommerce.register');
-Route::middleware(['auth:sanctum', 'verified'])->post('resumen-membresia', [RegisterController::class, 'summary'])->name('ecommerce.register.summary');
+Route::get('/', [RegisterController::class, 'membership'])->name('ecommerce.membership');
+Route::get('completar-registro/{membership}', [RegisterController::class, 'register'])->name('ecommerce.register');
+Route::post('completar-registro/{membership}', [RegisterController::class, 'storage'])->name('ecommerce.storage');
+Route::get('resumen-membresia/{company}', [RegisterController::class, 'summary'])->name('ecommerce.summary');
+Route::get('pasarela-pagos', [RegisterController::class, 'payment'])->name('ecommerce.payment');
 
 Route::middleware([
     'auth:sanctum',
