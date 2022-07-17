@@ -17,14 +17,13 @@ class CreatePurchaseDataTable extends Migration
             $table->id();
             $table->unsignedBigInteger('company_datum_id')->nullable(); //id de compañia
             $table->integer('price'); //valor
-            $table->unsignedBigInteger('payment_frequency_id')->nullable();
-            $table->date('purchase_date'); //fecha de compra
-            $table->date('expiration_date'); //fecha de vencimiento            
+            $table->unsignedBigInteger('membership_price_id')->nullable(); //id de membresia
+            $table->date('purchase_date')->nullable(); //fecha de compra
+            $table->date('expiration_date')->nullable(); //fecha de vencimiento            
             $table->timestamps();
             $table->string('registred')->nullable(); //usuario que modifica
 
             $table->foreign('company_datum_id')->references('id')->on('company_data')->cascadeOnUpdate()->nullOnDelete();
-            $table->foreign('payment_frequency_id')->references('id')->on('payment_frequencies')->cascadeOnUpdate()->nullOnDelete();
         });
     }
 

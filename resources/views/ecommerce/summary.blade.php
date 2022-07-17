@@ -1,5 +1,4 @@
 <x-app-layout>
-    <a class="btn btn-link" href="">Volver</a>
     <h1 style="text-align:center">Resumen de datos</h1>
     <div class="d-flex justify-content-center">
         <table class="table w-75 table-bordered table-striped">
@@ -43,18 +42,22 @@
                 </tr>
                 <tr>
                     <th>Periodo de membresia</th>
-                    <td>Trimestral</td>
+                    <td>{{ $company->purchases->last()->membership->payment->name }}</td>
+
                 </tr>
                 <tr>
                     <th>Total a pagar</th>
-                    <td>$1.000.000</td>
+                    <td>${{ number_format($company->purchases->last()->price, 0, ',', '.') }}</td>
                 </tr>
 
             </tbody>
         </table>
     </div>
-    <div class="d-flex justify-content-center">
-        <a href="{{ route('ecommerce.payment') }}" <a class="btn" style="color: black; background-color:#FFAA37;">Ir a
+    <div class="d-flex justify-content-evenly">
+        <a class="btn btn-primary" href=" {{ route('ecommerce.edit', $company) }}">Modificar pedido</a>
+        <a href="{{ route('ecommerce.payment', $company) }}" <a class="btn"
+            style="color: black; background-color:#FFAA37;">Ir
+            a
             pagar</a>
     </div>
 </x-app-layout>

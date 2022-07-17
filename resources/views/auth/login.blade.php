@@ -1,6 +1,12 @@
 <x-guest-layout>
+    @if (session('info'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {!! session('info') !!}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <x-jet-authentication-card>
-        <img src="{{asset('img/logo-header.png')}}" class="mx-auto m20" width="80%" alt="">
+        <img src="{{ asset('img/logo-header.png') }}" class="mx-auto m20" width="80%" alt="">
         <div class="card-body">
 
             <x-jet-validation-errors class="mb-3 rounded-0" />
@@ -16,16 +22,16 @@
                 <div class="mb-3">
                     <x-jet-label value="{{ __('Email') }}" />
 
-                    <x-jet-input class="{{ $errors->has('email') ? 'is-invalid' : '' }}" type="email"
-                                 name="email" :value="old('email')" required />
+                    <x-jet-input class="{{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email"
+                        :value="old('email')" required />
                     <x-jet-input-error for="email"></x-jet-input-error>
                 </div>
 
                 <div class="mb-3">
                     <x-jet-label value="{{ __('Password') }}" />
 
-                    <x-jet-input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" type="password"
-                                 name="password" required autocomplete="current-password" />
+                    <x-jet-input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                        type="password" name="password" required autocomplete="current-password" />
                     <x-jet-input-error for="password"></x-jet-input-error>
                 </div>
 

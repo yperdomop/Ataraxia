@@ -17,7 +17,10 @@ class CreateCitiesTable extends Migration
             $table->id();
             $table->string('name'); //nombre de la ciudad
             $table->timestamps();
+            $table->integer('state_id')->nullable();
             $table->string('registred')->nullable(); //usuario que modifica
+            $table->unsignedBigInteger('department_id')->nullable(); //Foranea departamento  
+
         });
     }
 

@@ -20,6 +20,7 @@ class userSeeder extends Seeder
             'email' => 'yadirperdomo0509@gmail.com',
             'username' => 'yadirperdomo0509@gmail.com',
             'password' => bcrypt('7725908Ana'),
+            'status' => 'activo'
         ])->assignRole('admin');
         User::create([
             'first_name' => 'Juan',
@@ -27,6 +28,7 @@ class userSeeder extends Seeder
             'email' => 'jasbsandoval@gmail.com',
             'username' => 'jasbsandoval@gmail.com',
             'password' => bcrypt('Lalola.2021'),
+            'status' => 'activo'
         ])->assignRole('user');
     }
 }

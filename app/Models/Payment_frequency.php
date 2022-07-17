@@ -11,19 +11,12 @@ class Payment_frequency extends Model
 
     protected $fillable = [
         'name',
-        'company_datum_id',
         'registred'
     ];
 
     //uno a muchos
-    public function purchase()
+    public function memberships()
     {
-        return $this->hasMany(Purchase_datum::class);
-    }
-
-    //uno a muchos inverso
-    public function company()
-    {
-        return $this->belongsTo(Company::class);
+        return $this->hasMany(Membership_price::class);
     }
 }

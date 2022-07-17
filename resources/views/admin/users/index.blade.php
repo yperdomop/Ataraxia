@@ -20,7 +20,7 @@
         <tbody>
             @foreach ($users as $user)
                 <th scope="row">{{ $user->id }}</th>
-                <td>{{ $user->name }}</td>
+                <td>{{ $user->first_name }} {{ $user->last_name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>
                     @foreach ($user->roles as $role)
@@ -37,8 +37,9 @@
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-outline-danger"
-                            style="color: black; border-color:#FFAA37;" title="Eliminar"><i
+                            style="color: black; border-color:#FFAA37;" title="Eliminar"> <i
                                 class="bi bi-trash3-fill"></i></button>
+
                     </form>
                 </td>
                 </tr>

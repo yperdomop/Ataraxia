@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\BecasController;
 use App\Http\Controllers\Admin\EdutechController;
 use App\Http\Controllers\Admin\MallController;
 use App\Http\Controllers\Admin\PermisoController;
+use App\Http\Controllers\Admin\ProveedorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +55,5 @@ Route::resource('edutech', EdutechController::class)->middleware('can:edutech')-
 Route::resource('mall', MallController::class)->middleware('can:mall')->except('show')->names('admin.mall');
 
 Route::resource('permisos', PermisoController::class)->middleware('can:permisos')->except('show')->names('admin.permisos');
+
+Route::resource('proveedores', ProveedorController::class)->middleware('can:permisos')->except('show')->names('admin.proveedores');

@@ -1,12 +1,11 @@
 <x-app-layout>
-    <a class="btn btn-link" href="{{ route('ecommerce.membership') }}">Volver</a>
+    <a class="btn btn-link" href="">Volver</a>
     <div class="row m-0" style="--bs-gutter-x: 0">
         <div class="col-sm-6">
-            <form action="{{ route('ecommerce.storage', $membership) }}" method="POST" class="formulario"
+            <form action="{{ route('ecommerce.supplier.storage') }}" method="POST" class="formulario"
                 enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="membresia" value="{{ $membership }}">
-                <h1 class="formulario__titulo">Formulario de datos</h1>
+                <h1 class="formulario__titulo">Registro para proveedores</h1>
                 <p>Los campos con * son obligatorios</p>
                 <div class="mb-3">
                     <input type="text" class="form-control" name="nombre"
@@ -64,20 +63,14 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-
-                    <input type="text" class="form-control" name="razon" placeholder="Ingrese la razón social">
+                    <input type="text" class="form-control" name="razon" placeholder="* Ingrese la razón social"
+                        value="{{ old('email') }}">
                 </div>
-                <select name="periodo" class="form-select" aria-label="Default select example">
-                    <option value="" selected>* Seleccione la vigencia de la membresía</option>
-                    @foreach ($frecuencias as $frecuencia)
-                        <option value={{ $frecuencia->id }}>{{ $frecuencia->name }}</option>
-                    @endforeach
-                </select>
-                @error('periodo')
+                @error('razon')
                     <div class="text-danger" style="font-size:12px">{{ $message }}</div>
                 @enderror
-                <br>
-                <select name="ciudad" class="form-select" aria-label="Default select example">
+
+                <select name="ciudad" class="form-select">
                     <option value="" selected>* Seleccione la ciudad</option>
                     @foreach ($ciudades as $ciudad)
                         <option value={{ $ciudad->id }}>{{ $ciudad->name }}</option>
@@ -87,16 +80,7 @@
                     <div class="text-danger" style="font-size:12px">{{ $message }}</div>
                 @enderror
                 <br>
-                <select name="deporte" class="form-select" aria-label="Default select example">
-                    <option value="" selected>* Seleccione un deporte</option>
-                    @foreach ($deportes as $deporte)
-                        <option value={{ $deporte->id }}>{{ $deporte->name }}</option>
-                    @endforeach
-                </select>
-                @error('deporte')
-                    <div class="text-danger" style="font-size:12px">{{ $message }}</div>
-                @enderror
-                <br>
+
                 <div class="d-flex flex-row-reverse">
                     <input type="submit" class="formulario__submit" value="Continuar">
                 </div>
@@ -107,5 +91,4 @@
             class="col-6 d-none d-sm-block fondoimg"style="background-image:url({{ asset('img/poster-formulario.png') }});">
         </div>
     </div>
-
 </x-app-layout>

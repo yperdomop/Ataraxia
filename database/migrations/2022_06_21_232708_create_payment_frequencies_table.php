@@ -16,12 +16,8 @@ class CreatePaymentFrequenciesTable extends Migration
         Schema::create('payment_frequencies', function (Blueprint $table) {
             $table->id();
             $table->string('name'); //nombre de la frecuencia de pogos
-            $table->unsignedBigInteger('company_datum_id')->unique()->nullable(); //id de compañia
             $table->timestamps();
             $table->string('registred')->nullable(); //usuario que modifica
-
-            //llaves foraneas
-            $table->foreign('company_datum_id')->references('id')->on('company_data')->cascadeOnUpdate()->nullOnDelete();
         });
     }
 

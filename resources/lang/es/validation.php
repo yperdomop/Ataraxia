@@ -157,7 +157,8 @@ return [
         'email' => 'correo electrónico',
         'cedula' => 'cédula',
         'telefono' => 'teléfono',
-        'direccion' => 'dirección'
+        'direccion' => 'dirección',
+        'razon' => 'razón social'
     ],
 
 ];

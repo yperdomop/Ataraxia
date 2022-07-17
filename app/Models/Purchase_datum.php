@@ -18,6 +18,7 @@ class Purchase_datum extends Model
         'company_datum_id',
         'price',
         'payment_frequency_id',
+        'membership_price_id',
         'purchase_date',
         'expiration_date',
         'registred'
@@ -26,11 +27,11 @@ class Purchase_datum extends Model
     //uno a muchos inverso
     public function company()
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Company_datum::class);
     }
 
-    public function payment()
+    public function membership()
     {
-        return $this->belongsTo(Payment_frequency::class);
+        return $this->belongsTo(Membership_price::class, 'membership_price_id');
     }
 }

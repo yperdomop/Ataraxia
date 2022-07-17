@@ -10,13 +10,15 @@ use App\Models\Sport;
 use App\Models\User;
 use App\Models\Company_datum;
 use Spatie\Permission\Models\Role;
+use App\Models\Purchase_datum;
+use App\Models\Membership_price;
 
 class RegisterController extends Controller
 {
 
     public function Membership()
     {
-        $membresias = Role::where('id', '>=', '3')->get();
+        $membresias = Role::where('id', '>=', '3')->where('type', 'Comercial')->get();
         return view('ecommerce.membership', compact('membresias'));
     }
 
@@ -30,26 +32,30 @@ class RegisterController extends Controller
 
     public function Storage(Request $request)
     {
-
         $request->validate([
             'nombre' => 'required|regex:/^[\pL\s]+$/u',
             'apellido' => 'required|regex:/^[\pL\s]+$/u',
-            'cedula' => 'required|integer',
-            'telefono' => 'required|integer',
+            'cedula' => 'required|string',
+            'telefono' => 'required',
             'direccion' => 'required',
+            'nit' => 'required',
             'email' => 'required|email|unique:users',
             'periodo' => 'required',
             'ciudad' => 'required',
             'deporte' => 'required'
         ]);
-
+        //buscar id rol
+        $rol = Role::where('name', $request->membership)->first();
+        //buscar precio
+        $precio = Membership_price::where('role_id', $rol->id)->where('payment_frequency_id', $request->periodo)->first();
+        //crear compañia
         $compania = Company_datum::create([
-            'bussiness_name' => $request->razon ? $request->razon : ($request->nombre . " " . $request->apellido),
+            'bussiness_name' => $request->razon,
             'registred' => 'SYS',
             'language' => 'es',
             'legal_representative' => $request->nombre . " " . $request->apellido,
             'legal_representative_document' => $request->cedula,
-            'nit' => $request->nit ? $request->nit : $request->cedula,
+            'nit' => $request->nit,
             'address' => $request->direccion,
             'phone' => $request->telefono,
             'city_id' => $request->ciudad,
@@ -57,6 +63,7 @@ class RegisterController extends Controller
             'sport_id' => $request->deporte,
         ]);
 
+        //crear usuario
         $usuario = User::create([
             'company_datum_id' => $compania->id,
             'first_name' => $request->nombre,
@@ -71,18 +78,144 @@ class RegisterController extends Controller
             'registred' => 'SYS'
         ])->assignRole($request->membership);
 
+        $compra = Purchase_datum::create([
+            'company_datum_id' => $compania->id,
+            'price' => $precio->price,
+            'membership_price_id' => $precio->id,
+            'registred' => 'SYS',
+        ]);
+
         return redirect()->route('ecommerce.summary', $compania);
     }
-
 
     public function summary($compania)
     {
         $company = Company_datum::find($compania);
         return view('ecommerce.summary', compact('company'));
     }
-    public function payment()
+
+    public function edit(Company_datum $company)
     {
-        
-        return view('ecommerce.payment');
+        $ciudades = City::all();
+        $frecuencias = Payment_frequency::all();
+        $deportes = Sport::all();
+        return view('ecommerce.edit', compact('company', 'ciudades', 'frecuencias', 'deportes'));
+    }
+
+    public function update(Request $request, Company_datum $company)
+    {
+        $request->validate([
+            'nombre' => 'required|regex:/^[\pL\s]+$/u',
+            'apellido' => 'required|regex:/^[\pL\s]+$/u',
+            'cedula' => 'required|string',
+            'telefono' => 'required',
+            'direccion' => 'required',
+            'nit' => 'required',
+            'email' => 'required|email|unique:users,email,' . $company->users->first()->id,
+            'periodo' => 'required',
+            'ciudad' => 'required',
+            'deporte' => 'required'
+        ]);
+
+        //buscar usuario
+        $usuario = $company->users->first();
+        //buscar id rol
+        $rol = $usuario->roles->first();
+        //buscar precio
+        $precio = Membership_price::where('role_id', $rol->id)->where('payment_frequency_id', $request->periodo)->first();
+
+        $company->update([
+            'bussiness_name' => $request->razon,
+            'registred' => 'SYS',
+            'language' => 'es',
+            'legal_representative' => $request->nombre . " " . $request->apellido,
+            'legal_representative_document' => $request->cedula,
+            'nit' => $request->nit,
+            'address' => $request->direccion,
+            'phone' => $request->telefono,
+            'city_id' => $request->ciudad,
+            'email' => $request->email,
+            'sport_id' => $request->deporte,
+        ]);
+
+
+        $usuario->update([
+            'company_datum_id' => $company->id,
+            'first_name' => $request->nombre,
+            'last_name' => $request->apellido,
+            'email' => $request->email,
+            'status' => 'inactivo',
+            'username' => $request->email,
+            'city_id' => $request->ciudad,
+            'phone' => $request->telefono,
+            'identification_document' => $request->cedula,
+            'registred' => 'SYS'
+        ]);
+
+        //buscar datos de compra
+        $compra = $company->purchases->last();
+        $compra->update([
+            'company_datum_id' => $company->id,
+            'price' => $precio->price,
+            'membership_price_id' => $precio->id,
+            'registred' => 'SYS',
+        ]);
+
+
+        return redirect()->route('ecommerce.summary', $company);
+    }
+
+    public function payment($compania)
+    {
+        $company = Company_datum::find($compania);
+        return view('ecommerce.payment', compact('company'));
+    }
+
+    public function supplier()
+    {
+        $ciudades = City::all();
+        return view('ecommerce.supplier', compact('ciudades'));
+    }
+
+    public function storageSupplier(Request $request)
+    {
+        $request->validate([
+            'nombre' => 'required|regex:/^[\pL\s]+$/u',
+            'apellido' => 'required|regex:/^[\pL\s]+$/u',
+            'cedula' => 'required|string',
+            'telefono' => 'required',
+            'direccion' => 'required',
+            'nit' => 'required',
+            'email' => 'required|email|unique:users',
+            'ciudad' => 'required',
+            'razon' => 'required'
+        ]);
+        $compania = Company_datum::create([
+            'bussiness_name' => $request->razon,
+            'registred' => 'SYS',
+            'language' => 'es',
+            'legal_representative' => $request->nombre . " " . $request->apellido,
+            'legal_representative_document' => $request->cedula,
+            'nit' => $request->nit,
+            'address' => $request->direccion,
+            'phone' => $request->telefono,
+            'city_id' => $request->ciudad,
+            'email' => $request->email,
+        ]);
+        $usuario = User::create([
+            'company_datum_id' => $compania->id,
+            'first_name' => $request->nombre,
+            'last_name' => $request->apellido,
+            'email' => $request->email,
+            'status' => 'activo',
+            'username' => $request->email,
+            'password' => bcrypt($request->cedula),
+            'city_id' => $request->ciudad,
+            'phone' => $request->telefono,
+            'identification_document' => $request->cedula,
+            'registred' => 'SYS'
+        ])->assignRole('proveedor');
+
+        return redirect()->route('login')->with('info', '<p>¡¡Hola ' . $usuario->first_name . '!!<br> Usted se ha registrado exitosamente, su usuario y contraseña se ha enviado a su correo.</p>');
     }
 }

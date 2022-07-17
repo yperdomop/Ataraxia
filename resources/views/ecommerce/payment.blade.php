@@ -10,7 +10,8 @@
                     <tbody class="table_pagar">
                         <tr>
                             <th scope="col" class="rounded-3">
-                                <center><img src='img/Recurso-2.png' width="150" height="25"></center>
+                                <center><img src="{{ asset('img/Recurso-2.png') }}" width="150" height="25">
+                                </center>
                                 <center><br>
                                     <font color="white">minombre@correo.com</font>
                                 </center>
@@ -24,7 +25,8 @@
 
                         <tr>
                             <td>
-                                <font color="white">$ 1.000.000</font>
+                                <font color="white">
+                                    ${{ number_format($company->purchases->last()->price, 0, ',', '.') }}</font>
                             </td>
                         </tr>
                         <tr>
@@ -40,7 +42,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <font color="white">Federaciones Deportivas</font>
+                                <font color="white">{{ $company->users->first()->getRoleNames()->first() }}</font>
                             </td>
                         </tr>
                         <tr>
@@ -48,7 +50,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <font color="white">12/06/2022</font>
+                                <font color="white">{{ date('d/m/Y') }}</font>
                             </td>
                         </tr>
                     </tbody>
@@ -61,19 +63,20 @@
 
                 <div class="container  p-1 my-1" style="border-style: solid;border-width: 1px;border-color:Gainsboro">
                     <button type="button" class='btn' data-bs-toggle="modal" data-bs-target="#modal1"> <img
-                            src='img/wompi-icon.png' width="100" height="50" />&nbsp;&nbsp;&nbsp
-                        <b> Realiza tu pago con Bitcoin</b></button>
+                            src="{{ asset('img/wompi-icon.png') }}" width="100" height="50" />&nbsp;&nbsp;&nbsp
+                        <b> Realiza tu pago con tarjeta débito o crédito </b></button>
                 </div><br>
 
                 <div class="container  p-1 my-1" style="border-style: solid;border-width: 1px;border-color:Gainsboro">
                     <button type="button" class='btn' data-bs-toggle="modal" data-bs-target="#modal1"> <img
-                            src='img/paycash-icon.png' width="100" height="50" />
+                            src="{{ asset('img/paycash-icon.png') }}" width="100" height="50" />
                         &nbsp;&nbsp;&nbsp<b> Realiza tu pago con PayCash</b></button>
                 </div><br>
 
                 <div class="container  p-1 my-1" style="border-style: solid;border-width: 1px;border-color:Gainsboro">
                     <button type="button" class='btn' data-bs-toggle="modal" data-bs-target="#modal1"> <img
-                            src='img/bitcoin-icon.png' width="100" height="50" />&nbsp;&nbsp;&nbsp
+                            src="{{ asset('img/bitcoin-icon.png') }}" width="100"
+                            height="50" />&nbsp;&nbsp;&nbsp
                         <b> Realiza tu pago con Bitcoin</b></button>
                 </div><br>
                 <h6>
@@ -100,7 +103,7 @@
                 </div>
                 <div class="modal-body">
                     <div>
-                        <img src="img/pago-icon.png" width="350" height="150" </div>
+                        <img src="{{ asset('img/pago-icon.png') }}" width="350" height="150" </div>
                         <div class="modal-footer">
                             <button type="button" class="btn"style="color: black; background-color:#FFAA37;"
                                 data-bs-dismiss="modal">Cerrar</button>

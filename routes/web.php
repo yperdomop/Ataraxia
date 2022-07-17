@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Ecommerce\RegisterController;
+use App\mail\ConfirmacionMailable;
+use Illuminate\Support\Facades\Mail;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +17,19 @@ use App\Http\Controllers\Ecommerce\RegisterController;
 |
 */
 
-Route::get('/', [RegisterController::class, 'membership'])->name('ecommerce.membership');
+Route::get('membresias', [RegisterController::class, 'membership'])->name('ecommerce.membership');
+Route::get('/', function () {
+    return redirect()->route('ecommerce.membership');
+});
+Route::get('membresias', [RegisterController::class, 'membership'])->name('ecommerce.membership');
 Route::get('completar-registro/{membership}', [RegisterController::class, 'register'])->name('ecommerce.register');
 Route::post('completar-registro/{membership}', [RegisterController::class, 'storage'])->name('ecommerce.storage');
+Route::get('modificar-pedido/{company}', [RegisterController::class, 'edit'])->name('ecommerce.edit');
+Route::post('modificar-pedido/{company}', [RegisterController::class, 'update'])->name('ecommerce.update');
 Route::get('resumen-membresia/{company}', [RegisterController::class, 'summary'])->name('ecommerce.summary');
-Route::get('pasarela-pagos', [RegisterController::class, 'payment'])->name('ecommerce.payment');
+Route::get('pasarela-pagos/{company}', [RegisterController::class, 'payment'])->name('ecommerce.payment');
+Route::get('registro-proveedores', [RegisterController::class, 'supplier'])->name('ecommerce.supplier');
+Route::post('registro-proveedores', [RegisterController::class, 'storageSupplier'])->name('ecommerce.supplier.storage');
 
 Route::middleware([
     'auth:sanctum',
@@ -28,4 +39,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+Route::get('confirmacion', function () {
+    $correo = new ConfirmacionMailable;
+    Mail::to('yadirperdomo0509@gmail.com')->send($correo);
+    return "correo enviado";
 });

@@ -30,11 +30,6 @@ class Company_datum extends Model
         return $this->hasMany(User::class);
     }
 
-    public function payments()
-    {
-        return $this->hasMany(Payment_frequency::class);
-    }
-
     public function purchases()
     {
         return $this->hasMany(Purchase_datum::class);

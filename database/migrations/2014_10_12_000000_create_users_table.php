@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('last_name'); //apellido
             $table->string('email')->unique();
             $table->string('username')->unique(); //usuario
+            $table->string('status'); //estado
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password'); //clave
             $table->unsignedBigInteger('city_id')->nullable(); //Foranea de ciudad

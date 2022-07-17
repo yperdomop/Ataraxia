@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSportsTable extends Migration
+class AddForeingKeyCitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateSportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sports', function (Blueprint $table) {
-            $table->id();
-            $table->string('name'); //nombre del deporte
-            $table->timestamps();
-            $table->string('registred')->nullable(); //usuario que modifica
+        Schema::table('cities', function (Blueprint $table) {
+            $table->foreign('department_id')->references('id')->on('departments')->cascadeOnUpdate()->nullOnDelete();
         });
     }
 
@@ -28,6 +25,6 @@ class CreateSportsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sports');
+        //
     }
 }
