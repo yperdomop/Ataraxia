@@ -1,8 +1,23 @@
-<x-app-layout>
-    {{--   @if (session('info'))
-         <div class="alert alert-success">
-             <strong>{{session('info')}}</strong>
-         </div>    
-     @endif  --}}  
-     
- </x-app-layout>
+{{-- <x-app-layout> --}}
+@extends('adminlte::page')
+
+@section('title', 'Ataraxia')
+
+@section('content_header')
+    <h1>Dashboard</h1>
+@stop
+
+@section('content')
+    <p>Welcome to this beautiful admin panel.</p>
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script>
+        console.log('Hi!');
+    </script>
+@stop
+{{-- </x-app-layout> --}}

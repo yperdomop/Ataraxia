@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 //modelo
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+use App\Models\Company_datum;
+use App\Models\City;
 
 class UserController extends Controller
 {
@@ -28,8 +30,10 @@ class UserController extends Controller
     //Mostrar formulario de creación
     public function create()
     {
+        $companies = Company_datum::all();
         $roles = Role::all();
-        return view('admin.users.create', compact('roles'));
+        $cities = City::all();
+        return view('admin.users.create', compact('roles', 'companies', 'cities'));
     }
 
     // Guardar en BD
@@ -50,12 +54,12 @@ class UserController extends Controller
             'username' => $request->email,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
             'status' => 'activo',
-            /* 'company_datum_id'=>$request->company_datum_id,
-            'city_id'=>$request->city_id,
-            'phone'=>$request->phone,
-            'identification_document'=>$request->identification_document,
-            'gender'=> $request->gender,
-            'birth_date'=> $request->birth_date, */
+            'company_datum_id' => $request->company_datum_id,
+            'city_id' => $request->city_id,
+            'phone' => $request->phone,
+            'identification_document' => $request->identification_document,
+            'gender' => $request->gender,
+            'birth_date' => $request->birth_date,
 
         ])->syncRoles($request->roles);
         return redirect()->route('admin.users.index')->with('info', 'Usuario creado con éxito');
@@ -64,8 +68,10 @@ class UserController extends Controller
     //Editar
     public function edit(User $user)
     {
+        $companies = Company_datum::all();
         $roles = Role::all();
-        return view('admin.users.edit', compact('user', 'roles'));
+        $cities = City::all();
+        return view('admin.users.edit', compact('user', 'roles', 'cities', 'companies'));
     }
 
     //Actualizar en BD

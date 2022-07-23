@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Ecommerce\RegisterController;
 use App\mail\ConfirmacionMailable;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 
 /*
@@ -16,6 +17,16 @@ use Illuminate\Support\Facades\Mail;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('validar', function () {
+    if (Auth::user()->hasRole('admin')) {
+        return redirect()->route('admin.index');
+    } elseif (Auth::user()->hasRole('proveedor')) {
+        return redirect()->route('ecommerce.membership');
+    } else {
+        return redirect()->route('dashboard');
+    }
+});
 
 Route::get('membresias', [RegisterController::class, 'membership'])->name('ecommerce.membership');
 Route::get('/', function () {
@@ -40,6 +51,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+//correo
 Route::get('confirmacion', function () {
     $correo = new ConfirmacionMailable;
     Mail::to('yadirperdomo0509@gmail.com')->send($correo);

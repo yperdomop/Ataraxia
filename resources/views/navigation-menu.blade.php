@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom sticky-top shadow">
     <div class="container">
         <!-- Logo -->
-        <a class="navbar-brand me-4" href="/">
+        <a class="navbar-brand me-4" href="{{ route('dashboard') }}">
             <img src="{{ asset('img/logo-header.png') }}" width="150px" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -15,9 +15,40 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
-                <x-jet-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('dashboard')">
-                    {{ __('Dashboard') }}
+                <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    {{ __('Inicio') }}
                 </x-jet-nav-link>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav me-auto">
+                        <x-jet-nav-link href="{{ route('fintech.index') }}" :active="request()->routeIs('dashboard')">
+                            {{ __('Fintech') }}
+                        </x-jet-nav-link>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav me-auto">
+                        <x-jet-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('dashboard')">
+                            {{ __('Edutech') }}
+                        </x-jet-nav-link>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav me-auto">
+                        <x-jet-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('dashboard')">
+                            {{ __('Mall') }}
+                        </x-jet-nav-link>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav me-auto">
+                        <x-jet-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('dashboard')">
+                            {{ __('Experiencia al Usuario') }}
+                        </x-jet-nav-link>
+                </div>
+
+
                 @can('admin.users.index')
                     {{-- ocultar boton en menu --}}
                     <x-jet-nav-link href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.users.index')">
@@ -33,12 +64,6 @@
                 @can('admin.roles.index')
                     <x-jet-nav-link href="{{ route('admin.permisos.index') }}" :active="request()->routeIs('admin.permisos.index')">
                         {{ 'Permisos' }}
-                    </x-jet-nav-link>
-                @endcan
-
-                @can('admin.proveedores.index')
-                    <x-jet-nav-link href="{{ route('admin.proveedores.index') }}" :active="request()->routeIs('admin.proveedores.index')">
-                        {{ 'Proveedores' }}
                     </x-jet-nav-link>
                 @endcan
             </ul>

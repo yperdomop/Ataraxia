@@ -1,10 +1,18 @@
-<x-app-layout>
+{{-- <x-app-layout> --}}
+@extends('adminlte::page')
+
+@section('title', 'Permisos')
+
+@section('content_header')
     @if (session('info'))
         <div class="alert alert-success">
             <strong>{{ session('info') }}</strong>
         </div>
     @endif
-    <h1>Permisos</h1>
+    <h1 class="text-center">Permisos</h1>
+@stop
+
+@section('content')
     <a href="{{ route('admin.permisos.create') }}" style="background-color:#FFAA37;" class="btn">Crear Permiso</a>
     <br>
     <table class="table table-bordered"><br>
@@ -31,13 +39,13 @@
                         onSubmit="return confirm('Seguro desea eliminar?')">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="btn btn-outline-danger"
-                            style="color: black; border-color:#FFAA37;" title="Eliminar"><i
-                                class="bi bi-trash3-fill"></i></button>
+                        <button type="submit" class="btn btn-outline-danger" style="color: black; border-color:#FFAA37;"
+                            title="Eliminar"><i class="bi bi-trash3-fill"></i></button>
                     </form>
                 </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-</x-app-layout>
+@stop
+{{-- </x-app-layout> --}}
