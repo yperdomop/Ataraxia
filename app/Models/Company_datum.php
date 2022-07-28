@@ -21,7 +21,8 @@ class Company_datum extends Model
         'phone',
         'city_id',
         'email',
-        'sport_id'
+        'sport_id',
+        'provider_type_id'
     ];
 
     //uno a muchos
@@ -50,5 +51,10 @@ class Company_datum extends Model
     public function sport()
     {
         return $this->belongsTo(Sport::class);
+    }
+
+    public function providerType()
+    {
+        return $this->belongsTo(Provider_type::class);
     }
 }

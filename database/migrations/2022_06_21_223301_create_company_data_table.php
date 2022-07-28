@@ -27,6 +27,7 @@ class CreateCompanyDataTable extends Migration
             $table->unsignedBigInteger('city_id')->nullable(); //Foranea de ciudad
             $table->string('email')->unique();
             $table->unsignedBigInteger('sport_id')->nullable(); //Foranea de deporte
+            $table->unsignedBigInteger('provider_type_id')->nullable(); //Foranea de tipo proveedor
             $table->string('registred')->nullable(); //usuario que modifica
 
             //llaves foraneas

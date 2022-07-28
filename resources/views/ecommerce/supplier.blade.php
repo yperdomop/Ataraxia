@@ -70,6 +70,17 @@
                     <div class="text-danger" style="font-size:12px">{{ $message }}</div>
                 @enderror
 
+                <select name="proveedor" class="form-select">
+                    <option value="" selected>* ¿Qué tipo de proveedor es?</option>
+                    @foreach ($proveedores as $proveedor)
+                        <option value={{ $proveedor->id }}>{{ $proveedor->name }}</option>
+                    @endforeach
+                </select>
+                @error('proveedor')
+                    <div class="text-danger" style="font-size:12px">{{ $message }}</div>
+                @enderror
+                <br>
+
                 <select name="ciudad" class="form-select">
                     <option value="" selected>* Seleccione la ciudad</option>
                     @foreach ($ciudades as $ciudad)

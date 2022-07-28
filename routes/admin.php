@@ -16,6 +16,8 @@ use App\Http\Controllers\Admin\EdutechController;
 use App\Http\Controllers\Admin\MallController;
 use App\Http\Controllers\Admin\PermisoController;
 use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\DocumentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,3 +59,7 @@ Route::resource('mall', MallController::class)->middleware('can:mall')->except('
 Route::resource('permisos', PermisoController::class)->except('show')->names('admin.permisos');
 
 Route::resource('compania', CompanyController::class)->except('show')->names('admin.compania');
+
+Route::resource('localizaciones', LocationController::class)->except('show')->names('admin.localizaciones');
+
+Route::resource('documentos', DocumentController::class)->except('show')->names('admin.documentos');

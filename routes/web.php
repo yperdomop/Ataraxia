@@ -5,6 +5,7 @@ use App\Http\Controllers\Ecommerce\RegisterController;
 use App\mail\ConfirmacionMailable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\User\HomeController;
 
 
 /*
@@ -47,9 +48,9 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+    Route::get('/documentos', [HomeController::class, 'documentos'])->name('documentos');
+    Route::post('/guardar-documentos', [HomeController::class, 'guardarDocumentos'])->name('documentos.guardar');
 });
 
 //correo

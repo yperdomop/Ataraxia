@@ -261,8 +261,14 @@ return [
 
         [
             'text' => 'Localizaciones',
-            'route'  => 'admin.users.index',
+            'route'  => 'admin.localizaciones.index',
             'icon' => 'fas fa-fw  fa-solid fa-globe-americas',
+        ],
+
+        [
+            'text' => 'Documentos',
+            'route'  => 'admin.documentos.index',
+            'icon' => 'fas fa-file-alt',
         ],
 
 

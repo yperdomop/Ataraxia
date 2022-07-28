@@ -12,6 +12,7 @@ use App\Models\Company_datum;
 use Spatie\Permission\Models\Role;
 use App\Models\Purchase_datum;
 use App\Models\Membership_price;
+use App\Models\provider_type;
 
 class RegisterController extends Controller
 {
@@ -174,7 +175,8 @@ class RegisterController extends Controller
     public function supplier()
     {
         $ciudades = City::all();
-        return view('ecommerce.supplier', compact('ciudades'));
+        $proveedores = provider_type::all();
+        return view('ecommerce.supplier', compact('ciudades', 'proveedores'));
     }
 
     public function storageSupplier(Request $request)
@@ -188,7 +190,8 @@ class RegisterController extends Controller
             'nit' => 'required',
             'email' => 'required|email|unique:users',
             'ciudad' => 'required',
-            'razon' => 'required'
+            'razon' => 'required',
+            'proveedor' => 'required'
         ]);
         $compania = Company_datum::create([
             'bussiness_name' => $request->razon,
@@ -201,6 +204,8 @@ class RegisterController extends Controller
             'phone' => $request->telefono,
             'city_id' => $request->ciudad,
             'email' => $request->email,
+            'provider_type_id' => $request->proveedor,
+
         ]);
         $usuario = User::create([
             'company_datum_id' => $compania->id,

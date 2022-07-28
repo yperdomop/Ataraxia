@@ -11423,6 +11423,17 @@ textarea.form-control-lg {
   margin-left: 10px;
 }
 
+.btn-ataraxia {
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  background-color: #FFAA37;
+  text-decoration: none;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  padding: 10px;
+}
+
 .list-group-item {
   border: 2px solid #FFAA37;
 }

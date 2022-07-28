@@ -20,6 +20,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     @livewireStyles
+    @stack('css')
 
     <!-- Scripts -->
     {{-- <script src="{{asset('bootstrap/js/bootstrap.bundle.min.js')}}" defer></script> --}}
@@ -34,6 +35,8 @@
     <main class="container my-5">
         {{ $slot }}
     </main>
+
+    <x-footer />
 
     @stack('modals')
 
