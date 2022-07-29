@@ -8,33 +8,38 @@
             <strong>{{ session('info') }}</strong>
         </div>
     @endif
-    <h1 class="text-center">Localizaciones</h1>
+    <a class="btn btn-link" href="{{ route('admin.localizaciones.index') }}"><u>Volver</u></a>
+    <h1 class="text-center">Ver localización</h1>
 @stop
+
 @section('content')
-    <a href="{{ route('admin.localizaciones.create') }}" style="background-color:#FFAA37;" class="btn"> Crear
+    <h2 class="text-center">{{ $country->name }}</h2>
+    <a href="{{ route('admin.localizaciones.edit', $country) }}" style="background-color:#FFAA37;" class="btn m-3"> Editar
         localización</a>
+    <a href="{{ route('admin.departamentos.create', $country) }}" style="background-color:#FFAA37;" class="btn m-3"> Crear
+        departamento</a>
     <br>
     <table class="table table-bordered"><br>
         <thead class="table-dark">
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">país</th>
+                <th scope="col">Departamento</th>
                 <th scope="col" colspan="2"></th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                @foreach ($countries as $country)
-                    <th scope="row">{{ $country->id }}</th>
-                    <td>{{ $country->name }}</td>
+                @foreach ($country->departments as $department)
+                    <th scope="row">{{ $department->id }}</th>
+                    <td>{{ $department->name }}</td>
 
                     <td width="10px">
-                        <a href="{{ route('admin.localizaciones.show', $country) }}"
+                        <a href="{{ route('admin.departamentos.show', [$country, $department]) }}"
                             style="color: black; border-color:#FFAA37;" class="btn btn-outline-primary" title="Mostrar"><i
                                 class="bi bi-binoculars-fill"></i></a>
                     </td>
                     <td width="10px">
-                        <form action="{{ route('admin.localizaciones.destroy', $country) }}" method="post"
+                        <form action="{{ route('admin.departamentos.destroy', [$country, $department]) }}" method="post"
                             onSubmit="return confirm('Seguro desea eliminar?')">
                             @csrf
                             @method('delete')
@@ -46,4 +51,5 @@
             @endforeach
         </tbody>
     </table>
+
 @stop

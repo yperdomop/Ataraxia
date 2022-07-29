@@ -1,6 +1,7 @@
 <div class="form-group">
     {!! Form::label('name', 'Nombre') !!}
-    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ingresar nombre del país']) !!}
+    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ingresar nombre del departamento']) !!}
+    {!! Form::hidden('country_id', $country->id) !!}
 
     @error('name')
         <small>*{{ $message }}</small>

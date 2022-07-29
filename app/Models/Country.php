@@ -14,4 +14,9 @@ class Country extends Model
         'registred',
 
     ];
+
+    public function departments()
+    {
+        return $this->hasMany(Department::class);
+    }
 }

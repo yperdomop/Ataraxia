@@ -13,7 +13,8 @@ class City extends Model
         'name',
         'registred',
         'country_id',
-        'state_id'
+        'state_id',
+        'department_id',
     ];
 
     //uno a muchos

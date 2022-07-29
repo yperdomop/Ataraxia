@@ -8,7 +8,7 @@ use App\Models\City;
 use App\Models\Sport;
 use App\Models\Membership_price;
 use Spatie\Permission\Models\Role;
-use App\Models\Provider_types;
+use App\Models\Provider_type;
 
 class paymentSeeder extends Seeder
 {
@@ -231,19 +231,19 @@ class paymentSeeder extends Seeder
             'name' => 'Surf'
         ]);
 
-        Provider_types::create([
+        Provider_type::create([
             'name' => 'Hotel',
             'registred' => null
         ]);
-        Provider_types::create([
+        Provider_type::create([
             'name' => 'Implementos deportivos',
             'registred' => null
         ]);
-        Provider_types::create([
+        Provider_type::create([
             'name' => 'Agencia de viajes',
             'registred' => null
         ]);
-        Provider_types::create([
+        Provider_type::create([
             'name' => 'restaurante',
             'registred' => null
         ]);

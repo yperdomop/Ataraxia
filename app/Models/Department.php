@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class  departments extends Model
+class  department extends Model
 {
     use HasFactory;
 
@@ -14,4 +14,14 @@ class  departments extends Model
         'registred',
         'country_id',
     ];
+
+    public function cities()
+    {
+        return $this->hasMany(City::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 }

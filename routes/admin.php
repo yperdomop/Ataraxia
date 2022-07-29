@@ -18,6 +18,8 @@ use App\Http\Controllers\Admin\PermisoController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\DocumentController;
+use App\Http\Controllers\Admin\DepartmentsController;
+use App\Http\Controllers\Admin\CitiesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +62,8 @@ Route::resource('permisos', PermisoController::class)->except('show')->names('ad
 
 Route::resource('compania', CompanyController::class)->except('show')->names('admin.compania');
 
-Route::resource('localizaciones', LocationController::class)->except('show')->names('admin.localizaciones');
+Route::resource('countries', LocationController::class)->names('admin.localizaciones');
+Route::resource('countries.departments', DepartmentsController::class)->except('index')->names('admin.departamentos');
+Route::resource('departments.cities', CitiesController::class)->except('index', 'show')->names('admin.ciudades');
 
-Route::resource('documentos', DocumentController::class)->except('show')->names('admin.documentos');
+Route::resource('documents', DocumentController::class)->except('show')->names('admin.documentos');
