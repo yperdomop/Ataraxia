@@ -66,4 +66,4 @@ Route::resource('countries', LocationController::class)->names('admin.localizaci
 Route::resource('countries.departments', DepartmentsController::class)->except('index')->names('admin.departamentos');
 Route::resource('departments.cities', CitiesController::class)->except('index', 'show')->names('admin.ciudades');
 
-Route::resource('documents', DocumentController::class)->except('show')->names('admin.documentos');
+Route::get('documents', [DocumentController::class, 'index'])->name('admin.documentos.index');

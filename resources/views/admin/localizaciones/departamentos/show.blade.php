@@ -14,11 +14,12 @@
 
 @section('content')
     <h2 class="text-center">{{ $department->name }} - {{ $country->name }}</h2>
-    <a href="{{ route('admin.departamentos.edit', [$country, $department]) }}" style="background-color:#FFAA37;"
-        class="btn m-3">
+    <a href="{{ route('admin.departamentos.edit', [$country, $department]) }}" style="color: black; border-color:#FFAA37;"
+        class="btn btn-outline-primary m-3">
         Editar
         localización</a>
-    <a href="{{ route('admin.ciudades.create', $department) }}" style="background-color:#FFAA37;" class="btn m-3">
+    <a href="{{ route('admin.ciudades.create', $department) }}" style="color: black; border-color:#FFAA37;"
+        class="btn btn-outline-primary">
         Crear
         ciudad</a>
     <br>

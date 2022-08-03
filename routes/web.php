@@ -51,11 +51,13 @@ Route::middleware([
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
     Route::get('/documentos', [HomeController::class, 'documentos'])->name('documentos');
     Route::post('/guardar-documentos', [HomeController::class, 'guardarDocumentos'])->name('documentos.guardar');
+    Route::get('/ver-documentos', [HomeController::class, 'verDocumentos'])->name('documentos.ver');
+    Route::delete('/documentos/{document}', [HomeController::class, 'EliminarDocumento'])->name('documentos.eliminar');
 });
 
 //correo
 Route::get('confirmacion', function () {
     $correo = new ConfirmacionMailable;
     Mail::to('yadirperdomo0509@gmail.com')->send($correo);
-    return "correo enviado";
+    return "Hemos enviado un mensaje a tu correo electrónico";
 });

@@ -37,16 +37,16 @@
                         <td></td>
                         <td></td>
                         <td width="10px">
-                            <a href=""style="color: black; border-color:#FFAA37;" class="btn btn-outline-primary"
-                                title="Ver Detalle"><i class="bi bi-pencil-square"></i></a>
+                            <a href=""><img src="{{ asset('img/icono-ver.png') }}"
+                                    style="width:50px;height:50px;" title="Ver Detalle"> </a>
                         </td>
                         <td width="10px">
                             <form action="" method="" onSubmit="return confirm('Seguro desea eliminar?')">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-outline-danger"
-                                    style="color: black; border-color:#FFAA37;" title="Eliminar"> <i
-                                        class="bi bi-trash3-fill"></i></button>
+                                <button type="submit" class="border-0"> <img
+                                        src="{{ asset('img/icono-eliminar.png') }}" style="width:40px;height:40px;"
+                                        title="Eliminar"></button>
                             </form>
                     </tr>
                     <tr>
@@ -62,18 +62,18 @@
                         <td></td>
                         <td></td>
                         <td width="10px">
-                            <a href=""style="color: black; border-color:#FFAA37;" class="btn btn-outline-primary"
-                                title="Ver Detalle"><i class="bi bi-pencil-square"></i></a>
+                            <a href=""><img src="{{ asset('img/icono-ver.png') }}"
+                                    style="width:50px;height:50px;" title="Ver Detalle"> </a>
                         </td>
                         <td width="10px">
                             <form action="" method="" onSubmit="return confirm('Seguro desea eliminar?')">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-outline-danger"
-                                    style="color: black; border-color:#FFAA37;" title="Eliminar"> <i
-                                        class="bi bi-trash3-fill"></i></button>
+                                <button type="submit" class="border-0"> <img
+                                        src="{{ asset('img/icono-eliminar.png') }}" style="width:40px;height:40px;"
+                                        title="Eliminar"></button>
                             </form>
-                    </tr>
+                        </td>
                     <tr>
                         <th scope="row">
                             <div class="form-check">
@@ -87,16 +87,16 @@
                         <td></td>
                         <td></td>
                         <td width="10px">
-                            <a href=""style="color: black; border-color:#FFAA37;" class="btn btn-outline-primary"
-                                title="Ver Detalle"><i class="bi bi-pencil-square"></i></a>
+                            <a href=""><img src="{{ asset('img/icono-ver.png') }}"
+                                    style="width:50px;height:50px;" title="Ver Detalle"> </a>
                         </td>
                         <td width="10px">
                             <form action="" method="" onSubmit="return confirm('Seguro desea eliminar?')">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-outline-danger"
-                                    style="color: black; border-color:#FFAA37;" title="Eliminar"> <i
-                                        class="bi bi-trash3-fill"></i></button>
+                                <button type="submit" class="border-0"> <img
+                                        src="{{ asset('img/icono-eliminar.png') }}" style="width:40px;height:40px;"
+                                        title="Eliminar"></button>
                             </form>
                     </tr>
                     <tr>
@@ -112,16 +112,16 @@
                         <td></td>
                         <td></td>
                         <td width="10px">
-                            <a href=""style="color: black; border-color:#FFAA37;" class="btn btn-outline-primary"
-                                title="Ver Detalle"><i class="bi bi-pencil-square"></i></a>
+                            <a href=""><img src="{{ asset('img/icono-ver.png') }}"
+                                    style="width:50px;height:50px;" title="Ver Detalle"> </a>
                         </td>
                         <td width="10px">
                             <form action="" method="" onSubmit="return confirm('Seguro desea eliminar?')">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-outline-danger"
-                                    style="color: black; border-color:#FFAA37;" title="Eliminar"> <i
-                                        class="bi bi-trash3-fill"></i></button>
+                                <button type="submit" class="border-0"> <img
+                                        src="{{ asset('img/icono-eliminar.png') }}" style="width:40px;height:40px;"
+                                        title="Eliminar"></button>
                             </form>
                     </tr>
                     <tr>
@@ -137,17 +137,16 @@
                         <td></td>
                         <td></td>
                         <td width="10px">
-                            <a href=""style="color: black; border-color:#FFAA37;"
-                                class="btn btn-outline-primary" title="Ver Detalle"><i
-                                    class="bi bi-pencil-square"></i></a>
+                            <a href=""><img src="{{ asset('img/icono-ver.png') }}"
+                                    style="width:50px;height:50px;" title="Ver Detalle"> </a>
                         </td>
                         <td width="10px">
                             <form action="" method="" onSubmit="return confirm('Seguro desea eliminar?')">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-outline-danger"
-                                    style="color: black; border-color:#FFAA37;" title="Eliminar"> <i
-                                        class="bi bi-trash3-fill"></i></button>
+                                <button type="submit" class="border-0"> <img
+                                        src="{{ asset('img/icono-eliminar.png') }}" style="width:40px;height:40px;"
+                                        title="Eliminar"></button>
                             </form>
                     </tr>
                     <tr>
@@ -163,17 +162,16 @@
                         <td></td>
                         <td></td>
                         <td width="10px">
-                            <a href=""style="color: black; border-color:#FFAA37;"
-                                class="btn btn-outline-primary" title="Ver Detalle"><i
-                                    class="bi bi-pencil-square"></i></a>
+                            <a href=""><img src="{{ asset('img/icono-ver.png') }}"
+                                    style="width:50px;height:50px;" title="Ver Detalle"> </a>
                         </td>
                         <td width="10px">
                             <form action="" method="" onSubmit="return confirm('Seguro desea eliminar?')">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-outline-danger"
-                                    style="color: black; border-color:#FFAA37;" title="Eliminar"> <i
-                                        class="bi bi-trash3-fill"></i></button>
+                                <button type="submit" class="border-0"> <img
+                                        src="{{ asset('img/icono-eliminar.png') }}" style="width:40px;height:40px;"
+                                        title="Eliminar"></button>
                             </form>
                     </tr>
                     <tr>
@@ -189,18 +187,18 @@
                         <td></td>
                         <td></td>
                         <td width="10px">
-                            <a href=""style="color: black; border-color:#FFAA37;"
-                                class="btn btn-outline-primary" title="Ver Detalle"><i
-                                    class="bi bi-pencil-square"></i></a>
+                            <a href=""><img src="{{ asset('img/icono-ver.png') }}"
+                                    style="width:50px;height:50px;" title="Ver Detalle"> </a>
                         </td>
                         <td width="10px">
                             <form action="" method="" onSubmit="return confirm('Seguro desea eliminar?')">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-outline-danger"
-                                    style="color: black; border-color:#FFAA37;" title="Eliminar"> <i
-                                        class="bi bi-trash3-fill"></i></button>
+                                <button type="submit" class="border-0"> <img
+                                        src="{{ asset('img/icono-eliminar.png') }}" style="width:40px;height:40px;"
+                                        title="Eliminar"></button>
                             </form>
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -13,8 +13,8 @@
     <p> Buenas tardes: </p>
     <p> Confirmamos que hemos recibido exitosamente su pago , A continuación relacionamos sus credenciales de acceso a
         la plataforma Ataraxia </p>
-    <p> Usuario: </p>
-    <p> Contraseña: </p>
+    <p> Usuario:xxxxxxxxxx </p>
+    <p> Contraseña:xxxxxxxxxx </p>
 </body>
 
 </html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Document;
 use App\Models\Document_type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,5 +54,18 @@ class HomeController extends Controller
 
 
         return redirect()->route('dashboard')->with($var, $msg);
+    }
+    public function VerDocumentos()
+    {
+        $documentos =  Auth::user()->company->documents;
+        return view('users.VerDocument', compact('documentos'));
+    }
+
+    public function EliminarDocumento(Document $document)
+    {
+        Storage::delete($document->document_route);
+        $document->delete();
+
+        return redirect()->route('dashboard');
     }
 }

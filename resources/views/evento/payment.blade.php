@@ -66,7 +66,7 @@
 
                 <div class="container  p-1 my-1" style="border-style: solid;border-width: 1px;border-color:Gainsboro">
                     <button type="button" class='btn' data-bs-toggle="modal" data-bs-target="#modal1"> <img
-                            src="{{ asset('img/openpay.jpg') }}" width="100" height="50" />&nbsp;&nbsp;&nbsp
+                            src="{{ asset('img/openpay.png') }}" width="100" height="50" />&nbsp;&nbsp;&nbsp
                         <b> Realiza tu pago con tarjeta débito o crédito </b></button>
                 </div><br>
 
@@ -77,7 +77,7 @@
                 </div><br>
 
                 <div class="container  p-1 my-1" style="border-style: solid;border-width: 1px;border-color:Gainsboro">
-                    <div class='btn'> <img src="{{ asset('img/cupon.jpg') }}" width="100"
+                    <div class='btn'> <img src="{{ asset('img/cupon.png') }}" width="100"
                             height="50" />&nbsp;&nbsp;&nbsp
                         <b> Redime tu cupón</b>
                         <input type="text" x-model="bono"

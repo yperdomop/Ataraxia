@@ -19,12 +19,19 @@
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     @livewireStyles
     @stack('css')
 
     <!-- Scripts -->
     {{-- <script src="{{asset('bootstrap/js/bootstrap.bundle.min.js')}}" defer></script> --}}
     <script src="{{ mix('js/app.js') }}" defer></script>
+
+    <script>
+        src = "https://code.jquery.com/jquery-3.6.0.min.js"
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 </head>
 
 <body class="font-sans antialiased bg-light">

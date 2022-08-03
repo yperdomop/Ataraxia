@@ -57,6 +57,14 @@
                         </x-jet-nav-link>
                 </div>
 
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav me-auto">
+                        <x-jet-nav-link href="{{ route('documentos.ver') }}" :active="request()->routeIs('dashboard')">
+                            {{ __('Documentos') }}
+                        </x-jet-nav-link>
+                </div>
+
 
                 @can('admin.users.index')
                     {{-- ocultar boton en menu --}}
