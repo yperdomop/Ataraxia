@@ -1,5 +1,5 @@
 <x-app-layout>
-    <a class="btn btn-link" href="{{ route('evento.index') }}">Volver</a>
+
     <div class=" w-100 vh-100">
         <div class=" w-100 h-100 d-flex align-items-center fondoimg "
             style="background-image:url({{ asset('img/fondo-evento.jpg') }});">
@@ -12,23 +12,21 @@
                     </h3>
                     <div class="d-flex justify-content-evenly">
                         <div>
-                            <a href=""><img src="{{ asset('img/evento-2.png') }}"></a>
-                            <h4>
+                            <a href="{{ route('evento.gestion') }}"><img src="{{ asset('img/evento-2.png') }}"></a>
+                            <h4><br>
                                 <center>Asistir a un evento</center>
                             </h4>
                         </div>
                         <div>
                             <a href=""><img src="{{ asset('img/evento-3.png') }}"></a>
-                            <h4>
+                            <h4><br>
                                 <center>Organizar un evento</center>
                             </h4>
                         </div>
                     </div>
-                    <div class="w-100 p-3 text-center">
-                        <a class="btn-ataraxia" href="{{ route('evento.gestion') }}"
-                            role="button"><strong>Iniciar</strong></a>
-                    </div><br>
-                </div>
+
+                </div><br>
+                <a class="btn btn-ataraxia" href="{{ route('dashboard') }}">Volver</a>
             </div>
 
         </div>

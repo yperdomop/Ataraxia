@@ -1,7 +1,6 @@
 <x-app-layout>
-    <a class="btn btn-link" href="{{ route('evento.index') }}">Volver</a>
-    <div><br>
-        <h5 class="bg-primary p-2 text-white "> Gestión de Eventos <br>Asistir a un Evento</h5>
+
+    <h5 class="bg-secondary p-2 text-white "> Gestión de Eventos <br>Asistir a un Evento</h5>
     </div>
     <div class="row">
         <div class="col-8">
@@ -63,22 +62,36 @@
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1"></label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">Observaciones:</textarea>
-                </div>
-                <div class="d-flex flex-row-reverse pt-3">
+                </div><br>
+                <div class="d-flex justify-content-between">
+                    <a class="btn btn-ataraxia" href="{{ route('evento.seleccion') }}">Volver</a>
                     <input type="submit" class="btn btn-ataraxia" value="Solicitar cotización" />
+
                 </div>
+
             </form>
         </div>
         <div class="col-4">
             <div class="d-flex justify-content-evenly">
                 <div>
-                    <img src="{{ asset('img/globo-asistente.png') }}" style="width:300px;height:150px;">
+                    <div class="px-4 py-2 text-white"
+                        style="width:300px;height:160px;background-size: 300px 160px;background-image:url({{ asset('img/globo-asistente.png') }})">
+                        <p>
+                            <center>A medida que
+                                el
+                                usuario va avanzando en los campos el avatar arroja la ayuda con la orientación de
+                                información
+                                que debe diligenciar.</center>
+                        </p>
+                    </div>
                     <img src="{{ asset('img/asistente-12.png') }}" style="width:300px;height:300px;">
 
                 </div>
             </div>
         </div>
+
     </div>
+
     </div>
 
 

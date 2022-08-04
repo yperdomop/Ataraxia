@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="vh-100">
-        <a class="btn btn-link" href="{{ route('dashboard') }}">Volver</a>
+        <a class="btn btn-ataraxia" href="{{ route('dashboard') }}">Volver</a>
         <div><br>
             <h2>
                 <center><strong> AQUI PUEDES VER TUS DOCUMENTOS</strong></center>

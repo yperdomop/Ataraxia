@@ -1,7 +1,6 @@
 <x-app-layout>
-    <a class="btn btn-link" href="{{ route('evento.gestion') }}">Volver</a>
-    <div><br>
-        <h5 class="bg-primary p-2 text-white"> Gestión de Eventos <br>Asistir a un Evento</h5>
+
+    <h5 class="bg-secondary p-2 text-white"> Gestión de Eventos <br>Asistir a un Evento</h5>
     </div>
     <div class="row m-3">
         <div class="col-8"</i>
@@ -224,6 +223,8 @@
 
         </div>
     </div>
+    <a class="btn btn-ataraxia" href="{{ route('evento.gestion') }}">Volver</a>
+    <div>
     </div>
 
 </x-app-layout>
