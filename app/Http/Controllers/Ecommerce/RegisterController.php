@@ -223,4 +223,10 @@ class RegisterController extends Controller
 
         return redirect()->route('login')->with('info', '<p>¡¡Hola ' . $usuario->first_name . '!!<br> Usted se ha registrado exitosamente, su usuario y contraseña se ha enviado a su correo.</p>');
     }
+
+    public function Openpay($compania)
+    {
+        $company = Company_datum::find($compania);
+        return view('ecommerce.openpay', compact('company'));
+    }
 }

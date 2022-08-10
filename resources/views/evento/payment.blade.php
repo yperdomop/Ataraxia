@@ -1,5 +1,5 @@
 <x-app-layout>
-    <a class="btn btn-link" href="">Volver</a>
+    <a class="btn btn-link" href="{{ route('evento.gestion') }}">Volver</a>
     <br>
 
     <div x-data="{ price: 500000, bono: '', enable: false, msg: '' }" class="container p-3 my-3"
@@ -148,7 +148,7 @@
                     <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img src=" {{ asset('img/qrbitcoin.jpg') }} " width="350" </div>
+                    <img src=" {{ asset('img/QR-Bitcoin.png') }} " width="300" </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn-ataraxia" data-bs-dismiss="modal">Cerrar</button>

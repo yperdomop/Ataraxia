@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-register-layout>
     <h1 style="text-align:center">Resumen de datos</h1>
     <div class="d-flex justify-content-center">
         <table class="table w-75 table-bordered table-striped">
@@ -60,4 +60,4 @@
             a
             pagar</a>
     </div>
-</x-app-layout>
+</x-register-layout>

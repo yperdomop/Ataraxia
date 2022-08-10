@@ -223,8 +223,8 @@
 
         </div>
     </div>
-    <a class="btn btn-ataraxia" href="{{ route('evento.gestion') }}">Volver</a>
     <div>
+        <a class="btn btn-ataraxia" href="{{ route('evento.gestion') }}">Volver</a>
     </div>
 
 </x-app-layout>

@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <h5 class="bg-secondary p-2 text-white "> Gestión de Eventos <br>Asistir a un Evento</h5>
-    </div>
+
     <div class="row">
         <div class="col-8">
             <div class="pt-3 row">

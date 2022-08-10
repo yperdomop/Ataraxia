@@ -1,5 +1,5 @@
-<x-app-layout>
-    <div class="table-responsive">
+<x-register-layout>
+    <div class="table-responsive pt-3">
         <h1 class="text-center">TIPOS DE MEMBRESÍA</h1>
         <table class="table table-bordered table-striped">
             <thead class="table-dark text-center">
@@ -36,5 +36,4 @@
             </tbody>
         </table>
     </div>
-
-</x-app-layout>
+</x-register-layout>

@@ -46,7 +46,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <x-jet-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('dashboard')">
-                            {{ __('Mall') }}
+                            {{ __('Metaraxia') }}
                         </x-jet-nav-link>
                 </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
