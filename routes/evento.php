@@ -11,3 +11,4 @@ Route::get('seleccion', [EventoController::class, 'seleccion'])->name('evento.se
 Route::get('cotizacion', [EventoController::class, 'cotizacion'])->name('evento.cotizacion');
 Route::post('cotizacion', [EventoController::class, 'guardar'])->name('evento.guardar');
 Route::get('pago', [EventoController::class, 'pago'])->name('evento.pago');
+Route::get('openpay', [EventoController::class, 'openpay'])->name('evento.openpay');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Ecommerce;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ConfirmacionMailable;
 use Illuminate\Http\Request;
 use App\Models\City;
 use App\Models\Payment_frequency;
@@ -13,6 +14,9 @@ use Spatie\Permission\Models\Role;
 use App\Models\Purchase_datum;
 use App\Models\Membership_price;
 use App\Models\provider_type;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use Openpay\Data\Openpay;
 
 class RegisterController extends Controller
 {
@@ -224,9 +228,49 @@ class RegisterController extends Controller
         return redirect()->route('login')->with('info', '<p>¡¡Hola ' . $usuario->first_name . '!!<br> Usted se ha registrado exitosamente, su usuario y contraseña se ha enviado a su correo.</p>');
     }
 
-    public function Openpay($compania)
+    public function openpay($compania)
     {
         $company = Company_datum::find($compania);
         return view('ecommerce.openpay', compact('company'));
+    }
+
+    public function enviarPago(Request $request, $compania)
+    {
+        $company = Company_datum::find($compania);
+        //instancia openpay
+        $openpay = Openpay::getInstance(env('OPENPAY_ID'), env('OPENPAY_SK'), 'CO');
+        Openpay::setProductionMode(false);
+        //creación usuario openpay
+        $customer = [
+            'name' => $company->users->first()->first_name,
+            'last_name' => $company->users->first()->last_name,
+            'phone_number' => '6017415658',  //$company->phone,
+            'email' => $company->email,
+        ];
+        //creación de cargos en openpay
+        $chargeData = [
+            'method' => 'card',
+            'source_id' => $request->token_id,
+            'amount' => ($company->purchases->last()->price / 10),
+            'currency' => 'COP',
+            'description' => 'Compra de membresia Ataraxia ' . $company->users->first()->getRoleNames()->first(),
+            'device_session_id' => $request->deviceIdHiddenFieldName,
+            'customer' => $customer
+        ];
+        $charge = $openpay->charges->create($chargeData);
+        //actualizacion de pago bd
+        $meses = $company->purchases->last()->membership->payment->meses;
+        $today = Carbon::now();
+        $company->purchases->last()->update([
+            'purchase_date' => Carbon::now(),
+            'expiration_date' => $today->addMonths($meses),
+        ]);
+        //activación de usuario bd
+        $company->users->first()->update(['status' => 'activo']);
+        //notificación al correo
+        $correo = new ConfirmacionMailable($company->users->first());
+        Mail::to($company->users->first()->email)->send($correo);
+
+        return redirect()->route('login')->with('info', '<p>¡¡Hola ' . $company->users->first()->first_name . '!!<br> Se ha realizado el pago exitosamente, su usuario y contraseña se ha enviado a su correo.</p>');
     }
 }

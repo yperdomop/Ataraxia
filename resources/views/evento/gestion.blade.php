@@ -13,44 +13,84 @@
             </div>
             <form method="post" action="{{ route('evento.guardar') }}">
                 @csrf
-                <input type="text" class="form-control" placeholder="Nombre del Evento">
+                <p>Los campos con * son obligatorios</p>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="nombre" id="nombre"
+                        placeholder="* Nombre del evento" value="">
+                    <label for="nombre">* Nombre del evento</label>
+                    @error('nombre')
+                        <div class="text-danger" style="font-size:12px">{{ $message }}</div>
+                    @enderror
+                </div>
 
                 <div class="pt-3 row">
-                    <div class="form-group col">
-                        <input type="text" name="ciudad" class="form-control" placeholder="Ciudad del Evento">
+                    <div class="form-group col form-floating mb-3">
+                        <input type="text" name="ciudad" class="form-control" id="ciudad"
+                            placeholder="* Ciudad del Evento" value="">
+                        <label for="ciudad">* Ciudad del evento</label>
+                        @error('ciudad')
+                            <div class="text-danger" style="font-size:12px">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <div class="form-group col">
-                        <input type="date" class="form-control">
+                    <div class="form-group col form-floating mb-3">
+                        <input type="date" name="fecha" id="fecha" class="form-control"
+                            placeholder="* fecha del Evento" value="">
+                        <label for="fecha">* fecha del evento</label>
+                        @error('fecha')
+                            <div class="text-danger" style="font-size:12px">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <div class="form-group col">
-                        <input type="text" class="form-control" placeholder="Ciudad de Origen:">
+                    <div class="form-group col form-floating mb-3">
+                        <input type="text" name="origen" id="origen" class="form-control"
+                            placeholder="* Ciudad de Origen:" value="">
+                        <label for="origen">* Ciudad de origen</label>
+                        @error('origen')
+                            <div class="text-danger" style="font-size:12px">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="pt-3 d-flex row align-items-center">
                     <div class="form-group col">
-                        <input type="number" class="form-control" placeholder="Pasajeros:Adultos">
-                        <input type="number" class="form-control" placeholder="Pasajeros:Menores de Edad">
-
+                        <div class=" form-floating">
+                            <input type="number" name="adultos" id="adultos" class="form-control"
+                                placeholder="Pasajeros:Adultos" value="">
+                            <label for="adultos"> Pasajeros:Adultos</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="number" name="ninos" id="ninos" class="form-control"
+                                placeholder="Pasajeros:Adultos" value="">
+                            <label for="ninos"> Pasajeros:Niños</label>
+                        </div>
                     </div>
 
-                    <div class="form-group col">
-                        <input type="text" class="form-control" placeholder="Deporte:">
+                    <div class="form-group col form-floating mb-3">
+                        <input type="text" name="deporte" id="deporte" class="form-control" placeholder="*Deporte:"
+                            value="">
+                        <label for="deporte"> *Deporte</label>
                     </div>
-                    <div class="form-group col">
-                        <input type="text" name="escenario" class="form-control" placeholder="Escenario Deportivo:">
+
+                    <div class="form-group col form-floating mb-3">
+                        <input type="text" name="escenario" id="escenario" class="form-control"
+                            placeholder="*Escenario Deportivo:" value="">
+                        <label for="escenario"> *Escenario deportivo</label>
                     </div>
                 </div>
 
                 <div class="pt-3 row">
-                    <div class="form-group col">
-                        <input type="test" class="form-control" placeholder="Medio de Transporte:">
+                    <div class="form-group col form-floating mb-3">
+                        <input type="text" name="transporte" id="transporte" class="form-control"
+                            placeholder="* Medio de Transporte" value="">
+                        <label for="transporte"> * Medio de Transporte</label>
+                    </div>
+
+                    <div class="form-group col form-floating mb-3">
+                        <input type="text" name="traslados" id="traslados" class="form-control"
+                            placeholder="Traslados:"value="">
+                        <label for="traslados"> Traslados</label>
                     </div>
                     <div class="form-group col">
-                        <input type="text" class="form-control" placeholder="Translados:">
-                    </div>
-                    <div class="form-group col">
-                        <select name="proveedor[]" class="form-select select2" aria-label="Default select example"
+                        <select name="proveedor" class="form-select select2" aria-label="Default select example"
                             multiple>
                             <option value="" selected>proveedor para tu evento</option>
                             @foreach ($proveedores as $proveedor)
@@ -61,7 +101,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1"></label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">Observaciones:</textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Observaciones"></textarea>
                 </div><br>
                 <div class="d-flex justify-content-between">
                     <a class="btn btn-ataraxia" href="{{ route('evento.seleccion') }}">Volver</a>

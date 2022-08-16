@@ -1,7 +1,8 @@
 <x-register-layout>
     <div class="row">
         <div class="col-12">
-            <form action="#" method="POST" id="payment-form" class="formulario" style="width:60%">
+            <form action="{{ Route('ecommerce.pay') }}" method="post" id="payment-form" class="formulario"
+                style="width:60%">
                 @csrf
                 <input type="hidden" name="token_id" id="token_id">
                 <h2 class="bg-danger p-2 text-white text-center "> Tarjeta de crédito o débito <br></h2>
@@ -53,7 +54,7 @@
                         <img src="{{ asset('img/openpay.png') }}" width="150" height="50">
                     </div>
                     <div class="d-flex justify-content-between">
-                        <a class="btn btn-ataraxia" href="">Volver</a>
+                        <a class="btn btn-ataraxia" href="{{ route('evento.pago') }}">Volver</a>
                         <a class="btn btn-ataraxia" id="pay-button">Pagar</a>
 
                     </div>
@@ -73,8 +74,8 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 OpenPay.setSandboxMode(true);
-                OpenPay.setId('mhbs2wh8vaj5upkvh9cn');
-                OpenPay.setApiKey('pk_23fe9414d4c7439cb651c516c775bf01');
+                OpenPay.setId({{ env('OPENPAY_ID') }});
+                OpenPay.setApiKey({{ env('OPENPAY_PK') }});
                 var deviceSessionId = OpenPay.deviceData.setup("payment-form", "deviceIdHiddenFieldName");
             });
             $('#pay-button').on('click', function(e) {

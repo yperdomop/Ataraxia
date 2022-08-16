@@ -9,12 +9,17 @@
 </head>
 
 <body>
-    <h1> Correo electrónico</h1>´
-    <p> Buenas tardes: </p>
-    <p> Confirmamos que hemos recibido exitosamente su pago , A continuación relacionamos sus credenciales de acceso a
-        la plataforma Ataraxia </p>
-    <p> Usuario:xxxxxxxxxx </p>
-    <p> Contraseña:xxxxxxxxxx </p>
+    <p> Cordial saludo {{ $user->first_name }} {{ $user->last_name }}: </p>
+
+    <p> Confirmamos que hemos recibido exitosamente su pago, a continuación relacionamos sus credenciales de acceso a
+        la plataforma Ataraxia: </p>
+    <p> Usuario: {{ $user->email }} <br> Contraseña: {{ $user->identification_document }} </p>
+    <p> Puedes ingresar desde el siguiente link <a href="{{ route('login') }}">{{ route('login') }}<a></p>
+    <br>
+    <p>
+        Atentamente,<br>
+        Ataraxia.
+    </p>
 </body>
 
 </html>

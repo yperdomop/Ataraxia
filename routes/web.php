@@ -33,7 +33,11 @@ Route::get('validar', function () {
 
 Route::get('membresias', [RegisterController::class, 'membership'])->name('ecommerce.membership');
 Route::get('/', function () {
-    return redirect()->route('ecommerce.membership');
+    if (Auth::check()) {
+        return redirect()->route('dashboard');
+    } else {
+        return redirect()->route('ecommerce.membership');
+    }
 });
 Route::get('membresias', [RegisterController::class, 'membership'])->name('ecommerce.membership');
 Route::get('completar-registro/{membership}', [RegisterController::class, 'register'])->name('ecommerce.register');
@@ -43,6 +47,7 @@ Route::post('modificar-pedido/{company}', [RegisterController::class, 'update'])
 Route::get('resumen-membresia/{company}', [RegisterController::class, 'summary'])->name('ecommerce.summary');
 Route::get('pasarela-pagos/{company}', [RegisterController::class, 'payment'])->name('ecommerce.payment');
 Route::get('openpay/{company}', [RegisterController::class, 'openpay'])->name('ecommerce.openpay');
+Route::post('openpay/{company}', [RegisterController::class, 'enviarPago'])->name('ecommerce.pay');
 Route::get('registro-proveedores', [RegisterController::class, 'supplier'])->name('ecommerce.supplier');
 Route::post('registro-proveedores', [RegisterController::class, 'storageSupplier'])->name('ecommerce.supplier.storage');
 
@@ -56,35 +61,4 @@ Route::middleware([
     Route::post('/guardar-documentos', [HomeController::class, 'guardarDocumentos'])->name('documentos.guardar');
     Route::get('/ver-documentos', [HomeController::class, 'verDocumentos'])->name('documentos.ver');
     Route::delete('/documentos/{document}', [HomeController::class, 'EliminarDocumento'])->name('documentos.eliminar');
-});
-
-//correo
-Route::get('confirmacion', function () {
-    $correo = new ConfirmacionMailable;
-    Mail::to('yadirperdomo0509@gmail.com')->send($correo);
-    return "Hemos enviado un mensaje a tu correo electrónico";
-});
-
-//openpay
-Route::get('openpay', function () {
-    try {
-        $openpay = Openpay::getInstance(env('OPENPAY_ID'), env('OPENPAY_SK'), 'CO');
-        $customerData = array(
-            'name' => 'Jadir',
-            'last_name' => 'Perdomo',
-            'email' => 'teofilo@payments.com',
-            'phone_number' => '4421112233',
-        );
-        $findDataRequest = array(
-            'creation[gte]' => '2022-01-01',
-            'creation[lte]' => '2022-12-31',
-            'offset' => 0,
-            'limit' => 5
-        );
-        $client = $openpay->customers->get('a4npsfmrjtkfvdvhx1aj');
-        $client->delete();
-        return response()->json($client,);
-    } catch (OpenpayApiRequestError $e) {
-        return ('ERROR on the request: ' . $e->getMessage());
-    }
 });

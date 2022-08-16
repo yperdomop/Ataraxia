@@ -35,8 +35,28 @@ class EventoController extends Controller
         $proveedores = Provider_type::all();
         return view('evento.gestion', compact('proveedores'));
     }
+    /* pendiente formulario de gestión
+    public function GuardarProveedor(Request $request)
+    {
+        $request->validate([
+            "nombre" => "required",
+            "ciudad" => "required",
+            "fecha" => "required",
+            "origen" => "required",
+            "deporte" => "required",
+            "escenario" => "required",
+            "transporte" => "required",
+            "proveedor" => "required",
+        ]);
+    } */
+
+
     public function cotizacion()
     {
         return view('evento.cotizacion');
+    }
+    public function openpay()
+    {
+        return view('evento.openpay');
     }
 }

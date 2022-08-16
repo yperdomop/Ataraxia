@@ -65,9 +65,9 @@
                 <p><b>Selecciona el medio de pago</b></p>
 
                 <div class="container  p-1 my-1" style="border-style: solid;border-width: 1px;border-color:Gainsboro">
-                    <button type="button" class='btn' data-bs-toggle="modal" data-bs-target="#modal1"> <img
+                    <a type="button" class='btn' href="{{ route('evento.openpay') }}"> <img
                             src="{{ asset('img/openpay.png') }}" width="100" height="50" />&nbsp;&nbsp;&nbsp
-                        <b> Realiza tu pago con tarjeta débito o crédito </b></button>
+                        <b> Realiza tu pago con tarjeta débito o crédito </b></a>
                 </div><br>
 
                 <div class="container  p-1 my-1" style="border-style: solid;border-width: 1px;border-color:Gainsboro">
