@@ -8,13 +8,13 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ConfirmacionMailable extends Mailable
+class confiproveedorMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $user;
 
-    public $subject = 'Confirmación de creación de usuario';
+    public $subject = 'Confirmación de registro de proveedor';
     public function __construct(User $user)
     {
         $this->user = $user;
@@ -22,6 +22,6 @@ class ConfirmacionMailable extends Mailable
 
     public function build()
     {
-        return $this->view('emails.confirmacion');
+        return $this->view('emails.confiproveedor');
     }
 }

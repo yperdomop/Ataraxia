@@ -58,7 +58,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/fintech.php'));
 
             Route::prefix('eventos')
-                ->middleware('web', 'auth')
+                ->middleware('web', 'auth', 'document')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/evento.php'));
         });

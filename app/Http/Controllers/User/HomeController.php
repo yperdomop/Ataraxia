@@ -66,6 +66,6 @@ class HomeController extends Controller
         Storage::delete($document->document_route);
         $document->delete();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('info', 'Documento eliminado con éxito');
     }
 }

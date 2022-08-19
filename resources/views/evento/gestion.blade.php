@@ -25,8 +25,13 @@
 
                 <div class="pt-3 row">
                     <div class="form-group col form-floating mb-3">
-                        <input type="text" name="ciudad" class="form-control" id="ciudad"
-                            placeholder="* Ciudad del Evento" value="">
+                        <select name="ciudad" class="form-control" id="ciudad" placeholder="* Ciudad del Evento"
+                            value="">
+                            @foreach ($ciudades as $ciudad)
+                                <option value={{ $ciudad->id }} @if (Auth::user()->company->city_id == $ciudad->id) selected @endif>
+                                    {{ $ciudad->name }}</option>
+                            @endforeach
+                        </select>
                         <label for="ciudad">* Ciudad del evento</label>
                         @error('ciudad')
                             <div class="text-danger" style="font-size:12px">{{ $message }}</div>
@@ -41,8 +46,13 @@
                         @enderror
                     </div>
                     <div class="form-group col form-floating mb-3">
-                        <input type="text" name="origen" id="origen" class="form-control"
+                        <select type="text" name="origen" id="origen" class="form-control"
                             placeholder="* Ciudad de Origen:" value="">
+                            @foreach ($ciudades as $ciudad)
+                                <option value={{ $ciudad->id }} @if (Auth::user()->company->city_id == $ciudad->id) selected @endif>
+                                    {{ $ciudad->name }}</option>
+                            @endforeach
+                        </select>
                         <label for="origen">* Ciudad de origen</label>
                         @error('origen')
                             <div class="text-danger" style="font-size:12px">{{ $message }}</div>
@@ -65,8 +75,13 @@
                     </div>
 
                     <div class="form-group col form-floating mb-3">
-                        <input type="text" name="deporte" id="deporte" class="form-control" placeholder="*Deporte:"
-                            value="">
+                        <select type="text" name="deporte" id="deporte" class="form-control"
+                            placeholder="*Deporte:" value="">
+                            @foreach ($deportes as $deporte)
+                                <option value="{{ $deporte->id }}" @if (Auth::user()->company->sport_id == $deporte->id) selected @endif>
+                                    {{ $deporte->name }}</option>
+                            @endforeach
+                        </select>
                         <label for="deporte"> *Deporte</label>
                     </div>
 

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Company_datum;
 use App\Models\Provider_type;
+use App\Models\city;
+use App\Models\Sport;
 
 class EventoController extends Controller
 {
@@ -22,7 +24,8 @@ class EventoController extends Controller
 
     public function guardar(Request $request)
     {
-        $url = "https://www.google.com/maps/embed/v1/place?key=" . env('GOOGLE_API_KEY') . '&q=' . Str::slug($request->escenario, '+') . ',' . $request->ciudad . '+Colombia';
+        $ciudad = City::find($request->ciudad);
+        $url = "https://www.google.com/maps/embed/v1/place?key=" . env('GOOGLE_API_KEY') . '&q=' . Str::slug($request->escenario, '+') . ',' . $ciudad->name . '+' . $ciudad->department->country->name;
         return view('evento.cotizacion', compact('url'));
     }
 
@@ -32,8 +35,10 @@ class EventoController extends Controller
     }
     public function gestion()
     {
+        $deportes = sport::all();
+        $ciudades = city::all();
         $proveedores = Provider_type::all();
-        return view('evento.gestion', compact('proveedores'));
+        return view('evento.gestion', compact('proveedores', 'ciudades', 'deportes'));
     }
     /* pendiente formulario de gestión
     public function GuardarProveedor(Request $request)

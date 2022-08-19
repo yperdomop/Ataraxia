@@ -21,12 +21,21 @@
                 <label for="exampleInputEmail1" class="form-label">
                     <h5>Tipo de Documento</h5>
                 </label>
-                <select class="form-select" name="tipo" aria-label="Default select example">
+                <select class="form-select" name="tipo" id="tipo" aria-label="Default select example">
                     <option selected>Seleccione el Documento</option>
                     @foreach ($tipos as $tipo)
+                        //valida si ya esta cargado el tipo de documento
+                        @if (Auth::user()->company->documents->where('document_type_id', $tipo->id)->isNotEmpty())
+                            @continue
+                        @endif
                         <option value="{{ $tipo->id }}">{{ $tipo->name }}</option>
                     @endforeach
                 </select><br>
+                {{-- no funciona --}}
+                {{-- @error('tipo')
+                    <div class="text-danger" style="font-size:12px">{{ $message }}</div>
+                @enderror --}}
+
                 <div class="mb-3">
                     <label for="formFile" class="form-label">
                         <h5>Cargue el Documento</h5>

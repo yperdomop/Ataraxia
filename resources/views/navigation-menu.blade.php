@@ -68,21 +68,11 @@
 
                 @can('admin.users.index')
                     {{-- ocultar boton en menu --}}
-                    <x-jet-nav-link href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.users.index')">
-                        {{ 'Usuarios' }}
-                    </x-jet-nav-link>
-                @endcan
-                @can('admin.roles.index')
-                    <x-jet-nav-link href="{{ route('admin.roles.index') }}" :active="request()->routeIs('admin.roles.index')">
-                        {{ 'Roles' }}
+                    <x-jet-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('admin.users.index')">
+                        {{ 'Panel' }}
                     </x-jet-nav-link>
                 @endcan
 
-                @can('admin.roles.index')
-                    <x-jet-nav-link href="{{ route('admin.permisos.index') }}" :active="request()->routeIs('admin.permisos.index')">
-                        {{ 'Permisos' }}
-                    </x-jet-nav-link>
-                @endcan
             </ul>
 
             <!-- Right Side Of Navbar -->

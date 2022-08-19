@@ -22,7 +22,7 @@ use Openpay\Data\OpenpayApiRequestError;
 */
 
 Route::get('validar', function () {
-    if (Auth::user()->can('admin')) {
+    if (Auth::user()->can('admin.home')) {
         return redirect()->route('admin.index');
     } elseif (Auth::user()->hasRole('proveedor')) {
         return redirect()->route('ecommerce.membership');

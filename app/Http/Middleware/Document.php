@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class roleRedirect
+class Document
 {
     /**
      * Handle an incoming request.
@@ -16,11 +17,14 @@ class roleRedirect
      */
     public function handle(Request $request, Closure $next)
     {
-        //valida el rol del usuario y redirige
-        if($request->user()->hasRole('admin')){
-            return redirect()->route('admin.index');
-        }else{
+        if (!Auth::user()->company) {
             return $next($request);
+        } else {
+            if (Auth::user()->company->documents->count() == 0) {
+                return redirect()->route('documentos');
+            } else {
+                return $next($request);
+            }
         }
     }
 }

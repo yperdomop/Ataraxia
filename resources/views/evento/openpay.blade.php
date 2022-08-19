@@ -1,8 +1,7 @@
 <x-register-layout>
     <div class="row">
         <div class="col-12">
-            <form action="{{ Route('ecommerce.pay') }}" method="post" id="payment-form" class="formulario"
-                style="width:60%">
+            <form action="" method="post" id="payment-form" class="formulario" style="width:60%">
                 @csrf
                 <input type="hidden" name="token_id" id="token_id">
                 <h2 class="bg-danger p-2 text-white text-center "> Tarjeta de crédito o débito <br></h2>

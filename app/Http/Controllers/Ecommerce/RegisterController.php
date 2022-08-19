@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Ecommerce;
 
 use App\Http\Controllers\Controller;
+use App\Mail\confiproveedorMailable;
 use App\Mail\ConfirmacionMailable;
 use Illuminate\Http\Request;
 use App\Models\City;
@@ -224,6 +225,10 @@ class RegisterController extends Controller
             'identification_document' => $request->cedula,
             'registred' => 'SYS'
         ])->assignRole('proveedor');
+
+        //notificación al correo
+        $correo = new confiproveedorMailable($usuario);
+        Mail::to($usuario->email)->send($correo);
 
         return redirect()->route('login')->with('info', '<p>¡¡Hola ' . $usuario->first_name . '!!<br> Usted se ha registrado exitosamente, su usuario y contraseña se ha enviado a su correo.</p>');
     }
