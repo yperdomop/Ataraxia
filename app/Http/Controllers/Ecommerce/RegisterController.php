@@ -232,6 +232,11 @@ class RegisterController extends Controller
 
         return redirect()->route('login')->with('info', '<p>¡¡Hola ' . $usuario->first_name . '!!<br> Usted se ha registrado exitosamente, su usuario y contraseña se ha enviado a su correo.</p>');
     }
+    //Hoy
+    public function index()
+    {
+        return view('supplier.index');
+    }
 
     public function openpay($compania)
     {

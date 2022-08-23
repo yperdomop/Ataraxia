@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\HomeController;
 use Openpay\Data\Openpay;
 use Openpay\Data\OpenpayApiRequestError;
+use App\Http\Controllers\SupplierController;
 
 
 /*
@@ -25,13 +26,12 @@ Route::get('validar', function () {
     if (Auth::user()->can('admin.home')) {
         return redirect()->route('admin.index');
     } elseif (Auth::user()->hasRole('proveedor')) {
-        return redirect()->route('ecommerce.membership');
+        return redirect()->route('supplier.index');
     } else {
         return redirect()->route('dashboard');
     }
 });
 
-Route::get('membresias', [RegisterController::class, 'membership'])->name('ecommerce.membership');
 Route::get('/', function () {
     if (Auth::check()) {
         return redirect()->route('dashboard');
@@ -50,6 +50,11 @@ Route::get('openpay/{company}', [RegisterController::class, 'openpay'])->name('e
 Route::post('openpay/{company}', [RegisterController::class, 'enviarPago'])->name('ecommerce.pay');
 Route::get('registro-proveedores', [RegisterController::class, 'supplier'])->name('ecommerce.supplier');
 Route::post('registro-proveedores', [RegisterController::class, 'storageSupplier'])->name('ecommerce.supplier.storage');
+Route::get('proveedor', [RegisterController::class, 'index'])->name('supplier.index');
+
+//proveedor
+Route::get('proveedor/evento', [SupplierController::class, 'evento'])->name('supplier.evento');
+Route::get('proveedor/cotizar', [SupplierController::class, 'cotizacion'])->name('supplier.cotizacion');
 
 Route::middleware([
     'auth:sanctum',

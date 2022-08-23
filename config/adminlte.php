@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'usermenu_enabled' => false,
+    'usermenu_enabled' => true,
     'usermenu_header' => false,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
@@ -242,33 +242,45 @@ return [
             'text' => 'Permisos',
             'route'  => 'admin.permisos.index',
             'icon' => 'fas fa-fw fa-user-shield',
+            'can' => 'admin.permisos.index',
         ],
         [
             'text' => 'Roles',
             'route'  => 'admin.roles.index',
             'icon' => 'fas fa-fw fa-users-cog',
+            'can' => 'admin.roles.index',
         ],
         [
             'text' => 'Usuarios',
             'route'  => 'admin.users.index',
             'icon' => 'fas fa-fw fa-users',
+            'can' => 'admin.users.index',
         ],
         [
             'text' => 'Compañia',
             'route'  => 'admin.compania.index',
             'icon' => 'fas fa-fw  fa-solid fa-building',
+            'can' => 'admin.compania.index',
         ],
 
         [
             'text' => 'Localizaciones',
             'route'  => 'admin.localizaciones.index',
             'icon' => 'fas fa-fw  fa-solid fa-globe-americas',
+            'can' => 'admin.localizaciones.index',
         ],
 
         [
             'text' => 'Documentos',
             'route'  => 'admin.documentos.index',
             'icon' => 'fas fa-file-alt',
+            'can' => 'admin.documentos.index',
+        ],
+        [
+            'text' => 'Eventos',
+            'route'  => 'supplier.evento',
+            'icon' => 'fas fa-file-alt',
+
         ],
 
 
