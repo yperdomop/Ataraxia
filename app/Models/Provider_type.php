@@ -13,4 +13,16 @@ class Provider_type extends Model
         'registred'
 
     ];
+
+    //uno a muchos
+    public function companies()
+    {
+        return $this->HasMany(Company_datum::class);
+    }
+
+    //muchos a muchos
+    public function events()
+    {
+        return $this->belongsToMany(Event::class);
+    }
 }

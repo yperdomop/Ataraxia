@@ -11,6 +11,7 @@ class Payment_frequency extends Model
 
     protected $fillable = [
         'name',
+        'meses',
         'registred'
     ];
 

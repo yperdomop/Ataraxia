@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Payment_frequency;
 use App\Models\City;
+use App\Models\Country;
+use App\Models\department;
 use App\Models\Sport;
 use App\Models\Membership_price;
 use Spatie\Permission\Models\Role;
@@ -21,27 +23,46 @@ class paymentSeeder extends Seeder
     {
         Payment_frequency::create([
             'name' => 'Trimestral',
+            'meses' => 3,
             'registred' => null
         ]);
         Payment_frequency::create([
             'name' => 'Semestral',
+            'meses' => 6,
             'registred' => null
         ]);
         Payment_frequency::create([
             'name' => 'Anual',
+            'meses' => 12,
             'registred' => null
         ]);
+        Country::create(['name' => 'Colombia']);
 
+        department::create([
+            'name' => 'Bogotá D.C.',
+            'country_id' => 1
+        ]);
+        department::create([
+            'name' => 'Valle del Cauca',
+            'country_id' => 1
+        ]);
+        department::create([
+            'name' => 'Huila',
+            'country_id' => 1
+        ]);
         City::create([
             'name' => 'Bogotá',
+            'department_id' => 1,
             'registred' => null
         ]);
         City::create([
             'name' => 'Cali',
+            'department_id' => 2,
             'registred' => null
         ]);
         City::create([
             'name' => 'Neiva',
+            'department_id' => 3,
             'registred' => null
         ]);
 

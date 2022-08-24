@@ -144,8 +144,10 @@
                 <div>
                     <a class="btn btn-ataraxia" href="">Agregar</a>
                 </div>
-
-
+            </div>
+            <div class="mb-3">
+                <label for="formFile" style="width=30%" class="form-label">Subir archivo de cotización</label>
+                <input class="form-control" type="file" id="formFile">
             </div>
         </form>
     </div>

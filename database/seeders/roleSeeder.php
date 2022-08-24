@@ -49,9 +49,21 @@ class roleSeeder extends Seeder
         Permission::create(['name' => 'mall', 'description' => 'Mall'])->syncRoles([$role2, $role3, $role4, $role5, $role6, $role7]);
         Permission::create(['name' => 'permisos', 'description' => 'Permisos'])->syncRoles([$role1]);
 
-        Permission::create(['name' => 'admin.proveedores.index', 'description' => 'Ver listado de proveedores'])->syncRoles($role1);
-        Permission::create(['name' => 'admin.proveedores.create', 'description' => 'Crear proveedor'])->syncRoles($role1);
-        Permission::create(['name' => 'admin.proveedores.edit', 'description' => 'Editar proveedor'])->syncRoles($role1);
-        Permission::create(['name' => 'admin.proveedores.destroy', 'description' => 'Eliminar proveedor'])->syncRoles($role1);
+        Permission::create(['name' => 'admin.compania.index', 'description' => 'Ver listado de compañías'])->syncRoles($role1);
+        Permission::create(['name' => 'admin.compania.create', 'description' => 'Crear compañía'])->syncRoles($role1);
+        Permission::create(['name' => 'admin.compania.edit', 'description' => 'Editar compañía'])->syncRoles($role1);
+        Permission::create(['name' => 'admin.compania.destroy', 'description' => 'Eliminar compañía'])->syncRoles($role1);
+
+        Permission::create(['name' => 'admin.localizaciones.index', 'description' => 'Ver listado de localizaciones'])->syncRoles($role1);
+        Permission::create(['name' => 'admin.localizaciones.create', 'description' => 'Crear localización'])->syncRoles($role1);
+        Permission::create(['name' => 'admin.localizaciones.edit', 'description' => 'Editar localización'])->syncRoles($role1);
+        Permission::create(['name' => 'admin.localizaciones.destroy', 'description' => 'Eliminar localización'])->syncRoles($role1);
+
+        Permission::create(['name' => 'admin.documentos.index', 'description' => 'Ver listado de documentos'])->syncRoles($role1);
+        Permission::create(['name' => 'admin.documentos.create', 'description' => 'Crear documento'])->syncRoles($role1);
+        Permission::create(['name' => 'admin.documentos.edit', 'description' => 'Editar documento'])->syncRoles($role1);
+        Permission::create(['name' => 'admin.documentos.destroy', 'description' => 'Eliminar documento'])->syncRoles($role1);
+
+        Permission::create(['name' => 'proveedor.evento.index', 'description' => 'Ver eventos'])->syncRoles($role8);
     }
 }

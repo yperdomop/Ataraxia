@@ -83,12 +83,18 @@
                             @endforeach
                         </select>
                         <label for="deporte"> *Deporte</label>
+                        @error('deporte')
+                            <div class="text-danger" style="font-size:12px">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group col form-floating mb-3">
                         <input type="text" name="escenario" id="escenario" class="form-control"
                             placeholder="*Escenario Deportivo:" value="">
                         <label for="escenario"> *Escenario deportivo</label>
+                        @error('escenario')
+                            <div class="text-danger" style="font-size:12px">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
@@ -97,6 +103,9 @@
                         <input type="text" name="transporte" id="transporte" class="form-control"
                             placeholder="* Medio de Transporte" value="">
                         <label for="transporte"> * Medio de Transporte</label>
+                        @error('transporte')
+                            <div class="text-danger" style="font-size:12px">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group col form-floating mb-3">
@@ -112,11 +121,15 @@
                                 <option value={{ $proveedor->id }}>{{ $proveedor->name }}</option>
                             @endforeach
                         </select>
+                        @error('proveedor')
+                            <div class="text-danger" style="font-size:12px">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1"></label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Observaciones"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="observacion" rows="3"
+                        placeholder="Observaciones"></textarea>
                 </div><br>
                 <div class="d-flex justify-content-between">
                     <a class="btn btn-ataraxia" href="{{ route('evento.seleccion') }}">Volver</a>

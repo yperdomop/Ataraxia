@@ -16,6 +16,7 @@ class CreatePaymentFrequenciesTable extends Migration
         Schema::create('payment_frequencies', function (Blueprint $table) {
             $table->id();
             $table->string('name'); //nombre de la frecuencia de pogos
+            $table->integer('meses');
             $table->timestamps();
             $table->string('registred')->nullable(); //usuario que modifica
         });
