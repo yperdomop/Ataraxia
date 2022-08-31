@@ -19,11 +19,11 @@ class CreateQuotationTable extends Migration
             $table->date('date'); // fecha de la cotización
             $table->string('route'); //ruta del archivo de cotización
             $table->unsignedBigInteger('company_datum_id')->nullable(); //Foranea de datos compañia
-            $table->unsignedBigInteger('sport_id')->nullable(); //Foranea de deporte
+            $table->unsignedBigInteger('event_id')->nullable(); //Foranea del evento 
             $table->timestamps();
             //llaves foraneas
             $table->foreign('company_datum_id')->references('id')->on('company_data')->cascadeOnUpdate()->nullOnDelete();
-            $table->foreign('sport_id')->references('id')->on('sports')->cascadeOnUpdate()->nullOnDelete();
+            $table->foreign('event_id')->references('id')->on('events')->cascadeOnUpdate()->nullOnDelete();
         });
     }
 

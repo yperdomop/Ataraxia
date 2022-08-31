@@ -1,8 +1,11 @@
 <x-guest-layout>
     @if (session('info'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {!! session('info') !!}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="alert alert-success alert-dismissible fade show" style="background: rgba(0,0,0, 0.80);color:#FFAA37;"
+            role="alert">
+            <center>
+                <h2>{!! session('info') !!}</h2>
+            </center>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
     <x-jet-authentication-card>
@@ -30,8 +33,8 @@
                 <div class="mb-3">
                     <x-jet-label value="{{ __('Contraseña') }}" />
 
-                    <x-jet-input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                        type="password" name="password" required autocomplete="current-password" />
+                    <x-jet-input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" type="password"
+                        name="password" required autocomplete="current-password" />
                     <x-jet-input-error for="password"></x-jet-input-error>
                 </div>
 

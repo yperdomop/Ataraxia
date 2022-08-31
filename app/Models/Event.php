@@ -16,6 +16,7 @@ class Event extends Model
         'address',
         'city_from_id',
         'city_to_id',
+        'sport_id',
         'registred',
         'adult_passengers',
         'child_passengers',
@@ -29,6 +30,11 @@ class Event extends Model
         return $this->belongsTo(Company_datum::class, 'company_datum_id');
     }
 
+    public function sport()
+    {
+        return $this->belongsTo(Sport::class);
+    }
+
     public function city_from()
     {
         return $this->belongsTo(City::class, 'city_from_id');
@@ -40,8 +46,13 @@ class Event extends Model
     }
 
     //muchos a muchos
-    public function provider_types()
+    public function providerTypes()
     {
         return $this->belongsToMany(Provider_type::class);
+    }
+
+    public function quotations()
+    {
+        return $this->hasMany(Quotation::class);
     }
 }

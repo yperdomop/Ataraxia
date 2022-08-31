@@ -18,6 +18,11 @@ class EventoController extends Controller
     {
         return view('evento.home');
     }
+    public function lista()
+    {
+        $events = Event::where('company_datum_id', Auth::user()->company_datum_id)->get();
+        return view('evento.lista', compact('events'));
+    }
 
     public function seleccion()
     {
@@ -36,23 +41,23 @@ class EventoController extends Controller
             "transporte" => "required",
             "proveedor" => "required",
         ]);
-        //return Auth::user()->company_datum_id;
-        $ciudad = City::find($request->ciudad);
-        $envent = Event::create([
+        $event = Event::create([
             'name' => $request->nombre,
             'company_datum_id' => Auth::user()->company_datum_id,
             'date' => $request->fecha,
             'address' => $request->escenario,
             'city_from_id' => $request->origen,
             'city_to_id' => $request->ciudad,
+            'sport_id' => $request->deporte,
             'registred' => Auth::user()->email,
             'adult_passengers' => $request->adultos,
             'child_passengers' => $request->ninos,
             'transport' => $request->transporte,
             'observation' => $request->observacion
         ]);
-        $url = "https://www.google.com/maps/embed/v1/place?key=" . env('GOOGLE_API_KEY') . '&q=' . Str::slug($request->escenario, '+') . ',' . $ciudad->name . '+' . $ciudad->department->country->name;
-        return view('evento.cotizacion', compact('url'));
+
+        $event->providerTypes()->attach($request->proveedor);
+        return redirect()->route('evento.cotizacion', $event);
     }
 
     public function pago()
@@ -67,9 +72,10 @@ class EventoController extends Controller
         return view('evento.gestion', compact('proveedores', 'ciudades', 'deportes'));
     }
 
-    public function cotizacion()
+    public function cotizacion(Event $evento)
     {
-        return view('evento.cotizacion');
+        $url = "https://www.google.com/maps/embed/v1/place?key=" . env('GOOGLE_API_KEY') . '&q=' . Str::slug($evento->address, '+') . ',' . $evento->city_to->name . '+' . $evento->city_to->department->country->name;
+        return view('evento.cotizacion', compact('url', 'evento'));
     }
     public function openpay()
     {

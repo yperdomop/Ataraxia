@@ -20,6 +20,7 @@ class CreateEventTable extends Migration
             $table->date('date'); // fecha del evento
             $table->string('address'); //direccion del evento
             $table->unsignedBigInteger('city_from_id')->nullable(); //ciudad de origen
+            $table->unsignedBigInteger('sport_id')->nullable(); //ciudad de origen
             $table->unsignedBigInteger('city_to_id')->nullable(); //Foranea de ciudad
             $table->string('registred')->nullable(); //usuario que modifica
             $table->integer('adult_passengers')->nullable();
@@ -32,6 +33,7 @@ class CreateEventTable extends Migration
             $table->foreign('company_datum_id')->references('id')->on('company_data')->cascadeOnUpdate()->nullOnDelete();
             $table->foreign('city_from_id')->references('id')->on('cities')->cascadeOnUpdate()->nullOnDelete();
             $table->foreign('city_to_id')->references('id')->on('cities')->cascadeOnUpdate()->nullOnDelete();
+            $table->foreign('sport_id')->references('id')->on('sports')->cascadeOnUpdate()->nullOnDelete();
         });
     }
 

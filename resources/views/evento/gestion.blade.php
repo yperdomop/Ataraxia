@@ -114,7 +114,7 @@
                         <label for="traslados"> Traslados</label>
                     </div>
                     <div class="form-group col">
-                        <select name="proveedor" class="form-select select2" aria-label="Default select example"
+                        <select name="proveedor[]" class="form-select select2" aria-label="Default select example"
                             multiple>
                             <option value="" selected>proveedor para tu evento</option>
                             @foreach ($proveedores as $proveedor)

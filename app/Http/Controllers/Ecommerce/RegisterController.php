@@ -230,13 +230,9 @@ class RegisterController extends Controller
         $correo = new confiproveedorMailable($usuario);
         Mail::to($usuario->email)->send($correo);
 
-        return redirect()->route('login')->with('info', '<p>¡¡Hola ' . $usuario->first_name . '!!<br> Usted se ha registrado exitosamente, su usuario y contraseña se ha enviado a su correo.</p>');
+        return redirect()->route('login')->with('info', '¡¡Hola ' . $usuario->first_name . '!!<br> Usted se ha registrado exitosamente, su usuario y contraseña se ha enviado a su correo.');
     }
     //Hoy
-    public function index()
-    {
-        return view('supplier.index');
-    }
 
     public function openpay($compania)
     {
@@ -281,6 +277,6 @@ class RegisterController extends Controller
         $correo = new ConfirmacionMailable($company->users->first());
         Mail::to($company->users->first()->email)->send($correo);
 
-        return redirect()->route('login')->with('info', '<p>¡¡Hola ' . $company->users->first()->first_name . '!!<br> Se ha realizado el pago exitosamente, su usuario y contraseña se ha enviado a su correo.</p>');
+        return redirect()->route('login')->with('info', '<center><h2> <p style="color:#FFAA37; background-color:#000000;">¡¡Hola ' . $company->users->first()->first_name . '!!<br> Se ha realizado el pago exitosamente, su usuario y contraseña se ha enviado a su correo.</p></h2></center>');
     }
 }

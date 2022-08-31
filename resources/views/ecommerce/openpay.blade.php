@@ -48,9 +48,15 @@
                             <div class="text-danger" style="font-size:12px">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="d-flex flex-row-reverse m-4">
-                        <img src="{{ asset('img/openpay.png') }}" width="150" height="50" hspace="30">
-                        <img src="{{ asset('img/openpay.png') }}" width="150" height="50">
+                    <div class="row justify-content-end">
+                        <div class="col-4">
+                            <h6>Transacciones realizadas via:</h6>
+                            <img src="{{ asset('img/openpay.png') }}" width="100" height="40">
+                        </div>
+                        <div class="col-4">
+                            <h6>Tus pagos se realizan de forma segura con encriptación de 256 bits:</h6>
+                            <img src="{{ asset('img/escudo.png') }}" width="50" height="50" hspace="30">
+                        </div>
                     </div>
                     <div class="d-flex justify-content-between">
                         <a class="btn btn-ataraxia" href="">Volver</a>

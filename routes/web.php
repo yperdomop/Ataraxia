@@ -2,13 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Ecommerce\RegisterController;
-use App\mail\ConfirmacionMailable;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\HomeController;
-use Openpay\Data\Openpay;
-use Openpay\Data\OpenpayApiRequestError;
-use App\Http\Controllers\SupplierController;
+
 
 
 /*
@@ -50,11 +46,6 @@ Route::get('openpay/{company}', [RegisterController::class, 'openpay'])->name('e
 Route::post('openpay/{company}', [RegisterController::class, 'enviarPago'])->name('ecommerce.pay');
 Route::get('registro-proveedores', [RegisterController::class, 'supplier'])->name('ecommerce.supplier');
 Route::post('registro-proveedores', [RegisterController::class, 'storageSupplier'])->name('ecommerce.supplier.storage');
-Route::get('proveedor', [RegisterController::class, 'index'])->name('supplier.index');
-
-//proveedor
-Route::get('proveedor/evento', [SupplierController::class, 'evento'])->name('supplier.evento');
-Route::get('proveedor/cotizar', [SupplierController::class, 'cotizacion'])->name('supplier.cotizacion');
 
 Route::middleware([
     'auth:sanctum',

@@ -50,7 +50,7 @@
                     </div>
                     <div class="d-flex flex-row-reverse m-4">
                         <img src="{{ asset('img/openpay.png') }}" width="150" height="50" hspace="30">
-                        <img src="{{ asset('img/openpay.png') }}" width="150" height="50">
+                        <img src="{{ asset('img/escudo.png') }}" width="150" height="50">
                     </div>
                     <div class="d-flex justify-content-between">
                         <a class="btn btn-ataraxia" href="{{ route('evento.pago') }}">Volver</a>

@@ -15,12 +15,16 @@ class CreateDetailTable extends Migration
     {
         Schema::create('details', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('company_datum_id')->nullable(); //Foranea de datos compañia
+            $table->string('service_type'); //Tipo de servicio
+            $table->string('Property_name'); //Nombre del establecimiento */
             $table->integer('price');
+            $table->string('location');
             $table->text('description');
+            $table->string('transport type');
+            $table->unsignedBigInteger('quotation_id')->nullable(); //Foranea de datos compañia
             $table->timestamps();
             //llaves foraneas
-            $table->foreign('company_datum_id')->references('id')->on('company_data')->cascadeOnUpdate()->nullOnDelete();
+            $table->foreign('quotation_id')->references('id')->on('quotations')->cascadeOnUpdate()->nullOnDelete();
         });
     }
 

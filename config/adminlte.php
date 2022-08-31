@@ -279,11 +279,9 @@ return [
         [
             'text' => 'Eventos',
             'route'  => 'supplier.evento',
-            'icon' => 'fas fa-file-alt',
-            //'can' => 'proveedor.evento.index',
+            'icon' => 'fas fa-calendar',
+            'can' => 'proveedor.evento.index',
         ],
-
-
     ],
 
     /*

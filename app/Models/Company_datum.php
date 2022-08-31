@@ -36,6 +36,11 @@ class Company_datum extends Model
         return $this->hasMany(Purchase_datum::class);
     }
 
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
     //uno a muchos polimorfico
     public function documents()
     {

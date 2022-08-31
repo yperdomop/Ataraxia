@@ -75,9 +75,9 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function adminlte_desc()
+    public function getNameAttribute()
     {
-        return 'That\'s a nice guy';
+        return "{$this->first_name} {$this->last_name}";
     }
 
     //uno a muchos inverso

@@ -30,7 +30,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <x-jet-nav-link href="{{ route('evento.seleccion') }}" :active="request()->routeIs('dashboard')">
+                        <x-jet-nav-link href="{{ route('evento.lista') }}" :active="request()->routeIs('evento.lista')">
                             {{ __('Evento') }}
                         </x-jet-nav-link>
                 </div>
