@@ -50,13 +50,13 @@
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-4">
-                            <h6>Transacciones realizadas via:</h6>
+                            <h6>Transacciones via:</h6>
                             <img src="{{ asset('img/openpay.png') }}" width="100" height="40">
                         </div>
-                        <div class="col-4">
+                        {{-- <div class="col-4">
                             <h6>Tus pagos se realizan de forma segura con encriptación de 256 bits:</h6>
                             <img src="{{ asset('img/escudo.png') }}" width="50" height="50" hspace="30">
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="d-flex justify-content-between">
                         <a class="btn btn-ataraxia" href="">Volver</a>

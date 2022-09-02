@@ -43,6 +43,8 @@ Route::post('modificar-pedido/{company}', [RegisterController::class, 'update'])
 Route::get('resumen-membresia/{company}', [RegisterController::class, 'summary'])->name('ecommerce.summary');
 Route::get('pasarela-pagos/{company}', [RegisterController::class, 'payment'])->name('ecommerce.payment');
 Route::get('openpay/{company}', [RegisterController::class, 'openpay'])->name('ecommerce.openpay');
+Route::get('pse/{company}', [RegisterController::class, 'pse'])->name('ecommerce.pse');
+Route::get('confirmar-pse', [RegisterController::class, 'confirmar'])->name('ecommerce.confirmar');
 Route::post('openpay/{company}', [RegisterController::class, 'enviarPago'])->name('ecommerce.pay');
 Route::get('registro-proveedores', [RegisterController::class, 'supplier'])->name('ecommerce.supplier');
 Route::post('registro-proveedores', [RegisterController::class, 'storageSupplier'])->name('ecommerce.supplier.storage');

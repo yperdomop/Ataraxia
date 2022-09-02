@@ -229,7 +229,13 @@
                 <button type="submit" class="btn btn-outline-primary"
                     style="color: black; border-color:#FFAA37;">Finalizar
                     cotización</button>
+
+                <a href="#" class="btn btn-primary btn-sm" data-placement="right">
+                    {{ 'PDF' }}
+                </a>
             </div>
+
+
         </form>
     </div>
 @stop

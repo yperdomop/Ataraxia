@@ -46,7 +46,7 @@
             <a class="btn btn-outline-primary" href=" {{ route('evento.seleccion') }}"
                 style="color: black; border-color:#FFAA37;">Crear un evento</a>
         </div>
-    </div>
+    </div><br><br><br><br><br><br><br><br><br><br><br>
 
 
 </x-app-layout>

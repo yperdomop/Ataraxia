@@ -240,6 +240,31 @@ class RegisterController extends Controller
         return view('ecommerce.openpay', compact('company'));
     }
 
+    public function pse($compania)
+    {
+        $company = Company_datum::find($compania);
+        //instancia openpay
+        $openpay = Openpay::getInstance(env('OPENPAY_ID'), env('OPENPAY_SK'), 'CO');
+        Openpay::setProductionMode(false);
+        //creación usuario openpay
+        $customer = [
+            'name' => $company->users->first()->first_name,
+            'last_name' => $company->users->first()->last_name,
+            'phone_number' => $company->users->first()->phone,  //$company->phone,
+            'email' => $company->email,
+        ];
+        $pseRequest = [
+            'country' => 'COL',
+            'amount' => ($company->purchases->last()->price / 10),
+            'currency' => 'COP',
+            'redirect_url' => route('ecommerce.confirmar'),
+            'description' => 'Compra de membresia Ataraxia ' . $company->users->first()->getRoleNames()->first(),
+            'customer' => $customer
+        ];
+        $pse = $openpay->pses->create($pseRequest);
+        return redirect()->away($pse->redirect_url);
+    }
+
     public function enviarPago(Request $request, $compania)
     {
         $company = Company_datum::find($compania);
@@ -277,6 +302,31 @@ class RegisterController extends Controller
         $correo = new ConfirmacionMailable($company->users->first());
         Mail::to($company->users->first()->email)->send($correo);
 
-        return redirect()->route('login')->with('info', '<center><h2> <p style="color:#FFAA37; background-color:#000000;">¡¡Hola ' . $company->users->first()->first_name . '!!<br> Se ha realizado el pago exitosamente, su usuario y contraseña se ha enviado a su correo.</p></h2></center>');
+        return redirect()->route('login')->with('info', '¡¡Hola ' . $company->users->first()->first_name . '!!<br> Se ha realizado el pago exitosamente, su usuario y contraseña se ha enviado a su correo.');
+    }
+    public function confirmar(Request $request)
+    {
+        //instancia openpay
+        $openpay = Openpay::getInstance(env('OPENPAY_ID'), env('OPENPAY_SK'), 'CO');
+        Openpay::setProductionMode(false);
+        //buscar pago
+        $pago = $openpay->charges->get($request->id);
+        $customer = $openpay->customers->get($pago->customer_id);
+        $email = $customer->email;
+        $company = Company_datum::where('email', $email)->first();
+        //actualizacion de pago bd
+        $meses = $company->purchases->last()->membership->payment->meses;
+        $today = Carbon::now();
+        $company->purchases->last()->update([
+            'purchase_date' => Carbon::now(),
+            'expiration_date' => $today->addMonths($meses),
+        ]);
+        //activación de usuario bd
+        $company->users->first()->update(['status' => 'activo']);
+        //notificación al correo
+        $correo = new ConfirmacionMailable($company->users->first());
+        Mail::to($company->users->first()->email)->send($correo);
+
+        return redirect()->route('login')->with('info', '¡¡Hola ' . $company->users->first()->first_name . '!!<br> Se ha realizado el pago exitosamente, su usuario y contraseña se ha enviado a su correo.');
     }
 }
