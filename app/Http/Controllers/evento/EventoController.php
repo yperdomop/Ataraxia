@@ -11,6 +11,7 @@ use App\Models\city;
 use App\Models\Event;
 use App\Models\Sport;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class EventoController extends Controller
 {
@@ -32,7 +33,7 @@ class EventoController extends Controller
     public function guardar(Request $request)
     {
         $request->validate([
-            "nombre" => "required",
+            "nombre" => "required|unique:events,name",
             "ciudad" => "required",
             "fecha" => "required",
             "origen" => "required",
@@ -41,11 +42,18 @@ class EventoController extends Controller
             "transporte" => "required",
             "proveedor" => "required",
         ]);
+        $ciudad = City::find($request->ciudad);
+        $result = Http::get('https://maps.googleapis.com/maps/api/geocode/json?address=' . Str::slug($request->escenario, '+') . ',' . Str::slug($ciudad->name, '+') . ',' . Str::slug($ciudad->department->country->name, '+') . '&key=' . env('GOOGLE_API_KEY'));
+        $result = json_decode($result);
+        $coordenadas = $result->results[0]->geometry->location;
+
         $event = Event::create([
             'name' => $request->nombre,
             'company_datum_id' => Auth::user()->company_datum_id,
             'date' => $request->fecha,
             'address' => $request->escenario,
+            'lat' => $coordenadas->lat,
+            'lng' => $coordenadas->lng,
             'city_from_id' => $request->origen,
             'city_to_id' => $request->ciudad,
             'sport_id' => $request->deporte,

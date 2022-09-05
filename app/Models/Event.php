@@ -14,6 +14,8 @@ class Event extends Model
         'company_datum_id',
         'date',
         'address',
+        'lat',
+        'lng',
         'city_from_id',
         'city_to_id',
         'sport_id',

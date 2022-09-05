@@ -56,6 +56,7 @@
                         referrerpolicy="no-referrer-when-downgrade" src="{{ $url }}" width="300"
                         height="200"></iframe>
                 </div>
+
                 <center>Modificar información de evento</center>
                 <div><br>
                     <h2>¿Que deseas hacer?</h2>
@@ -70,5 +71,21 @@
     <div>
         <a class="btn btn-ataraxia" href="{{ route('evento.gestion') }}">Volver</a>
     </div>
+
+    <div id="googleMap" style="width:100%;height:400px;"></div>
+
+    @push('scripts')
+        <script>
+            function myMap() {
+                var mapProp = {
+                    center: new google.maps.LatLng({{ $evento->lat }}, {{ $evento->lng }}),
+                    zoom: 14,
+                };
+                var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+            }
+        </script>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&callback=myMap"></script>
+    @endpush
 
 </x-app-layout>

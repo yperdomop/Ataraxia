@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Ecommerce\RegisterController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\HomeController;
-
-
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +47,12 @@ Route::get('confirmar-pse', [RegisterController::class, 'confirmar'])->name('eco
 Route::post('openpay/{company}', [RegisterController::class, 'enviarPago'])->name('ecommerce.pay');
 Route::get('registro-proveedores', [RegisterController::class, 'supplier'])->name('ecommerce.supplier');
 Route::post('registro-proveedores', [RegisterController::class, 'storageSupplier'])->name('ecommerce.supplier.storage');
+
+Route::get('prueba', function () {
+    $coordenadas = Http::get('https://maps.googleapis.com/maps/api/geocode/json?address=Estadio+El+Campin,Bogotá,Colombia&key=AIzaSyA3UCHzlYKgdfQ97DZ5S2xmoJ6FYc4A-a4');
+    $coordenadas = json_decode($coordenadas);
+    return $coordenadas->results[0]->geometry->location;
+});
 
 Route::middleware([
     'auth:sanctum',
