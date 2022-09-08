@@ -21,4 +21,14 @@ class Quotation extends Model
     {
         return $this->belongsTo(Company_datum::class, 'company_datum_id');
     }
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
+    }
+
+    public function details()
+    {
+        return $this->hasMany(Detail::class);
+    }
 }

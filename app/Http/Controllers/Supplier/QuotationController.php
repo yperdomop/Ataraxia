@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Detail;
 use App\Models\Event;
 use App\Models\Quotation;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
 class QuotationController extends Controller
@@ -28,6 +30,7 @@ class QuotationController extends Controller
     {
         $total = $request->valor_hotel + $request->valor_restaurante + $request->valor_transporte + $request->valor_logistica + $request->valor_insumo;
         $file = '';
+
         if ($request->file('file')) {
             $file = Storage::put('cotizaciones', $request->file('file'));
         }
@@ -42,22 +45,32 @@ class QuotationController extends Controller
         ]);
 
         if ($request->nombre_hotel) {
+            $result = Http::get('https://maps.googleapis.com/maps/api/geocode/json?address=' . Str::slug($request->ubicacion_hotel, '+') . ',' . Str::slug($event->city_to->name, '+') . ',' . Str::slug($event->city_to->department->country->name, '+') . '&key=' . env('GOOGLE_API_KEY'));
+            $result = json_decode($result);
+            $coordenadas = $result->results[0]->geometry->location;
             Detail::create([
                 'service_type' => 'Hotel',
                 'Property_name' => $request->nombre_hotel,
                 'price' => $request->valor_hotel,
                 'location' => $request->ubicacion_hotel,
+                'lat' => $coordenadas->lat,
+                'lng' => $coordenadas->lng,
                 'description' => $request->descripcion_hotel,
                 'quotation_id' => $quotation->id,
             ]);
         }
 
         if ($request->nombre_restaurante) {
+            $result = Http::get('https://maps.googleapis.com/maps/api/geocode/json?address=' . Str::slug($request->ubicacion_restaurante, '+') . ',' . Str::slug($event->city_to->name, '+') . ',' . Str::slug($event->city_to->department->country->name, '+') . '&key=' . env('GOOGLE_API_KEY'));
+            $result = json_decode($result);
+            $coordenadas = $result->results[0]->geometry->location;
             Detail::create([
                 'service_type' => 'Restaurante',
                 'Property_name' => $request->nombre_restaurante,
                 'price' => $request->valor_restaurante,
                 'location' => $request->ubicacion_restaurante,
+                'lat' => $coordenadas->lat,
+                'lng' => $coordenadas->lng,
                 'description' => $request->descripcion_restaurante,
                 'quotation_id' => $quotation->id,
             ]);
@@ -75,22 +88,32 @@ class QuotationController extends Controller
         }
 
         if ($request->nombre_logistica) {
+            $result = Http::get('https://maps.googleapis.com/maps/api/geocode/json?address=' . Str::slug($request->ubicacion_logistica, '+') . ',' . Str::slug($event->city_to->name, '+') . ',' . Str::slug($event->city_to->department->country->name, '+') . '&key=' . env('GOOGLE_API_KEY'));
+            $result = json_decode($result);
+            $coordenadas = $result->results[0]->geometry->location;
             Detail::create([
                 'service_type' => 'Logistica',
                 'Property_name' => $request->nombre_logistica,
                 'price' => $request->valor_logistica,
                 'location' => $request->ubicacion_logistica,
+                'lat' => $coordenadas->lat,
+                'lng' => $coordenadas->lng,
                 'description' => $request->descripcion_logistica,
                 'quotation_id' => $quotation->id,
             ]);
         }
 
         if ($request->nombre_insumo) {
+            $result = Http::get('https://maps.googleapis.com/maps/api/geocode/json?address=' . Str::slug($request->nombre_insumo, '+') . ',' . Str::slug($event->city_to->name, '+') . ',' . Str::slug($event->city_to->department->country->name, '+') . '&key=' . env('GOOGLE_API_KEY'));
+            $result = json_decode($result);
+            $coordenadas = $result->results[0]->geometry->location;
             Detail::create([
                 'service_type' => 'Insumo',
                 'Property_name' => $request->nombre_insumo,
                 'price' => $request->valor_insumo,
-                'location' => $request->ubicacion_insumo,
+                'location' => $request->nombre_insumo,
+                'lat' => $coordenadas->lat,
+                'lng' => $coordenadas->lng,
                 'description' => $request->descripcion_insumo,
                 'quotation_id' => $quotation->id,
             ]);
@@ -99,46 +122,24 @@ class QuotationController extends Controller
         return redirect()->route('supplier.cotizaciones.index', $event);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

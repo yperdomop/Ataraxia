@@ -22,7 +22,13 @@
                     <td>{{ $cotizacion->id }}</td>
                     <td>${{ $cotizacion->price }}</td>
                     <td>{{ $cotizacion->date }}</td>
-                    <td><a href="{{ Storage::url($cotizacion->route) }}" target="_blank">Ver archivo</a></td>
+                    <td>
+                        @if ($cotizacion->route)
+                            <a href="{{ Storage::url($cotizacion->route) }}" target="_blank">Ver archivo</a>
+                        @else
+                            Sin documento
+                        @endif
+                    </td>
                 </tr>
             @endforeach
         </tbody>

@@ -48,6 +48,7 @@ Route::post('openpay/{company}', [RegisterController::class, 'enviarPago'])->nam
 Route::get('registro-proveedores', [RegisterController::class, 'supplier'])->name('ecommerce.supplier');
 Route::post('registro-proveedores', [RegisterController::class, 'storageSupplier'])->name('ecommerce.supplier.storage');
 
+/* Mapa de google lat, lng*/
 Route::get('prueba', function () {
     $coordenadas = Http::get('https://maps.googleapis.com/maps/api/geocode/json?address=Estadio+El+Campin,Bogotá,Colombia&key=AIzaSyA3UCHzlYKgdfQ97DZ5S2xmoJ6FYc4A-a4');
     $coordenadas = json_decode($coordenadas);

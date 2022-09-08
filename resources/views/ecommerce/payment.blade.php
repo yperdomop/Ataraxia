@@ -107,13 +107,15 @@
                         <div class="container  p-1 my-1"
                             style="border-style: solid;border-width: 1px;border-color:Gainsboro">
                             <a href="{{ route('ecommerce.openpay', $company) }}" class='btn'> <img
-                                    src="{{ asset('') }}" width="100" height="50" />
-                                &nbsp;&nbsp;&nbsp<b>Pago con tarjeta</b><br>todas las transacciones son seguras</a>
+                                    src="{{ asset('img/icono-tarjeta.png') }}" width="100" height="50" />
+                                &nbsp;&nbsp;&nbsp<b>Pago con tarjeta</b><br>
+                                todas las transacciones son seguras
+                            </a>
                         </div><br>
                         <div class="container  p-1 my-1"
                             style="border-style: solid;border-width: 1px;border-color:Gainsboro">
                             <a href="{{ route('ecommerce.pse', $company) }}" class='btn'> <img
-                                    src="{{ asset('img') }}" width="100" height="50" />
+                                    src="{{ asset('img/icono-pse.png') }}" width="100" height="50" />
                                 &nbsp;&nbsp;&nbsp<b>PSE(Cuentas de ahorro y corrientes)</b><br>Pagos seguros con el
                                 banco que elija</a>
                         </div>

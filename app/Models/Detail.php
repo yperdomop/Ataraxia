@@ -9,14 +9,14 @@ class Detail extends Model
 {
     use HasFactory;
     protected $fillable = [
-
         'service_type',
         'Property_name',
         'price',
         'location',
         'description',
-        'transport type',
+        'transport_type',
         'quotation_id',
-
+        'lat',
+        'lng',
     ];
 }

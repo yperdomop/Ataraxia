@@ -8,6 +8,8 @@
                 <th scope="col">Ciudad Origen</th>
                 <th scope="col">Fecha del evento</th>
                 <th scope="col">Tipo de proveedores solicitados</th>
+                <th scope="col"># de adultos</th>
+                <th scope="col"># de niños</th>
                 <th scope="col" colspan="2">Opciones</th>
             </tr>
         </thead>
@@ -29,6 +31,12 @@
                                 <li>{{ $provider->name }}</li>
                             @endforeach
                         </ul>
+                    </td>
+                    <td>
+                        {{ $event->adult_passengers }}
+                    </td>
+                    <td>
+                        {{ $event->child_passengers }}
                     </td>
                     <td>
                         <div class="d-flex justify-content-between">

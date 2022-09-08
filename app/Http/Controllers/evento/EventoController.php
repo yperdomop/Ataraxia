@@ -9,9 +9,11 @@ use App\Models\Company_datum;
 use App\Models\Provider_type;
 use App\Models\city;
 use App\Models\Event;
+use App\Models\Quotation;
 use App\Models\Sport;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use PDF;
 
 class EventoController extends Controller
 {
@@ -23,6 +25,13 @@ class EventoController extends Controller
     {
         $events = Event::where('company_datum_id', Auth::user()->company_datum_id)->get();
         return view('evento.lista', compact('events'));
+    }
+    public function pdf(Quotation $cotizacion)
+    {
+
+        $pdf = PDF::loadView('supplier.pdf', compact('cotizacion'));
+
+        return $pdf->stream('cotizacion.pdf');
     }
 
     public function seleccion()
@@ -82,8 +91,12 @@ class EventoController extends Controller
 
     public function cotizacion(Event $evento)
     {
-        $url = "https://www.google.com/maps/embed/v1/place?key=" . env('GOOGLE_API_KEY') . '&q=' . Str::slug($evento->address, '+') . ',' . $evento->city_to->name . '+' . $evento->city_to->department->country->name;
-        return view('evento.cotizacion', compact('url', 'evento'));
+        return view('evento.cotizacion', compact('evento'));
+    }
+    public function eliminar(Event $evento)
+    {
+        $evento->delete();
+        return redirect()->route('evento.lista');
     }
     public function openpay()
     {
