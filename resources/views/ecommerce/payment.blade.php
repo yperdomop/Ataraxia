@@ -62,16 +62,15 @@
                 <p><b>Selecciona el medio de pago</b></p>
 
                 <div class="container  p-1 my-1" style="border-style: solid;border-width: 1px;border-color:Gainsboro">
-                    <button type="button" class='btn' data-bs-toggle="modal" data-bs-target="#modal1"> <img
-                            src="{{ asset('img/openpay.png') }}" width="100" height="50" />
-                        &nbsp;&nbsp;&nbsp<b> Realiza tu pago con OpenPay</b></button>
+                    <a href="{{ route('ecommerce.openpay', $company) }}" class='btn'><img
+                            src="{{ asset('img/icono-tarjeta.png') }}" width="100" height="50" />
+                        &nbsp;&nbsp;&nbsp<b> Realiza tu pago con tarjeta débito o crédito</b></a>
                 </div><br>
-
-                {{-- <div class="container  p-1 my-1" style="border-style: solid;border-width: 1px;border-color:Gainsboro">
-                    <a type="button" class='btn' href="{{ route('ecommerce.openpay', $company) }}"> <img
-                            src="{{ asset('img/openpay.png') }}" width="100" height="50" />&nbsp;&nbsp;&nbsp
-                        <b> Realiza tu pago con tarjeta débito o crédito </b></a>
-                </div><br> --}}
+                <div class="container  p-1 my-1" style="border-style: solid;border-width: 1px;border-color:Gainsboro">
+                    <a href="{{ route('ecommerce.pse', $company) }}" class='btn'> <img
+                            src="{{ asset('img/icono-pse.png') }}" width="100" height="50" />
+                        &nbsp;&nbsp;&nbsp<b> PSE(Cuentas de ahorro y corrientes)</b></a>
+                </div><br>
 
                 <div class="container  p-1 my-1" style="border-style: solid;border-width: 1px;border-color:Gainsboro">
                     <button type="button" class='btn' data-bs-toggle="modal" data-bs-target="#modal2"> <img
@@ -93,7 +92,7 @@
 
 
     {{-- modales --}}
-    <!-- openpay -->
+    {{-- <!-- openpay -->
     <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -111,7 +110,7 @@
                                 &nbsp;&nbsp;&nbsp<b>Pago con tarjeta</b><br>
                                 todas las transacciones son seguras
                             </a>
-                        </div><br>
+                        </div> <br>
                         <div class="container  p-1 my-1"
                             style="border-style: solid;border-width: 1px;border-color:Gainsboro">
                             <a href="{{ route('ecommerce.pse', $company) }}" class='btn'> <img
@@ -128,7 +127,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!--Bitcoin -->
     <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

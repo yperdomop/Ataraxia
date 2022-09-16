@@ -6,6 +6,10 @@
                     <center>Listado de eventos</center>
                 </strong>
             </h4>
+            <div class="">
+                <a class="btn btn-outline-primary" href=" {{ route('evento.seleccion') }}"
+                    style="color: black; border-color:#FFAA37;">Crear un evento</a>
+            </div>
         </div>
         <table class="table table-bordered table-striped"><br>
             <thead class="table-dark">
@@ -38,15 +42,6 @@
                                     src="{{ asset('img/icono-ver.png') }}" style="width:50px;height:50px;"
                                     title="Ver Detalle"> </a>
                         </td>
-                        {{-- <td width="10px">
-                            <form action="" method="" onSubmit="return confirm('Seguro desea eliminar?')">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="border-0"> <img
-                                        src="{{ asset('img/icono-eliminar.png') }}" style="width:40px;height:40px;"
-                                        title="Eliminar"></button>
-                            </form>
-                        </td> --}}
 
                     </tr>
                 @endforeach

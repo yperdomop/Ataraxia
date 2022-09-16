@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+//modelos
+use App\Models\Company_datum;
 
 class QuotationController extends Controller
 {
@@ -28,6 +30,7 @@ class QuotationController extends Controller
 
     public function store(Request $request, Event $event)
     {
+        return $request;
         $total = $request->valor_hotel + $request->valor_restaurante + $request->valor_transporte + $request->valor_logistica + $request->valor_insumo;
         $file = '';
 
@@ -129,19 +132,23 @@ class QuotationController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit(quotation $quotation)
     {
-        //
+        $event =   Event::all();
+        $companies = Company_datum::all();
+        return view('supplier.edit', compact('event', 'companies'));
     }
 
-
-    public function update(Request $request, $id)
+    /* //Actualizar en BD
+    public function update(Request $request, quotation $quotation)
     {
-        //
+        $quotation->update($request->all());
+        return redirect()->route('')->with('info', 'La cotización fue  actualizada con éxito');
     }
 
-    public function destroy($id)
+    public function destroy(quotation $quotation)
     {
-        //
-    }
+        $quotation->delete();
+        return redirect()->route('')->with('info', 'La cotización fue eliminada con éxito');
+    } */
 }

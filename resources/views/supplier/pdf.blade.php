@@ -7,6 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {{-- <link href="{{ public_path('css/app.css') }}" rel="stylesheet" type="text/css"> --}}
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <style type="text/css">
+        body {
+            font-family: "Brush Script MT", cursive;
+        }
+    </style>
 </head>
 
 <body>
@@ -58,7 +63,7 @@
                         {{ $detalle->description }}
                     </td>
                     <td align="center">
-                        ${{ $detalle->price }}
+                        {{ '$' . number_format($detalle->price, 0, ',', '.') }}
                     </td>
 
                 </tr>

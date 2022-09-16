@@ -14,13 +14,14 @@
                 <th scope="col">Costo</th>
                 <th scope="col">Fecha</th>
                 <th scope="col">PDF adjunto</th>
+                <th scope="col" colspan="2">Opciones</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($event->quotations as $cotizacion)
+            @foreach ($event->quotations->sortBy([['date', 'desc']]) as $cotizacion)
                 <tr scope="row">
                     <td>{{ $cotizacion->id }}</td>
-                    <td>${{ $cotizacion->price }}</td>
+                    <td>{{ '$' . number_format($cotizacion->price, 0, ',', '.') }}</td>
                     <td>{{ $cotizacion->date }}</td>
                     <td>
                         @if ($cotizacion->route)
@@ -28,6 +29,20 @@
                         @else
                             Sin documento
                         @endif
+                    </td>
+                    <td width="10px">
+                        <a href="{{ route('supplier.edit') }}" style="color: black; border-color:#FFAA37;"
+                            class="btn btn-outline-primary" title="Editar"><i class="bi bi-pencil-square"></i></a>
+                    </td>
+                    <td width="10px">
+                        <form action="" method="post" onSubmit="return confirm('Seguro desea eliminar?')">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-outline-danger"
+                                style="color: black; border-color:#FFAA37;" title="Eliminar"> <i
+                                    class="bi bi-trash3-fill"></i></button>
+
+                        </form>
                     </td>
                 </tr>
             @endforeach

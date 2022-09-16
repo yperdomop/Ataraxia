@@ -11,3 +11,4 @@ Route::controller(SupplierController::class)->group(function () {
 });
 
 Route::resource('event.quotations', QuotationController::class)->names('supplier.cotizaciones');
+Route::get('modificar-cotizacion', [QuotationController::class, 'edit'])->name('supplier.edit');

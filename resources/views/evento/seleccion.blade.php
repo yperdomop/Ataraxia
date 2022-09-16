@@ -26,7 +26,7 @@
                     </div>
 
                 </div><br>
-                <a class="btn btn-ataraxia" href="{{ route('dashboard') }}">Volver</a>
+                <a class="btn btn-ataraxia" href="{{ route('evento.lista') }}">Volver</a>
             </div>
 
         </div>

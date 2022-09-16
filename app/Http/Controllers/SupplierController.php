@@ -18,7 +18,7 @@ class SupplierController extends Controller
     {
         $events = Event::whereHas('providerTypes', function (Builder $query) {
             return $query->where('provider_type_id', Auth::user()->company->provider_type_id);
-        })->where('city_to_id', Auth::user()->company->city_id)->get();
+        })->where('city_to_id', Auth::user()->company->city_id)->orderByDesc('date')->get();
         return view('supplier.evento', compact('events'));
     }
 }
