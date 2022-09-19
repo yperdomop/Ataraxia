@@ -30,16 +30,14 @@ class QuotationController extends Controller
 
     public function store(Request $request, Event $event)
     {
-        return $request;
-        $total = $request->valor_hotel + $request->valor_restaurante + $request->valor_transporte + $request->valor_logistica + $request->valor_insumo;
         $file = '';
 
         if ($request->file('file')) {
             $file = Storage::put('cotizaciones', $request->file('file'));
         }
-
+        //crear cotizacion
         $quotation = Quotation::create([
-            'price' => $total,
+            'price' => $request->f_total,
             'date' => Carbon::now(),
             'route' => $file,
             'company_datum_id' => Auth::user()->company_datum_id,
@@ -47,79 +45,90 @@ class QuotationController extends Controller
             'event_id' => $event->id,
         ]);
 
-        if ($request->nombre_hotel) {
-            $result = Http::get('https://maps.googleapis.com/maps/api/geocode/json?address=' . Str::slug($request->ubicacion_hotel, '+') . ',' . Str::slug($event->city_to->name, '+') . ',' . Str::slug($event->city_to->department->country->name, '+') . '&key=' . env('GOOGLE_API_KEY'));
-            $result = json_decode($result);
-            $coordenadas = $result->results[0]->geometry->location;
-            Detail::create([
-                'service_type' => 'Hotel',
-                'Property_name' => $request->nombre_hotel,
-                'price' => $request->valor_hotel,
-                'location' => $request->ubicacion_hotel,
-                'lat' => $coordenadas->lat,
-                'lng' => $coordenadas->lng,
-                'description' => $request->descripcion_hotel,
-                'quotation_id' => $quotation->id,
-            ]);
+        //detalle hoteles
+        for ($i = 0; $i < $request->hotels; $i++) {
+            if ($request->input('nombre_hotel_' . $i)) {
+                $result = Http::get('https://maps.googleapis.com/maps/api/geocode/json?address=' . Str::slug($request->input('ubicacion_hotel_' . $i), '+') . ',' . Str::slug($event->city_to->name, '+') . ',' . Str::slug($event->city_to->department->country->name, '+') . '&key=' . env('GOOGLE_API_KEY'));
+                $result = json_decode($result);
+                $coordenadas = $result->results[0]->geometry->location;
+                Detail::create([
+                    'service_type' => 'Hotel',
+                    'Property_name' => $request->input('nombre_hotel_' . $i),
+                    'price' => $request->input('valor_hotel_' . $i),
+                    'location' => $request->input('ubicacion_hotel_' . $i),
+                    'lat' => $coordenadas->lat,
+                    'lng' => $coordenadas->lng,
+                    'description' => $request->input('descripcion_hotel_' . $i),
+                    'quotation_id' => $quotation->id,
+                ]);
+            }
         }
-
-        if ($request->nombre_restaurante) {
-            $result = Http::get('https://maps.googleapis.com/maps/api/geocode/json?address=' . Str::slug($request->ubicacion_restaurante, '+') . ',' . Str::slug($event->city_to->name, '+') . ',' . Str::slug($event->city_to->department->country->name, '+') . '&key=' . env('GOOGLE_API_KEY'));
-            $result = json_decode($result);
-            $coordenadas = $result->results[0]->geometry->location;
-            Detail::create([
-                'service_type' => 'Restaurante',
-                'Property_name' => $request->nombre_restaurante,
-                'price' => $request->valor_restaurante,
-                'location' => $request->ubicacion_restaurante,
-                'lat' => $coordenadas->lat,
-                'lng' => $coordenadas->lng,
-                'description' => $request->descripcion_restaurante,
-                'quotation_id' => $quotation->id,
-            ]);
+        //detalles restaurante
+        for ($i = 0; $i < $request->restaurants; $i++) {
+            if ($request->input('nombre_restaurante_' . $i)) {
+                $result = Http::get('https://maps.googleapis.com/maps/api/geocode/json?address=' . Str::slug($request->input('ubicacion_restaurante_' . $i), '+') . ',' . Str::slug($event->city_to->name, '+') . ',' . Str::slug($event->city_to->department->country->name, '+') . '&key=' . env('GOOGLE_API_KEY'));
+                $result = json_decode($result);
+                $coordenadas = $result->results[0]->geometry->location;
+                Detail::create([
+                    'service_type' => 'Restaurante',
+                    'Property_name' => $request->input('nombre_restaurante_' . $i),
+                    'price' => $request->input('valor_restaurante_' . $i),
+                    'location' => $request->input('ubicacion_restaurante_' . $i),
+                    'lat' => $coordenadas->lat,
+                    'lng' => $coordenadas->lng,
+                    'description' => $request->input('descripcion_restaurante_' . $i),
+                    'quotation_id' => $quotation->id,
+                ]);
+            }
         }
-
-        if ($request->nombre_transporte) {
-            Detail::create([
-                'service_type' => 'Transporte',
-                'Property_name' => $request->nombre_transporte,
-                'price' => $request->valor_transporte,
-                'description' => $request->descripcion_transporte,
-                'quotation_id' => $quotation->id,
-                'transport_type' => $request->tipo_transporte,
-            ]);
+        //detalles transporte
+        for ($i = 0; $i < $request->transports; $i++) {
+            if ($request->input('nombre_transporte_' . $i)) {
+                Detail::create([
+                    'service_type' => 'Transporte',
+                    'Property_name' => $request->input('nombre_transporte_' . $i),
+                    'price' => $request->input('valor_transporte_' . $i),
+                    'description' => $request->input('descripcion_transporte_' . $i),
+                    'quotation_id' => $quotation->id,
+                    'transport_type' => $request->input('tipo_transporte_' . $i),
+                ]);
+            }
         }
-
-        if ($request->nombre_logistica) {
-            $result = Http::get('https://maps.googleapis.com/maps/api/geocode/json?address=' . Str::slug($request->ubicacion_logistica, '+') . ',' . Str::slug($event->city_to->name, '+') . ',' . Str::slug($event->city_to->department->country->name, '+') . '&key=' . env('GOOGLE_API_KEY'));
-            $result = json_decode($result);
-            $coordenadas = $result->results[0]->geometry->location;
-            Detail::create([
-                'service_type' => 'Logistica',
-                'Property_name' => $request->nombre_logistica,
-                'price' => $request->valor_logistica,
-                'location' => $request->ubicacion_logistica,
-                'lat' => $coordenadas->lat,
-                'lng' => $coordenadas->lng,
-                'description' => $request->descripcion_logistica,
-                'quotation_id' => $quotation->id,
-            ]);
+        //detalles logistica
+        for ($i = 0; $i < $request->logistics; $i++) {
+            if ($request->input('nombre_logistica_' . $i)) {
+                $result = Http::get('https://maps.googleapis.com/maps/api/geocode/json?address=' . Str::slug($request->input('ubicacion_logistica_' . $i), '+') . ',' . Str::slug($event->city_to->name, '+') . ',' . Str::slug($event->city_to->department->country->name, '+') . '&key=' . env('GOOGLE_API_KEY'));
+                $result = json_decode($result);
+                $coordenadas = $result->results[0]->geometry->location;
+                Detail::create([
+                    'service_type' => 'Logistica',
+                    'Property_name' => $request->input('nombre_logistica_' . $i),
+                    'price' => $request->input('valor_logistica_' . $i),
+                    'location' => $request->input('ubicacion_logistica_' . $i),
+                    'lat' => $coordenadas->lat,
+                    'lng' => $coordenadas->lng,
+                    'description' => $request->input('descripcion_logistica_' . $i),
+                    'quotation_id' => $quotation->id,
+                ]);
+            }
         }
-
-        if ($request->nombre_insumo) {
-            $result = Http::get('https://maps.googleapis.com/maps/api/geocode/json?address=' . Str::slug($request->nombre_insumo, '+') . ',' . Str::slug($event->city_to->name, '+') . ',' . Str::slug($event->city_to->department->country->name, '+') . '&key=' . env('GOOGLE_API_KEY'));
-            $result = json_decode($result);
-            $coordenadas = $result->results[0]->geometry->location;
-            Detail::create([
-                'service_type' => 'Insumo',
-                'Property_name' => $request->nombre_insumo,
-                'price' => $request->valor_insumo,
-                'location' => $request->nombre_insumo,
-                'lat' => $coordenadas->lat,
-                'lng' => $coordenadas->lng,
-                'description' => $request->descripcion_insumo,
-                'quotation_id' => $quotation->id,
-            ]);
+        //detalles insumo
+        for ($i = 0; $i < $request->insumos; $i++) {
+            if ($request->input('nombre_insumo_' . $i)) {
+                $result = Http::get('https://maps.googleapis.com/maps/api/geocode/json?address=' . Str::slug($request->input('ubicacion_insumo_' . $i), '+') . ',' . Str::slug($event->city_to->name, '+') . ',' . Str::slug($event->city_to->department->country->name, '+') . '&key=' . env('GOOGLE_API_KEY'));
+                $result = json_decode($result);
+                $coordenadas = $result->results[0]->geometry->location;
+                Detail::create([
+                    'service_type' => 'Insumo',
+                    'Property_name' => $request->input('nombre_insumo_' . $i),
+                    'price' => $request->input('valor_insumo_' . $i),
+                    'location' => $request->input('ubicacion_insumo_' . $i),
+                    'lat' => $coordenadas->lat,
+                    'lng' => $coordenadas->lng,
+                    'description' => $request->input('descripcion_insumo_' . $i),
+                    'quotation_id' => $quotation->id,
+                ]);
+            }
         }
 
         return redirect()->route('supplier.cotizaciones.index', $event);

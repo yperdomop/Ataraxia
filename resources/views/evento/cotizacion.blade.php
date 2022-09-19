@@ -99,6 +99,7 @@
                 const marcador = new google.maps.Marker({
                     position: new google.maps.LatLng({{ $evento->lat }}, {{ $evento->lng }}),
                     map: map,
+                    icon: "{{ asset('img/pin-evento.png') }}"
                 });
 
                 var informacion = new google.maps.InfoWindow({
@@ -117,7 +118,7 @@
                         @if ($detalle->service_type == 'Transporte')
                             @continue
                         @endif
-                        const {{ $detalle->service_type }}{{ $cotizacion->id }} = new google.maps.Marker({
+                        const {{ $detalle->service_type }}{{ $detalle->id }} = new google.maps.Marker({
                             position: new google.maps.LatLng({{ $detalle->lat }}, {{ $detalle->lng }}),
                             map: map,
                             icon: "{{ asset('img/pin-' . $detalle->service_type . '.png') }}"
@@ -128,10 +129,10 @@
                                 "<p>{{ $detalle->service_type }}</p>",
                         });
 
-                        {{ $detalle->service_type }}{{ $cotizacion->id }}.addListener('click', function() {
+                        {{ $detalle->service_type }}{{ $detalle->id }}.addListener('click', function() {
                             {{ Str::slug($detalle->Property_name, '_') }}{{ $cotizacion->id }}.open({
                                 map,
-                                anchor: {{ $detalle->service_type }}{{ $cotizacion->id }},
+                                anchor: {{ $detalle->service_type }}{{ $detalle->id }},
                             });
                         });
                     @endforeach

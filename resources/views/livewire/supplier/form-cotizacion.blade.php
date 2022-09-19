@@ -1,20 +1,20 @@
 <div>
-
     {!! Form::hidden('hotels', $hoteles) !!}
     {!! Form::hidden('restaurants', $restaurantes) !!}
     {!! Form::hidden('transports', $transportes) !!}
     {!! Form::hidden('logistics', $logisticas) !!}
     {!! Form::hidden('insumos', $insumos) !!}
-
-    <div class="pt-3 row d-flex justify-content-between">
-        <h4>
-            <strong>Hospedaje</strong>
-        </h4>
-        <div>
-            <button class="btn btn-ataraxia" wire:click.prevent="addHotel" title="Agregar Hotel"><i
-                    class="fas fa-hotel"></i><i class="fas fa-plus"></i></button>
+    @if ($hoteles > 0)
+        <div class="pt-3 row d-flex justify-content-between">
+            <h4>
+                <strong>Hospedaje</strong>
+            </h4>
+            <div>
+                <button class="btn btn-ataraxia" wire:click.prevent="addHotel" title="Agregar Hotel"><i
+                        class="fas fa-hotel"></i><i class="fas fa-plus"></i></button>
+            </div>
         </div>
-    </div>
+    @endif
     @for ($i = 0; $i < $hoteles; $i++)
         <div class="pt-3 row">
             <div class="form-group col mb-3">
@@ -26,7 +26,12 @@
             </div>
             <div class="form-group col mb-3">
                 {!! Form::label('valor_hotel_' . $i, 'Costo del hotel') !!}
-                {!! Form::number('valor_hotel_' . $i, 0, ['class' => 'form-control', 'placeholder' => 'Costo del hotel']) !!}
+                {!! Form::number('valor_hotel_' . $i, 0, [
+                    'class' => 'form-control',
+                    'placeholder' => 'Costo del hotel',
+                    'wire:model.lazy' => 'lw_hotel.' . $i,
+                    'wire:focusout' => 'sumar',
+                ]) !!}
                 @error('valor_hotel_' . $i)
                     <div class="text-danger" style="font-size:12px">{{ $message }}</div>
                 @enderror
@@ -51,15 +56,17 @@
             </div>
         </div>
     @endfor
-    <div class="pt-3 row d-flex justify-content-between">
-        <h4>
-            <strong>Alimentación</strong>
-        </h4>
-        <div>
-            <button class="btn btn-ataraxia" wire:click.prevent="addRestaurante" title="Agregar Restaurante"><i
-                    class="fas fa-utensils"></i><i class="fas fa-plus"></i></button>
+    @if ($restaurantes > 0)
+        <div class="pt-3 row d-flex justify-content-between">
+            <h4>
+                <strong>Alimentación</strong>
+            </h4>
+            <div>
+                <button class="btn btn-ataraxia" wire:click.prevent="addRestaurante" title="Agregar Restaurante"><i
+                        class="fas fa-utensils"></i><i class="fas fa-plus"></i></button>
+            </div>
         </div>
-    </div>
+    @endif
     @for ($i = 0; $i < $restaurantes; $i++)
         <div class="pt-3 row">
             <div class="form-group col mb-3">
@@ -77,6 +84,8 @@
                 {!! Form::number('valor_restaurante_' . $i, 0, [
                     'class' => 'form-control',
                     'placeholder' => 'Costo del restaurante',
+                    'wire:model.lazy' => 'lw_restaurante.' . $i,
+                    'wire:focusout' => 'sumar',
                 ]) !!}
                 @error('valor_restaurante_' . $i)
                     <div class="text-danger" style="font-size:12px">{{ $message }}</div>
@@ -102,15 +111,17 @@
             </div>
         </div>
     @endfor
-    <div class="pt-3 row d-flex justify-content-between">
-        <h4>
-            <strong>Transporte</strong>
-        </h4>
-        <div>
-            <button class="btn btn-ataraxia" wire:click.prevent="addTransporte" title="Agregar Transporte"><i
-                    class="fas fa-taxi"></i><i class="fas fa-plus"></i></button>
+    @if ($transportes > 0)
+        <div class="pt-3 row d-flex justify-content-between">
+            <h4>
+                <strong>Transporte</strong>
+            </h4>
+            <div>
+                <button class="btn btn-ataraxia" wire:click.prevent="addTransporte" title="Agregar Transporte"><i
+                        class="fas fa-taxi"></i><i class="fas fa-plus"></i></button>
+            </div>
         </div>
-    </div>
+    @endif
     @for ($i = 0; $i < $transportes; $i++)
         <div class="pt-3 row">
             <div class="form-group col">
@@ -135,6 +146,8 @@
                 {!! Form::number('valor_transporte_' . $i, 0, [
                     'class' => 'form-control',
                     'placeholder' => 'Costo del transporte',
+                    'wire:model.lazy' => 'lw_transporte.' . $i,
+                    'wire:focusout' => 'sumar',
                 ]) !!}
                 @error('valor_transporte_' . $i)
                     <div class="text-danger" style="font-size:12px">{{ $message }}</div>
@@ -150,15 +163,17 @@
             </div>
         </div>
     @endfor
-    <div class="pt-3 row d-flex justify-content-between">
-        <h4>
-            <strong>Logistica</strong>
-        </h4>
-        <div>
-            <button class="btn btn-ataraxia" wire:click.prevent="addLogistica" title="Agregar Transporte"><i
-                    class="fas fa-dolly"></i><i class="fas fa-plus"></i></button>
+    @if ($logisticas > 0)
+        <div class="pt-3 row d-flex justify-content-between">
+            <h4>
+                <strong>Logistica</strong>
+            </h4>
+            <div>
+                <button class="btn btn-ataraxia" wire:click.prevent="addLogistica" title="Agregar Transporte"><i
+                        class="fas fa-dolly"></i><i class="fas fa-plus"></i></button>
+            </div>
         </div>
-    </div>
+    @endif
     @for ($i = 0; $i < $logisticas; $i++)
         <div class="pt-3 row">
             <div class="form-group col mb-3">
@@ -176,6 +191,8 @@
                 {!! Form::number('valor_logistica_' . $i, 0, [
                     'class' => 'form-control',
                     'placeholder' => 'Costo operador logístico',
+                    'wire:model.lazy' => 'lw_logistica.' . $i,
+                    'wire:focusout' => 'sumar',
                 ]) !!}
                 @error('valor_logistica_' . $i)
                     <div class="text-danger" style="font-size:12px">{{ $message }}</div>
@@ -201,15 +218,17 @@
             </div>
         </div>
     @endfor
-    <div class="pt-3 row d-flex justify-content-between">
-        <h4>
-            <strong>Insumos</strong>
-        </h4>
-        <div>
-            <button class="btn btn-ataraxia" wire:click.prevent="addInsumo" title="Agregar Insumos"><i
-                    class="fas fa-futbol"></i><i class="fas fa-plus"></i></button>
+    @if ($insumos > 0)
+        <div class="pt-3 row d-flex justify-content-between">
+            <h4>
+                <strong>Insumos</strong>
+            </h4>
+            <div>
+                <button class="btn btn-ataraxia" wire:click.prevent="addInsumo" title="Agregar Insumos"><i
+                        class="fas fa-futbol"></i><i class="fas fa-plus"></i></button>
+            </div>
         </div>
-    </div>
+    @endif
     @for ($i = 0; $i < $insumos; $i++)
         <div class="pt-3 row">
             <div class="form-group col mb-3">
@@ -227,6 +246,8 @@
                 {!! Form::number('valor_insumo_' . $i, 0, [
                     'class' => 'form-control',
                     'placeholder' => 'Costo proveedor insumos',
+                    'wire:model.lazy' => 'lw_insumo.' . $i,
+                    'wire:focusout' => 'sumar',
                 ]) !!}
                 @error('valor_insumo_' . $i)
                     <div class="text-danger" style="font-size:12px">{{ $message }}</div>
@@ -259,8 +280,8 @@
         </div>
         <div class="form-group col mb-3">
             <label for="total" class="form-label">Total cotización</label>
-            <input type="text" name="total" id="total" class="form-control" placeholder="Total cotización"
-                disabled>
+            <input type="number" name="f_total" wire:model="total" class="form-control" placeholder="Total cotización"
+                readonly>
         </div>
     </div>
 </div>
