@@ -23,8 +23,7 @@ class EventoController extends Controller
     }
     public function lista()
     {
-        $events = Event::where('company_datum_id', Auth::user()->company_datum_id)->orderByDesc('date')->get();
-        return view('evento.lista', compact('events'));
+        return view('evento.lista');
     }
     public function pdf(Quotation $cotizacion)
     {

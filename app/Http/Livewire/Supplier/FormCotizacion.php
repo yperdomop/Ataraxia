@@ -15,6 +15,7 @@ class FormCotizacion extends Component
     public $logisticas;
     public $insumos;
     public $total = 0;
+
     //arreglos para suma
     public $lw_hotel = [0];
     public $lw_restaurante = [0];
@@ -29,7 +30,7 @@ class FormCotizacion extends Component
         'Hotel-Evento-Hotel' => 'Hotel-Evento-Hotel',
         'Otro' => 'Otro',
     ];
-
+    //constructor
     public function mount(Event $evento)
     {
         if (Auth::user()->company->provider_type_id == 3) {
