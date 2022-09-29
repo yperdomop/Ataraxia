@@ -90,45 +90,6 @@
 
     </div>
 
-
-    {{-- modales --}}
-    {{-- <!-- openpay -->
-    <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        <h3><strong>Seleccione su medio de pago preferido</strong></h3>
-                        <div class="container  p-1 my-1"
-                            style="border-style: solid;border-width: 1px;border-color:Gainsboro">
-                            <a href="{{ route('ecommerce.openpay', $company) }}" class='btn'> <img
-                                    src="{{ asset('img/icono-tarjeta.png') }}" width="100" height="50" />
-                                &nbsp;&nbsp;&nbsp<b>Pago con tarjeta</b><br>
-                                todas las transacciones son seguras
-                            </a>
-                        </div> <br>
-                        <div class="container  p-1 my-1"
-                            style="border-style: solid;border-width: 1px;border-color:Gainsboro">
-                            <a href="{{ route('ecommerce.pse', $company) }}" class='btn'> <img
-                                    src="{{ asset('img/icono-pse.png') }}" width="100" height="50" />
-                                &nbsp;&nbsp;&nbsp<b>PSE(Cuentas de ahorro y corrientes)</b><br>Pagos seguros con el
-                                banco que elija</a>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn"style="color: black; background-color:#FFAA37;"
-                                data-bs-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
     <!--Bitcoin -->
     <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

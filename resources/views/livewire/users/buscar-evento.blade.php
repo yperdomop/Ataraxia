@@ -1,11 +1,15 @@
 <div class="p-3">
     <div class="input-group">
-        <select class="form-select" style="max-width: 120px" wire:model="campo">
+        <select class="form-select" style="max-width: 120px" wire:model="campo" wire:change="clear">
             <option value="name">Nombre</option>
             <option value="city">Ciudad</option>
             <option value="sport">Deporte</option>
         </select>
-        <input type="text" class="form-control" wire:model="texto" wire:input="buscar" wire:change="clear">
+        {{--  <input type="text" class="form-control" wire:model="texto" wire:input="buscar">  --}}
+        <input type="search" id="form1" class="form-control" wire:model="texto" wire:input="buscar" />
+        <button type="button" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+        </button>
     </div>
     <table class="table table-bordered table-striped"><br>
         <thead class="table-dark">

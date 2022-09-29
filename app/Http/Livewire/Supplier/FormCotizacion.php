@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Supplier;
 
 use App\Models\Event;
+use App\Models\Quotation;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -14,14 +15,22 @@ class FormCotizacion extends Component
     public $transportes;
     public $logisticas;
     public $insumos;
-    public $total = 0;
+    public $cotizacion;
+    public $total;
 
     //arreglos para suma
-    public $lw_hotel = [0];
-    public $lw_restaurante = [0];
-    public $lw_transporte = [0];
-    public $lw_logistica = [0];
-    public $lw_insumo = [0];
+    public $lw_hotel = [];
+    public $lw_restaurante = [];
+    public $lw_transporte = [];
+    public $lw_logistica = [];
+    public $lw_insumo = [];
+
+    //consulta de detalles (solo en editar)
+    public $bd_hoteles;
+    public $bd_restaurantes;
+    public $bd_transportes;
+    public $bd_logisticas;
+    public $bd_insumos;
 
     //arreglo tipo transporte
     public $transport_types = [
@@ -31,29 +40,57 @@ class FormCotizacion extends Component
         'Otro' => 'Otro',
     ];
     //constructor
-    public function mount(Event $evento)
+    public function mount(Event $evento, Quotation $cotizacion)
     {
+        //Hotel Restaurante Transporte Logistica Insumo
+        $this->cotizacion = $cotizacion;
+        //consulta si cotizacion ya existe
+        $this->bd_hoteles = $cotizacion->details->where('service_type', 'Hotel');
+        $this->bd_restaurantes = $cotizacion->details->where('service_type', 'Restaurante');
+        $this->bd_transportes = $cotizacion->details->where('service_type', 'Transporte');
+        $this->bd_logisticas = $cotizacion->details->where('service_type', 'Logistica');
+        $this->bd_insumos = $cotizacion->details->where('service_type', 'Insumo');
+        //iniciar arreglos
+        foreach ($this->bd_hoteles as $hotel) {
+            array_push($this->lw_hotel, $hotel->price);
+        }
+        foreach ($this->bd_restaurantes as $restaurante) {
+            array_push($this->lw_restaurante, $restaurante->price);
+        }
+        foreach ($this->bd_transportes as $transporte) {
+            array_push($this->lw_transporte, $transporte->price);
+        }
+        foreach ($this->bd_logisticas as $logistica) {
+            array_push($this->lw_logistica, $logistica->price);
+        }
+        foreach ($this->bd_insumos as $insumo) {
+            array_push($this->lw_insumo, $insumo->price);
+        }
+
+        //asignar valores
         if (Auth::user()->company->provider_type_id == 3) {
-            $this->hoteles = 1;
-            $this->restaurantes = 1;
-            $this->transportes = 1;
-            $this->logisticas = 1;
-            $this->insumos = 1;
+            $this->hoteles = isset($cotizacion->id) ? $this->bd_hoteles->count() : 1;
+            $this->restaurantes = isset($cotizacion->id) ? $this->bd_restaurantes->count() : 1;
+            $this->transportes = isset($cotizacion->id) ? $this->bd_transportes->count() : 1;
+            $this->logisticas = isset($cotizacion->id) ? $this->bd_logisticas->count() : 1;
+            $this->insumos = isset($cotizacion->id) ? $this->bd_insumos->count() : 1;
         }
         if ($evento->providerTypes->where('id', 1)->count() > 0) {
-            $this->hoteles = 1;
-            $this->transportes = 1;
+            $this->hoteles = isset($cotizacion->id) ? $this->bd_hoteles->count() : 1;
+            $this->transportes = isset($cotizacion->id) ? $this->bd_transportes->count() : 1;
         }
         if ($evento->providerTypes->where('id', 2)->count() > 0) {
-            $this->insumos = 1;
+            $this->insumos = isset($cotizacion->id) ? $this->bd_insumos->count() : 1;
         }
         if ($evento->providerTypes->where('id', 4)->count() > 0) {
-            $this->restaurantes = 1;
+            $this->restaurantes = isset($cotizacion->id) ? $this->bd_restaurantes->count() : 1;
         }
         if ($evento->providerTypes->where('id', 5)->count() > 0) {
-            $this->logisticas = 1;
-            $this->transportes = 1;
+            $this->logisticas = isset($cotizacion->id) ? $this->bd_logisticas->count() : 1;
+            $this->transportes = isset($cotizacion->id) ? $this->bd_transportes->count() : 1;
         }
+
+        $this->total = isset($cotizacion->price) ? $cotizacion->price : 0;
     }
 
     public function render()

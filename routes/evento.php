@@ -15,4 +15,5 @@ Route::post('gestion', [EventoController::class, 'guardar'])->name('evento.guard
 Route::get('cotizacion/{evento}', [EventoController::class, 'cotizacion'])->name('evento.cotizacion');
 Route::get('pago', [EventoController::class, 'pago'])->name('evento.pago');
 Route::get('openpay', [EventoController::class, 'openpay'])->name('evento.openpay');
+Route::get('pse', [EventoController::class, 'pse'])->name('evento.pse');
 Route::get('pdf/{cotizacion}', [EventoController::class, 'pdf'])->name('evento.pdf');

@@ -10,8 +10,9 @@
                 <strong>Hospedaje</strong>
             </h4>
             <div>
-                <button class="btn btn-ataraxia" wire:click.prevent="addHotel" title="Agregar Hotel"><i
-                        class="fas fa-hotel"></i><i class="fas fa-plus"></i></button>
+                <button class="btn btn-ataraxia" wire:click.prevent="addHotel">
+                    <img src="{{ asset('img/mas-hotel.png') }}" style="width:40px;height:40px;" title="Agregar hotel">
+                </button>
             </div>
         </div>
     @endif
@@ -19,14 +20,17 @@
         <div class="pt-3 row">
             <div class="form-group col mb-3">
                 {!! Form::label('nombre_hotel_' . $i, 'Nombre del hotel') !!}
-                {!! Form::text('nombre_hotel_' . $i, null, ['class' => 'form-control', 'placeholder' => 'Nombre del hotel']) !!}
+                {!! Form::text('nombre_hotel_' . $i, isset($bd_hoteles[$i]) ? $bd_hoteles[$i]->Property_name : null, [
+                    'class' => 'form-control',
+                    'placeholder' => 'Nombre del hotel',
+                ]) !!}
                 @error('nombre_hotel_' . $i)
                     <div class="text-danger" style="font-size:12px">{{ $message }}</div>
                 @enderror
             </div>
             <div class="form-group col mb-3">
                 {!! Form::label('valor_hotel_' . $i, 'Costo del hotel') !!}
-                {!! Form::number('valor_hotel_' . $i, 0, [
+                {!! Form::number('valor_hotel_' . $i, null, [
                     'class' => 'form-control',
                     'placeholder' => 'Costo del hotel',
                     'wire:model.lazy' => 'lw_hotel.' . $i,
@@ -38,7 +42,7 @@
             </div>
             <div class="form-group col mb-3">
                 {!! Form::label('ubicacion_hotel_' . $i, 'Ubicación del hotel') !!}
-                {!! Form::text('ubicacion_hotel_' . $i, null, [
+                {!! Form::text('ubicacion_hotel_' . $i, isset($bd_hoteles[$i]) ? $bd_hoteles[$i]->location : null, [
                     'class' => 'form-control',
                     'placeholder' => 'Ubicación del hotel',
                 ]) !!}
@@ -48,7 +52,7 @@
             </div>
             <div class="">
                 {!! Form::label('descripcion_hotel_' . $i, 'Descripción del hotel') !!}
-                {!! form::textarea('descripcion_hotel_' . $i, null, [
+                {!! form::textarea('descripcion_hotel_' . $i, isset($bd_hoteles[$i]) ? $bd_hoteles[$i]->description : null, [
                     'class' => 'form-control',
                     'placeholder' => 'Descripción del hotel',
                     'rows' => '2',
@@ -62,8 +66,9 @@
                 <strong>Alimentación</strong>
             </h4>
             <div>
-                <button class="btn btn-ataraxia" wire:click.prevent="addRestaurante" title="Agregar Restaurante"><i
-                        class="fas fa-utensils"></i><i class="fas fa-plus"></i></button>
+                <button class="btn btn-ataraxia" wire:click.prevent="addRestaurante"><img
+                        src="{{ asset('img/mas-restaurante.png') }}" style="width:40px;height:40px;"
+                        title="Agregar Restaurante"></button>
             </div>
         </div>
     @endif
@@ -71,17 +76,21 @@
         <div class="pt-3 row">
             <div class="form-group col mb-3">
                 {!! Form::label('nombre_restaurante_' . $i, 'Nombre del restaurante') !!}
-                {!! Form::text('nombre_restaurante_' . $i, null, [
-                    'class' => 'form-control',
-                    'placeholder' => 'Nombre del restaurante',
-                ]) !!}
+                {!! Form::text(
+                    'nombre_restaurante_' . $i,
+                    isset($bd_restaurantes[$i]) ? $bd_restaurantes[$i]->Property_name : null,
+                    [
+                        'class' => 'form-control',
+                        'placeholder' => 'Nombre del restaurante',
+                    ],
+                ) !!}
                 @error('nombre_restaurante_' . $i)
                     <div class="text-danger" style="font-size:12px">{{ $message }}</div>
                 @enderror
             </div>
             <div class="form-group col mb-3">
                 {!! Form::label('valor_restaurante_' . $i, 'Costo del restaurante') !!}
-                {!! Form::number('valor_restaurante_' . $i, 0, [
+                {!! Form::number('valor_restaurante_' . $i, null, [
                     'class' => 'form-control',
                     'placeholder' => 'Costo del restaurante',
                     'wire:model.lazy' => 'lw_restaurante.' . $i,
@@ -93,21 +102,29 @@
             </div>
             <div class="form-group col mb-3">
                 {!! Form::label('ubicacion_restaurante_' . $i, 'Ubicación del restaurante') !!}
-                {!! Form::text('ubicacion_restaurante_' . $i, null, [
-                    'class' => 'form-control',
-                    'placeholder' => 'Ubicación del restaurante',
-                ]) !!}
+                {!! Form::text(
+                    'ubicacion_restaurante_' . $i,
+                    isset($bd_restaurantes[$i]) ? $bd_restaurantes[$i]->location : null,
+                    [
+                        'class' => 'form-control',
+                        'placeholder' => 'Ubicación del restaurante',
+                    ],
+                ) !!}
                 @error('ubicacion_restaurante_' . $i)
                     <div class="text-danger" style="font-size:12px">{{ $message }}</div>
                 @enderror
             </div>
             <div class="">
                 {!! Form::label('descripcion_restaurante_' . $i, 'Descripción del restaurante') !!}
-                {!! form::textarea('descripcion_restaurante_' . $i, null, [
-                    'class' => 'form-control',
-                    'placeholder' => 'Descripción del restaurante',
-                    'rows' => '2',
-                ]) !!}
+                {!! form::textarea(
+                    'descripcion_restaurante_' . $i,
+                    isset($bd_restaurantes[$i]) ? $bd_restaurantes[$i]->description : null,
+                    [
+                        'class' => 'form-control',
+                        'placeholder' => 'Descripción del restaurante',
+                        'rows' => '2',
+                    ],
+                ) !!}
             </div>
         </div>
     @endfor
@@ -117,8 +134,9 @@
                 <strong>Transporte</strong>
             </h4>
             <div>
-                <button class="btn btn-ataraxia" wire:click.prevent="addTransporte" title="Agregar Transporte"><i
-                        class="fas fa-taxi"></i><i class="fas fa-plus"></i></button>
+                <button class="btn btn-ataraxia" wire:click.prevent="addTransporte"><img
+                        src="{{ asset('img/mas-transporte.png') }}" style="width:40px;height:40px;"
+                        title="Agregar Transporte"></button>
             </div>
         </div>
     @endif
@@ -126,17 +144,26 @@
         <div class="pt-3 row">
             <div class="form-group col">
                 {!! Form::label('tipo_transporte_' . $i, 'Tipo de transporte') !!}
-                {!! Form::select('tipo_transporte_' . $i, $transport_types, null, [
-                    'class' => 'form-control form-select-lg',
-                    'placeholder' => 'Seleccione el transporte',
-                ]) !!}
+                {!! Form::select(
+                    'tipo_transporte_' . $i,
+                    $transport_types,
+                    isset($bd_transportes[$i]) ? $bd_transportes[$i]->transport_type : null,
+                    [
+                        'class' => 'form-control form-select-lg',
+                        'placeholder' => 'Seleccione el transporte',
+                    ],
+                ) !!}
             </div>
             <div class="form-group col mb-3">
                 {!! Form::label('nombre_transporte_' . $i, 'Nombre del transporte') !!}
-                {!! Form::text('nombre_transporte_' . $i, null, [
-                    'class' => 'form-control',
-                    'placeholder' => 'Nombre del transporte',
-                ]) !!}
+                {!! Form::text(
+                    'nombre_transporte_' . $i,
+                    isset($bd_transportes[$i]) ? $bd_transportes[$i]->Property_name : null,
+                    [
+                        'class' => 'form-control',
+                        'placeholder' => 'Nombre del transporte',
+                    ],
+                ) !!}
                 @error('nombre_transporte_' . $i)
                     <div class="text-danger" style="font-size:12px">{{ $message }}</div>
                 @enderror
@@ -155,11 +182,15 @@
             </div>
             <div class="">
                 {!! Form::label('descripcion_transporte_' . $i, 'Descripción del transporte') !!}
-                {!! form::textarea('descripcion_transporte_' . $i, null, [
-                    'class' => 'form-control',
-                    'placeholder' => 'Descripción del transporte',
-                    'rows' => '2',
-                ]) !!}
+                {!! form::textarea(
+                    'descripcion_transporte_' . $i,
+                    isset($bd_transportes[$i]) ? $bd_transportes[$i]->description : null,
+                    [
+                        'class' => 'form-control',
+                        'placeholder' => 'Descripción del transporte',
+                        'rows' => '2',
+                    ],
+                ) !!}
             </div>
         </div>
     @endfor
@@ -169,8 +200,9 @@
                 <strong>Logistica</strong>
             </h4>
             <div>
-                <button class="btn btn-ataraxia" wire:click.prevent="addLogistica" title="Agregar Transporte"><i
-                        class="fas fa-dolly"></i><i class="fas fa-plus"></i></button>
+                <button class="btn btn-ataraxia" wire:click.prevent="addLogistica"><img
+                        src="{{ asset('img/mas-logistica.png') }}" style="width:40px;height:40px;"
+                        title="Agregar Logística"></button>
             </div>
         </div>
     @endif
@@ -178,7 +210,7 @@
         <div class="pt-3 row">
             <div class="form-group col mb-3">
                 {!! Form::label('nombre_logistica_' . $i, 'Nombre operador logístico') !!}
-                {!! Form::text('nombre_logistica_' . $i, null, [
+                {!! Form::text('nombre_logistica_' . $i, isset($bd_logisticas[$i]) ? $bd_logisticas[$i]->Property_name : null, [
                     'class' => 'form-control',
                     'placeholder' => 'Nombre operador logístico',
                 ]) !!}
@@ -200,7 +232,7 @@
             </div>
             <div class="form-group col mb-3">
                 {!! Form::label('ubicacion_logistica_' . $i, 'Ubicación operador logístico') !!}
-                {!! Form::text('ubicacion_logistica_' . $i, null, [
+                {!! Form::text('ubicacion_logistica_' . $i, isset($bd_logisticas[$i]) ? $bd_logisticas[$i]->location : null, [
                     'class' => 'form-control',
                     'placeholder' => 'Ubicación operador logístico',
                 ]) !!}
@@ -210,11 +242,15 @@
             </div>
             <div class="">
                 {!! Form::label('descripcion_logistica_' . $i, 'Descripción operador logístico') !!}
-                {!! form::textarea('descripcion_logistica_' . $i, null, [
-                    'class' => 'form-control',
-                    'placeholder' => 'Descripción operador logístico',
-                    'rows' => '2',
-                ]) !!}
+                {!! form::textarea(
+                    'descripcion_logistica_' . $i,
+                    isset($bd_logisticas[$i]) ? $bd_logisticas[$i]->description : null,
+                    [
+                        'class' => 'form-control',
+                        'placeholder' => 'Descripción operador logístico',
+                        'rows' => '2',
+                    ],
+                ) !!}
             </div>
         </div>
     @endfor
@@ -224,8 +260,9 @@
                 <strong>Insumos</strong>
             </h4>
             <div>
-                <button class="btn btn-ataraxia" wire:click.prevent="addInsumo" title="Agregar Insumos"><i
-                        class="fas fa-futbol"></i><i class="fas fa-plus"></i></button>
+                <button class="btn btn-ataraxia" wire:click.prevent="addInsumo"><img
+                        src="{{ asset('img/mas-insumos.png') }}" style="width:40px;height:40px;"
+                        title="Agregar insumo"></button>
             </div>
         </div>
     @endif
@@ -233,7 +270,7 @@
         <div class="pt-3 row">
             <div class="form-group col mb-3">
                 {!! Form::label('nombre_insumo_' . $i, 'Nombre proveedor insumos') !!}
-                {!! Form::text('nombre_insumo_' . $i, null, [
+                {!! Form::text('nombre_insumo_' . $i, isset($bd_insumos[$i]) ? $bd_insumos[$i]->Property_name : null, [
                     'class' => 'form-control',
                     'placeholder' => 'Nombre proveedor insumos',
                 ]) !!}
@@ -255,7 +292,7 @@
             </div>
             <div class="form-group col mb-3">
                 {!! Form::label('ubicacion_insumo_' . $i, 'Ubicación proveedor') !!}
-                {!! Form::text('ubicacion_insumo_' . $i, null, [
+                {!! Form::text('ubicacion_insumo_' . $i, isset($bd_insumos[$i]) ? $bd_insumos[$i]->location : null, [
                     'class' => 'form-control',
                     'placeholder' => 'Ubicación proveedor insumos',
                 ]) !!}
@@ -265,7 +302,7 @@
             </div>
             <div class="">
                 {!! Form::label('descripcion_insumo_' . $i, 'Descripción proveedor insumos') !!}
-                {!! form::textarea('descripcion_insumo_' . $i, null, [
+                {!! form::textarea('descripcion_insumo_' . $i, isset($bd_insumos[$i]) ? $bd_insumos[$i]->description : null, [
                     'class' => 'form-control',
                     'placeholder' => 'Descripción proveedor insumos',
                     'rows' => '2',

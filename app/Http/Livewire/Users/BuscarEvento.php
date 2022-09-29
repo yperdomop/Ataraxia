@@ -13,7 +13,6 @@ class BuscarEvento extends Component
     public $texto = "";
     public $campo = "name";
     public $events;
-    public $prueba = 0;
 
     public function mount()
     {

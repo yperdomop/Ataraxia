@@ -141,11 +141,9 @@ class QuotationController extends Controller
     }
 
 
-    public function edit(quotation $quotation)
+    public function edit(Event $event, quotation $quotation)
     {
-        $event =   Event::all();
-        $companies = Company_datum::all();
-        return view('supplier.edit', compact('event', 'companies'));
+        return view('supplier.edit', compact('event', 'quotation'));
     }
 
     /* //Actualizar en BD

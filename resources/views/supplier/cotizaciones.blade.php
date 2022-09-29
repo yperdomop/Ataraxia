@@ -31,8 +31,9 @@
                         @endif
                     </td>
                     <td width="10px">
-                        <a href="{{ route('supplier.edit') }}" style="color: black; border-color:#FFAA37;"
-                            class="btn btn-outline-primary" title="Editar"><i class="bi bi-pencil-square"></i></a>
+                        <a href="{{ route('supplier.cotizaciones.edit', [$event, $cotizacion]) }}"
+                            style="color: black; border-color:#FFAA37;" class="btn btn-outline-primary" title="Editar"><i
+                                class="bi bi-pencil-square"></i></a>
                     </td>
                     <td width="10px">
                         <form action="" method="post" onSubmit="return confirm('Seguro desea eliminar?')">
