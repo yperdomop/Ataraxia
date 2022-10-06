@@ -36,7 +36,8 @@
                                 class="bi bi-pencil-square"></i></a>
                     </td>
                     <td width="10px">
-                        <form action="" method="post" onSubmit="return confirm('Seguro desea eliminar?')">
+                        <form action="{{ route('supplier.cotizaciones.destroy', [$event, $cotizacion]) }}" method="post"
+                            onSubmit="return confirm('Seguro desea eliminar?')">
                             @csrf
                             @method('delete')
                             <button type="submit" class="btn btn-outline-danger"

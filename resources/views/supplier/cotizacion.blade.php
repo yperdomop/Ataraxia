@@ -24,6 +24,12 @@
                 </tr>
             </tbody>
         </table>
+        <h4><strong>Observaciones</strong></h4>
+        <table class="table table-striped table-bordered">
+            <tr>
+                <td>{{ $event->observation }}</td>
+            </tr>
+        </table>
 
         <h4><strong>Datos del organizador</strong></h4>
         <table class="table table-striped table-bordered">

@@ -76,10 +76,16 @@ class EventoController extends Controller
         return redirect()->route('evento.cotizacion', $event);
     }
 
+    public function comparar()
+    {
+        return view('evento.comparar');
+    }
+
     public function pago()
     {
         return view('evento.payment');
     }
+
     public function gestion()
     {
         $deportes = sport::all();

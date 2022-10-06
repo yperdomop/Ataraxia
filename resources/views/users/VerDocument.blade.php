@@ -12,6 +12,7 @@
                             <tr>
 
                                 <th scope="col">Tipo de documento</th>
+                                <th scope="col">Estado</th>
                                 <th scope="col" colspan="2">Opciones</th>
                             </tr>
                         </thead>
@@ -21,10 +22,13 @@
                                     <td>
                                         {{ $documento->document_type->name }}
                                     </td>
+                                    <td>Pendiente</td>
                                     <td width="10px">
                                         <a href="{{ Storage::url($documento->document_route) }}"
                                             style="color: black; border-color:#FFAA37;" class="btn btn-outline-primary"
-                                            target="_blank" title="Editar"><i class="bi bi-pencil-square"></i></a>
+                                            target="_blank" title="Ver documento"><img
+                                                src="{{ asset('img/icono-ver.png') }}"
+                                                style="width:20px;height:20px;"</a>
                                     </td>
 
                                     <td width="10px">
@@ -37,6 +41,7 @@
                                                     class="bi bi-trash3-fill"></i></button>
                                         </form>
                                     </td>
+
                                 </tr>
                             @endforeach
                         </tbody>

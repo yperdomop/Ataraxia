@@ -13,6 +13,7 @@ Route::get('ver-eventos', [EventoController::class, 'verEventos'])->name('evento
 Route::get('seleccion', [EventoController::class, 'seleccion'])->name('evento.seleccion');
 Route::post('gestion', [EventoController::class, 'guardar'])->name('evento.guardar');
 Route::get('cotizacion/{evento}', [EventoController::class, 'cotizacion'])->name('evento.cotizacion');
+Route::get('comparar-cotizaciones', [EventoController::class, 'comparar'])->name('evento.comparar');
 Route::get('pago', [EventoController::class, 'pago'])->name('evento.pago');
 Route::get('openpay', [EventoController::class, 'openpay'])->name('evento.openpay');
 Route::get('pse', [EventoController::class, 'pse'])->name('evento.pse');

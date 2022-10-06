@@ -31,10 +31,6 @@
                         <option value="{{ $tipo->id }}">{{ $tipo->name }}</option>
                     @endforeach
                 </select><br>
-                {{-- no funciona --}}
-                {{-- @error('tipo')
-                    <div class="text-danger" style="font-size:12px">{{ $message }}</div>
-                @enderror --}}
 
                 <div class="mb-3">
                     <label for="formFile" class="form-label">

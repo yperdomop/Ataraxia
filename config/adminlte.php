@@ -282,6 +282,14 @@ return [
             'icon' => 'fas fa-calendar',
             'can' => 'proveedor.evento.index',
         ],
+        [
+            'text' => 'Membresias',
+            'route'  => 'admin.membresias.index',
+            'icon' => 'fas fa-file-alt',
+
+
+
+        ],
     ],
 
     /*

@@ -53,7 +53,7 @@ class HomeController extends Controller
         ]);
 
 
-        return redirect()->route('dashboard')->with($var, $msg);
+        return redirect()->route('documentos.ver')->with($var, $msg);
     }
     public function VerDocumentos()
     {

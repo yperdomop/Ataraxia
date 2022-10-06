@@ -7,8 +7,10 @@
     <h1 class="text-center">Editar Cotización</h1>
 
     <div class="container-fluid">
-        <form method="post" action="" enctype="multipart/form-data">
+        <form method="post" action="{{ route('supplier.cotizaciones.update', [$event, $quotation]) }}"
+            enctype="multipart/form-data">
             @csrf
+            @method('put')
             <div class="container-fluid">
                 <h4><strong>Datos del evento</strong></h4>
                 <table class="table table-striped table-bordered">
@@ -32,6 +34,12 @@
                             <td>{{ $event->child_passengers }}</td>
                         </tr>
                     </tbody>
+                </table>
+                <h4><strong>Observaciones</strong></h4>
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <td>{{ $event->observation }}</td>
+                    </tr>
                 </table>
 
                 <h4><strong>Datos del organizador</strong></h4>
