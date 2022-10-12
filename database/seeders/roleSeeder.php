@@ -63,6 +63,7 @@ class roleSeeder extends Seeder
         Permission::create(['name' => 'admin.documentos.create', 'description' => 'Crear documento'])->syncRoles($role1);
         Permission::create(['name' => 'admin.documentos.edit', 'description' => 'Editar documento'])->syncRoles($role1);
         Permission::create(['name' => 'admin.documentos.destroy', 'description' => 'Eliminar documento'])->syncRoles($role1);
+        /* Permission::create(['name' => 'admin.membresias.index', 'description' => 'Gestion de membresias'])->syncRoles($role1); */
 
         Permission::create(['name' => 'proveedor.evento.index', 'description' => 'Ver eventos'])->syncRoles($role8);
     }

@@ -1,60 +1,62 @@
-.fondoimg{
-    background-size:cover;
+.fondoimg {
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-};
+}
 
-.formulario{
-    width:500px;
+.formulario {
+    width: 500px;
     max-width: 100%;
-    margin:auto;
-    padding:20px;
-    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.3) ;
-    position:relative;
-  }
-  
-  .formulario__titulo{
-    text-align: center;
-    margin-top:0;
-    color:#FFAA37;
-   /*  color: rgba(0, 0, 0, 0.7); */
-  
-  }
-  .formulario__submit{
-    display:block;
-    border:1px solid rgba(0, 0, 0, 0.7);
-    background-color:#FFAA37;
-    border:none;
-    border-radius:5px;
-    margin-left: 10px;  
-  
-  }
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
 
-  .btn-ataraxia{
-    border:1px solid rgba(0, 0, 0, 0.7);
-    background-color:#FFAA37;
+.formulario__titulo {
+    text-align: center;
+    margin-top: 0;
+    color: #ffaa37;
+    /*  color: rgba(0, 0, 0, 0.7); */
+}
+.formulario__submit {
+    display: block;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    background-color: #ffaa37;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.btn-ataraxia {
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    background-color: #ffaa37;
     text-decoration: none;
     color: black;
-    border:none;
-    border-radius:5px;
-    margin-left: 10px; 
-    padding: 10px; 
-  }
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding: 10px;
+}
 
-  .list-group-item{
+.list-group-item {
+    border: 2px solid #ffaa37;
+}
 
-    border: 2px solid #FFAA37;
-  }
-
-  h1{
+h1 {
     margin-bottom: 30px;
     text-transform: uppercase;
-  }
+}
 
-  .table_pagar tr:nth-child(odd){
-    background-color: #232D37;
-  }
-  .table_pagar tr:nth-child(even){
-    background-color: #FFAA37;
+.table_pagar tr:nth-child(odd) {
+    background-color: #232d37;
+}
+.table_pagar tr:nth-child(even) {
+    background-color: #ffaa37;
     color: white;
-  }
+}
+
+.text-under-color {
+    -webkit-text-decoration-color: #ffaa37 !important; /* Safari */
+    text-decoration-color: #ffaa37 !important;
+}

@@ -28,11 +28,11 @@
 
 </head>
 
-<body class="font-sans antialiased bg-light">
+<body class="font-poppins antialiased bg-light">
     <x-jet-banner />
 
     <!-- Page Content -->
-    <main class="container my-5">
+    <main class="container fondoimg" @stack('image')>
         {{ $slot }}
     </main>
 

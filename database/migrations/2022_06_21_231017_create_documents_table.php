@@ -19,6 +19,7 @@ class CreateDocumentsTable extends Migration
             $table->unsignedBigInteger('documentable_id'); //id de usuario o compañia
             $table->string('documentable_type'); //identificación del modelo
             $table->string('document_route'); //ruta del documento
+            /* $table->string('document_estado'); //estado del documento */
             $table->unsignedBigInteger('document_type_id')->nullable(); //tipo de documento
             $table->timestamps();
             $table->string('registred')->nullable(); //usuario que modifica

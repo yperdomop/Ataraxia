@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Models\Role;
 
 class Membership_price extends Model
 {
@@ -20,6 +21,12 @@ class Membership_price extends Model
     public function payment()
     {
         return $this->belongsTo(Payment_frequency::class, 'payment_frequency_id');
+    }
+
+    //uno a muchos inverso
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
     }
 
     //uno a muchos

@@ -19,6 +19,7 @@ class CreatePurchaseDataTable extends Migration
             $table->integer('price'); //valor
             $table->unsignedBigInteger('membership_price_id')->nullable(); //id de membresia
             $table->date('purchase_date')->nullable(); //fecha de compra
+            /* $table->string('Payment_reference')->unique(); //referencia de pago */
             $table->date('expiration_date')->nullable(); //fecha de vencimiento            
             $table->timestamps();
             $table->string('registred')->nullable(); //usuario que modifica

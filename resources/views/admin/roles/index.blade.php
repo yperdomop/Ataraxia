@@ -1,4 +1,4 @@
-{{-- <x-app-layout> --}}
+
 @extends('adminlte::page')
 
 @section('title', 'Roles')
@@ -46,4 +46,4 @@
         </tbody>
     </table>
 @stop
-{{-- </x-app-layout> --}}
+

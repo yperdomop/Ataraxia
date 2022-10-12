@@ -44,7 +44,7 @@ class RegisterController extends Controller
             'cedula' => 'required|string',
             'telefono' => 'required',
             'direccion' => 'required',
-            'nit' => 'required',
+            'nit' => 'required|integer',
             'email' => 'required|email|unique:users',
             'periodo' => 'required',
             'ciudad' => 'required',
