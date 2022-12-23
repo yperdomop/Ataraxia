@@ -4,11 +4,12 @@
     @endpush
     <div class="table-responsive pt-3" class="font-sans antialiased fondoimg">
         <h1 class="text-white text-decoration-underline text-under-color">TIPOS DE MEMBRESÍA</h1>
-        <table class="table table-bordered table-striped text-white" style="border-radius: 20px">
+        <table class="table table-bordered table-striped text-white rounded-3 overflow-hidden">
             <thead class="text-center" style="background-color:#FFAA37;">
                 <tr>
                     @foreach ($membresias as $membresia)
-                        <th class="text-capitalize " scope="col">{{ $membresia->name }}</th>
+                        <th class="text-capitalize" scope="col">
+                            {{ $membresia->name }}</th>
                     @endforeach
                 </tr>
             </thead>
@@ -16,7 +17,7 @@
                 <tr>
                     @foreach ($membresias as $membresia)
                         <td>
-                            <table class="table text-white">
+                            <table class="table text-white ">
                                 <tbody>
                                     @foreach ($membresia->permissions as $permiso)
                                         <tr>

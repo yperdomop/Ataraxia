@@ -403,8 +403,8 @@ return [
             'files' => [
                 [
                     'type' => 'css',
-                    'asset' => true,
-                    'location' => 'icons/font/bootstrap-icons.css',
+                    'asset' => false,
+                    'location' => '//cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css',
                 ]
             ]
         ],

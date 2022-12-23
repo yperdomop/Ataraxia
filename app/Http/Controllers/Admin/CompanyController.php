@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\City;
 use Illuminate\Http\Request;
-use App\Models\company_datum;
+use App\Models\Company_datum;
 use App\Models\Sport;
 
 class CompanyController extends Controller
@@ -13,7 +13,7 @@ class CompanyController extends Controller
 
     public function index()
     {
-        $companies = company_datum::all();
+        $companies = Company_datum::all();
         return view('admin.compania.index', compact('companies'));
     }
 
@@ -29,7 +29,7 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate(rules: [
+        $request->validate([
             'bussiness_name' => 'required',
             'language' => 'nullable',
             'postal_code' => 'nullable',
@@ -40,10 +40,9 @@ class CompanyController extends Controller
             'phone' => 'required',
             'city_id' => 'required',
             'email' => 'required',
-            'sport_id' => 'required',
-
+            'sport_id' => 'required'
         ]);
-        $companies = company_datum::create(
+        $companies = Company_datum::create(
             $request->all()
         );
         return redirect()->route('admin.compania.index')->with('info', 'Compañía creada con éxito');

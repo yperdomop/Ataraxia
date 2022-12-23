@@ -1,4 +1,3 @@
-
 @extends('adminlte::page')
 
 @section('title', 'Roles')
@@ -38,7 +37,7 @@
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-outline-danger" style="color: black; border-color:#FFAA37;"
-                            title="Eliminar"><i class="bi bi-trash3-fill"></i></button>
+                            title="Eliminar"><i class="bi bi-trash-fill"></i></button>
                     </form>
                 </td>
                 </tr>
@@ -46,4 +45,3 @@
         </tbody>
     </table>
 @stop
-

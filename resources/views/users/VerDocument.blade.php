@@ -28,7 +28,7 @@
                                             style="color: black; border-color:#FFAA37;" class="btn btn-outline-primary"
                                             target="_blank" title="Ver documento"><img
                                                 src="{{ asset('img/icono-ver.png') }}"
-                                                style="width:20px;height:20px;"</a>
+                                                style="width:40px;height:40px;"</a>
                                     </td>
 
                                     <td width="10px">
@@ -36,9 +36,9 @@
                                             onSubmit="return confirm('Seguro desea eliminar?')">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-outline-danger"
-                                                style="color: black; border-color:#FFAA37;" title="Eliminar"> <i
-                                                    class="bi bi-trash3-fill"></i></button>
+                                            <button type="submit" class="border-0"> <img
+                                                    src="{{ asset('img/icono-eliminar.png') }}"
+                                                    style="width:40px;height:40px;" title="Eliminar"></button>
                                         </form>
                                     </td>
 

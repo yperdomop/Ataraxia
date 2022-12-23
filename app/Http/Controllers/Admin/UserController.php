@@ -40,7 +40,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate(rules: [
+        $request->validate([
             'first_name' => 'required',
             'email' => 'required',
             'last_name' => 'required',

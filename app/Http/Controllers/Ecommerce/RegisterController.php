@@ -14,7 +14,7 @@ use App\Models\Company_datum;
 use Spatie\Permission\Models\Role;
 use App\Models\Purchase_datum;
 use App\Models\Membership_price;
-use App\Models\provider_type;
+use App\Models\Provider_type;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Openpay\Data\Openpay;
@@ -180,7 +180,7 @@ class RegisterController extends Controller
     public function supplier()
     {
         $ciudades = City::all();
-        $proveedores = provider_type::all();
+        $proveedores = Provider_type::all();
         return view('ecommerce.supplier', compact('ciudades', 'proveedores'));
     }
 
