@@ -22,7 +22,7 @@
                                     <td>
                                         {{ $documento->document_type->name }}
                                     </td>
-                                    <td>Pendiente</td>
+                                    <td>{{ $documento->status }}</td>
                                     <td width="10px">
                                         <a href="{{ Storage::url($documento->document_route) }}"
                                             style="color: black; border-color:#FFAA37;" class="btn btn-outline-primary"
@@ -32,14 +32,17 @@
                                     </td>
 
                                     <td width="10px">
-                                        <form action="{{ route('documentos.eliminar', $documento) }}" method="post"
-                                            onSubmit="return confirm('Seguro desea eliminar?')">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="border-0"> <img
-                                                    src="{{ asset('img/icono-eliminar.png') }}"
-                                                    style="width:40px;height:40px;" title="Eliminar"></button>
-                                        </form>
+                                        @if ($documento->status != 'Aprobado')
+                                            <form action="{{ route('documentos.eliminar', $documento) }}" method="post"
+                                                onSubmit="return confirm('Seguro desea eliminar?')">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="border-0"> <img
+                                                        src="{{ asset('img/icono-eliminar.png') }}"
+                                                        style="width:40px;height:40px;" title="Eliminar"></button>
+                                            </form>
+                                        @endif
+
                                     </td>
 
                                 </tr>

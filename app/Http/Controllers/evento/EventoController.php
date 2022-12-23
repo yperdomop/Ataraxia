@@ -7,13 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Company_datum;
 use App\Models\Provider_type;
-use App\Models\city;
+use App\Models\City;
 use App\Models\Event;
 use App\Models\Quotation;
 use App\Models\Sport;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use PDF;
+use Openpay\Data\Openpay;
 
 class EventoController extends Controller
 {
@@ -78,20 +79,31 @@ class EventoController extends Controller
 
     public function comparar()
     {
+
         return view('evento.comparar');
     }
 
-    public function pago()
+    public function pago(Request $request)
     {
-        return view('evento.payment');
+        $cotizacion = json_decode($request->cotizacion);
+        $company = Company_datum::find($cotizacion->company_datum_id);
+        return view('evento.payment', compact('cotizacion', 'company'));
     }
 
     public function gestion()
     {
         $deportes = sport::all();
-        $ciudades = city::all();
+        $ciudades = City::all();
         $proveedores = Provider_type::all();
         return view('evento.gestion', compact('proveedores', 'ciudades', 'deportes'));
+    }
+
+    public function Organizar()
+    {
+        $deportes = sport::all();
+        $ciudades = City::all();
+        $proveedores = Provider_type::all();
+        return view('evento.organizar', compact('proveedores', 'ciudades', 'deportes'));
     }
 
     public function cotizacion(Event $evento)
@@ -103,8 +115,37 @@ class EventoController extends Controller
         $evento->delete();
         return redirect()->route('evento.lista');
     }
-    public function openpay()
+
+    public function openpay($cotizacion)
     {
         return view('evento.openpay');
+    }
+
+    public function enviarPago(Request $request, $cotizacion)
+    {
+        $quotation = Quotation::find($cotizacion);
+        //instancia openpay
+        $openpay = Openpay::getInstance(env('OPENPAY_ID'), env('OPENPAY_SK'), 'CO');
+        Openpay::setProductionMode(false);
+        //creación usuario openpay
+        $customer = [
+            'name' => Auth::user()->first_name,
+            'last_name' => Auth::user()->last_name,
+            'phone_number' => '6017415658',  //$Auth::user()->company->phone,
+            'email' => Auth::user()->email,
+        ];
+        //creación de cargos en openpay
+        $chargeData = [
+            'method' => 'card',
+            'source_id' => $request->token_id,
+            'amount' => $quotation->price,
+            'currency' => 'COP',
+            'description' => 'Cotización ' . $quotation->company->bussiness_name,
+            'device_session_id' => $request->deviceIdHiddenFieldName,
+            'customer' => $customer
+        ];
+        $charge = $openpay->charges->create($chargeData);
+
+        return redirect()->route('evento.lista')->with('info', '¡¡Hola ' . Auth::user()->first_name . '!!<br> Se ha realizado el pago exitosamente de la cotización.');
     }
 }

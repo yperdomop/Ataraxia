@@ -49,7 +49,8 @@ class HomeController extends Controller
 
         Auth::user()->company->documents()->create([
             'document_type_id' => $request->tipo,
-            'document_route' => $url
+            'document_route' => $url,
+            'status' => 'Pendiente'
         ]);
 
 

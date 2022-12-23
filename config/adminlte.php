@@ -286,7 +286,7 @@ return [
             'text' => 'Membresias',
             'route'  => 'admin.memberships.index',
             'icon' => 'fas fa-file-alt',
-            /* 'can' => 'admin.membresias.index' */
+            'can' => 'admin.membresias.index'
 
 
 

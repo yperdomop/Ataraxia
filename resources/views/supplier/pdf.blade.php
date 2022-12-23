@@ -33,7 +33,7 @@
     <h1>
         <center>Detalles</center>
     </h1>
-    <table table border="2" align="center" bordercolor="blue" cellpadding="10" cellspacing="0">
+    <table table border="2" align="center" cellpadding="10" cellspacing="0">
         <thead>
             <tr>
                 <th bgcolor="black" style="color:white;">Tipo de servicio</th>
@@ -70,7 +70,7 @@
             @endforeach
         </tbody>
     </table><br>
-    <h2><b>Total cotización:</b> ${{ $cotizacion->price }}
+    <h2><b>Total cotización:</b> {{ '$ ' . number_format($cotizacion->price, 0, ',', '.') }}
     </h2>
 </body>
 

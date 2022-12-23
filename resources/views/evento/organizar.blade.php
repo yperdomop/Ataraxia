@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <h5 class="bg-secondary p-2 text-white "> Gestión de Eventos <br>Asistir a un Evento</h5>
+    <h5 class="bg-secondary p-2 text-white "> Gestión de Eventos <br>Crear un Evento</h5>
 
     <div class="row">
         <div class="col-8">
@@ -45,46 +45,9 @@
                             <div class="text-danger" style="font-size:12px">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="form-group col form-floating mb-3">
-                        <select type="text" name="origen" id="origen" class="form-control"
-                            placeholder="* Ciudad de Origen:" value="">
-                            @foreach ($ciudades as $ciudad)
-                                <option value={{ $ciudad->id }} @if (Auth::user()->company->city_id == $ciudad->id) selected @endif>
-                                    {{ $ciudad->name }}</option>
-                            @endforeach
-                        </select>
-                        <label for="origen">* Ciudad de origen</label>
-                        @error('origen')
-                            <div class="text-danger" style="font-size:12px">{{ $message }}</div>
-                        @enderror
-                    </div>
                 </div>
 
                 <div class="pt-3 d-flex row align-items-center">
-                    <div class="form-group col">
-                        <div class=" form-floating">
-                            <input type="number" name="adultos" id="adultos" class="form-control"
-                                placeholder="Pasajeros:Adultos" value="">
-                            <label for="adultos"> Pasajeros:Adultos</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="number" name="ninos" id="ninos" class="form-control"
-                                placeholder="Pasajeros:Adultos" value="">
-                            <label for="ninos"> Pasajeros:Niños</label>
-                        </div>
-                    </div>
-                    <div class="form-group col">
-                        <div class=" form-floating">
-                            <input type="date" name="adultos" id="adultos" class="form-control"
-                                placeholder="Fecha Inicio" value="">
-                            <label for="adultos"> Fecha Inicio</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="date" name="ninos" id="ninos" class="form-control"
-                                placeholder="Fecha Fin" value="">
-                            <label for="ninos"> Fecha Fin</label>
-                        </div>
-                    </div>
 
                     <div class="form-group col form-floating mb-3">
                         <select type="text" name="deporte" id="deporte" class="form-control"
@@ -111,21 +74,6 @@
                 </div>
 
                 <div class="pt-3 row">
-                    <div class="form-group col form-floating mb-3">
-                        <input type="text" name="transporte" id="transporte" class="form-control"
-                            placeholder="* Medio de Transporte" value="">
-                        <label for="transporte"> * Medio de Transporte</label>
-                        @error('transporte')
-                            <div class="text-danger" style="font-size:12px">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group col form-floating mb-3">
-                        <input type="text" name="traslados" id="traslados" class="form-control"
-                            placeholder="Traslados:"value="">
-                        <label for="traslados"> Traslados</label>
-                    </div>
-
                     <div class="form-group col">
                         <select name="proveedor[]" class="form-select select2" aria-label="Default select example"
                             multiple>
@@ -174,9 +122,6 @@
     </div>
 
     </div>
-
-
-
 
     @push('css')
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />

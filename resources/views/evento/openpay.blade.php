@@ -73,8 +73,8 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 OpenPay.setSandboxMode(true);
-                OpenPay.setId({{ env('OPENPAY_ID') }});
-                OpenPay.setApiKey({{ env('OPENPAY_PK') }});
+                OpenPay.setId('mhbs2wh8vaj5upkvh9cn');
+                OpenPay.setApiKey('pk_23fe9414d4c7439cb651c516c775bf01');
                 var deviceSessionId = OpenPay.deviceData.setup("payment-form", "deviceIdHiddenFieldName");
             });
             $('#pay-button').on('click', function(e) {

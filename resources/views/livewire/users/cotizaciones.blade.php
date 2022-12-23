@@ -15,7 +15,7 @@
                         <th scope="col">Nombre Proveedor</th>
                         <th scope="col">Fecha Cotización</th>
                         <th scope="col">Costo Total</th>
-                        <th scope="col" colspan="3"<th>Opciones</th>
+                        <th scope="col" colspan="2"<th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,7 +52,7 @@
                                             title="Ver PDF"></a>
                                 @endif
                             </td>
-                            <td width="10px">
+                            {{--  <td width="10px">
                                 <form action="" method="" onSubmit="return confirm('Seguro desea eliminar?')">
                                     @csrf
                                     @method('delete')
@@ -60,7 +60,7 @@
                                             src="{{ asset('img/icono-eliminar.png') }}" style="width:40px;height:40px;"
                                             title="Eliminar"></button>
                                 </form>
-                            </td>
+                            </td>  --}}
                         </tr>
                     @endforeach
 
@@ -80,11 +80,19 @@
                     <h2>¿Que deseas hacer?</h2>
                 </div>
                 <button class="btn btn-ataraxia m-2" data-bs-toggle="modal" data-bs-target="#comparar"
-                    type="button">Comparar
-                    cotizaciones</button>
-                <a class="btn btn-ataraxia m-2" href="{{ route('evento.pago') }}" role="button">Ir a
-                    Pagar</a>
+                    type="button">Comparar cotizaciones</button>
                 <a class="btn btn-ataraxia m-2" href="" role="button">Solicitar otras Cotizaciones</a>
+                <a class="btn btn-ataraxia m-2" href="" role="button">Solicitar Financiación</a>
+                <form class="p-0" action="{{ route('evento.pago') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="cotizacion"
+                        value=@if ($check) {{ $cotizaciones[0] }} @else 0 @endif>
+                    <button class="btn btn-ataraxia w-100 m-2" role="button"
+                        @if (count($cotizaciones) != 1) disabled @endif>Ir
+                        a
+                        Pagar</button>
+                </form>
+
             </div>
         </div>
         <div class="modal" id="comparar" tabindex="-1">
@@ -95,107 +103,115 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <table class="table table-responsive table-bordered"><br>
-                            <thead class="table-dark text-center">
-                                <div class="row align-items-start">
-                                    <div class="col">
-                                        <tr>
-                                            <th scope="col" class="align-middle" rowspan="2">Proveedor</th>
-                                            <th scope="col" colspan="3">Hospedaje</>
-                                            <th scope="col" colspan="3">Alimentación</th>
-                                            <th scope="col" colspan="3">Transporte</th>
-                                            <th scope="col" class="align-middle" rowspan="2">Opciones</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Costo</th>
-                                            <th scope="col">Descripción</th>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Costo</th>
-                                            <th scope="col">Descripción</th>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Costo</th>
-                                            <th scope="col">Descripción</th>
-                                        </tr>
+                        @if (count($cotizaciones) > 1)
+
+                            <table class="table table-responsive table-bordered border-secondary"><br>
+                                <thead class=" table-dark border-warning text-center">
+                                    <div class="row align-items-start">
+                                        <div class="col">
+                                            <tr>
+                                                <th scope="col" class="align-middle border-2" rowspan="2">
+                                                    Proveedor</th>
+                                                <th scope="col" class="border-2" colspan="3">Hospedaje</>
+                                                <th scope="col" class="border-2" colspan="3">Alimentación</th>
+                                                <th scope="col" class="border-2" colspan="3">Transporte</th>
+                                                <th scope="col" class="align-middle border-2" rowspan="2">Opciones
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col" class="border-2">Nombre</th>
+                                                <th scope="col" class="border-2">Costo</th>
+                                                <th scope="col" class="border-2">Descripción</th>
+                                                <th scope="col" class="border-2">Nombre</th>
+                                                <th scope="col" class="border-2">Costo</th>
+                                                <th scope="col" class="border-2">Descripción</th>
+                                                <th scope="col" class="border-2">Nombre</th>
+                                                <th scope="col" class="border-2">Costo</th>
+                                                <th scope="col" class="border-2">Descripción</th>
+                                            </tr>
+                                        </div>
                                     </div>
-                                </div>
-                            </thead>
-                            <tbody>
-                                @foreach ($cotizaciones as $cotizacion)
-                                    @php
-                                        $hotel = $cotizacion->details->where('service_type', 'Hotel');
-                                        $restaurante = $cotizacion->details->where('service_type', 'Restaurante');
-                                        $transporte = $cotizacion->details->where('service_type', 'Transporte');
-                                    @endphp
-                                    @for ($i = 0; $i < $cotizacion->details->countBy('service_type')->max(); $i++)
-                                        <tr>
-                                            @if ($i == 0)
-                                                <td class="align-middle"
-                                                    rowspan="{{ $cotizacion->details->countBy('service_type')->max() }}">
-                                                    {{ $cotizacion->company->bussiness_name }}
+                                </thead>
+                                <tbody>
+                                    @foreach ($cotizaciones as $cotizacion)
+                                        @php
+                                            $hotel = $cotizacion->details->where('service_type', 'Hotel');
+                                            $restaurante = $cotizacion->details->where('service_type', 'Restaurante');
+                                            $transporte = $cotizacion->details->where('service_type', 'Transporte');
+                                        @endphp
+                                        @for ($i = 0; $i < $cotizacion->details->countBy('service_type')->max(); $i++)
+                                            <tr>
+                                                @if ($i == 0)
+                                                    <td class="align-middle"
+                                                        rowspan="{{ $cotizacion->details->countBy('service_type')->max() }}">
+                                                        {{ $cotizacion->company->bussiness_name }}
+                                                    </td>
+                                                @endif
+                                                <td>
+                                                    @isset($hotel[$i])
+                                                        {{ $hotel[$i]->Property_name }}
+                                                    @endisset
                                                 </td>
-                                            @endif
-                                            <td>
-                                                @isset($hotel[$i])
-                                                    {{ $hotel[$i]->Property_name }}
-                                                @endisset
-                                            </td>
-                                            <td>
-                                                @isset($hotel[$i])
-                                                    {{ '$' . number_format($hotel[$i]->price, 0, ',', '.') }}
-                                                @endisset
-                                            </td>
-                                            <td>
-                                                @isset($hotel[$i])
-                                                    {{ $hotel[$i]->description }}
-                                                @endisset
-                                            </td>
-                                            <td>
-                                                @isset($restaurante[$i + $hotel->count()])
-                                                    {{ $restaurante[$i + $hotel->count()]->Property_name }}
-                                                @endisset
-                                            </td>
-                                            <td>
-                                                @isset($restaurante[$i + $hotel->count()])
-                                                    {{ '$' . number_format($restaurante[$i + $hotel->count()]->price, 0, ',', '.') }}
-                                                @endisset
-                                            </td>
-                                            <td>
-                                                @isset($restaurante[$i + $hotel->count()])
-                                                    {{ $restaurante[$i + $hotel->count()]->description }}
-                                                @endisset
-                                            </td>
-                                            <td>
-                                                @isset($transporte[$i + $hotel->count() + $restaurante->count()])
-                                                    {{ $transporte[$i + $hotel->count() + $restaurante->count()]->Property_name }}
-                                                @endisset
-                                            </td>
-                                            <td>
-                                                @isset($transporte[$i + $hotel->count() + $restaurante->count()])
-                                                    {{ '$' . number_format($transporte[$i + $hotel->count() + $restaurante->count()]->price, 0, ',', '.') }}
-                                                @endisset
-                                            </td>
-                                            <td>
-                                                @isset($transporte[$i + $hotel->count() + $restaurante->count()])
-                                                    {{ $transporte[$i + $hotel->count() + $restaurante->count()]->description }}
-                                                @endisset
-                                            </td>
-                                            @if ($i == 0)
-                                                <td class="align-middle"
-                                                    rowspan="{{ $cotizacion->details->countBy('service_type')->max() }}">
-                                                    @if ($cotizacion->route)
-                                                        <a href="{{ Storage::url($cotizacion->route) }}"
-                                                            target="_blank"><img
-                                                                src="{{ asset('img/icono-pdf.png') }}"
-                                                                style="width:40px;height:40px;" title="Ver PDF"></a>
-                                                    @endif
+                                                <td>
+                                                    @isset($hotel[$i])
+                                                        {{ '$' . number_format($hotel[$i]->price, 0, ',', '.') }}
+                                                    @endisset
                                                 </td>
-                                            @endif
-                                        </tr>
-                                    @endfor
-                                @endforeach
-                            </tbody>
-                        </table>
+                                                <td>
+                                                    @isset($hotel[$i])
+                                                        {{ $hotel[$i]->description }}
+                                                    @endisset
+                                                </td>
+                                                <td>
+                                                    @isset($restaurante[$i + $hotel->count()])
+                                                        {{ $restaurante[$i + $hotel->count()]->Property_name }}
+                                                    @endisset
+                                                </td>
+                                                <td>
+                                                    @isset($restaurante[$i + $hotel->count()])
+                                                        {{ '$' . number_format($restaurante[$i + $hotel->count()]->price, 0, ',', '.') }}
+                                                    @endisset
+                                                </td>
+                                                <td>
+                                                    @isset($restaurante[$i + $hotel->count()])
+                                                        {{ $restaurante[$i + $hotel->count()]->description }}
+                                                    @endisset
+                                                </td>
+                                                <td>
+                                                    @isset($transporte[$i + $hotel->count() + $restaurante->count()])
+                                                        {{ $transporte[$i + $hotel->count() + $restaurante->count()]->Property_name }}
+                                                    @endisset
+                                                </td>
+                                                <td>
+                                                    @isset($transporte[$i + $hotel->count() + $restaurante->count()])
+                                                        {{ '$' . number_format($transporte[$i + $hotel->count() + $restaurante->count()]->price, 0, ',', '.') }}
+                                                    @endisset
+                                                </td>
+                                                <td>
+                                                    @isset($transporte[$i + $hotel->count() + $restaurante->count()])
+                                                        {{ $transporte[$i + $hotel->count() + $restaurante->count()]->description }}
+                                                    @endisset
+                                                </td>
+                                                @if ($i == 0)
+                                                    <td class="align-middle"
+                                                        rowspan="{{ $cotizacion->details->countBy('service_type')->max() }}">
+                                                        @if ($cotizacion->route)
+                                                            <a href="{{ Storage::url($cotizacion->route) }}"
+                                                                target="_blank"><img
+                                                                    src="{{ asset('img/icono-pdf.png') }}"
+                                                                    style="width:40px;height:40px;"
+                                                                    title="Ver PDF"></a>
+                                                        @endif
+                                                    </td>
+                                                @endif
+                                            </tr>
+                                        @endfor
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            <h3> Debe seleccionar al menos 2 cotizaciones para comparar. </h3>
+                        @endif
                         <div class="modal-footer">
                             <button type="button" class="btn btn-ataraxia" data-bs-dismiss="modal">Cerrar</button>
                         </div>

@@ -2,7 +2,7 @@
     <a class="btn btn-link" href="{{ route('evento.gestion') }}">Volver</a>
     <br>
 
-    <div x-data="{ price: 500000, bono: '', enable: false, msg: '' }" class="container p-3 my-3"
+    <div x-data="{ bono: '', enable: false, msg: '' }" class="container p-3 my-3"
         style="border-style: solid;border-width: 2px;border-color:Gainsboro">
         <div class="row">
             <div class="col col-sm-4">
@@ -26,7 +26,8 @@
 
                         <tr>
                             <td>
-                                <font color="white" x-text="price">
+                                <font color="white">
+                                    {{ '$' . number_format($cotizacion->price, 0, ',', '.') }}
                                 </font>
                             </td>
                         </tr>
@@ -45,7 +46,7 @@
                         <tr>
                             <td>
                                 <font color="white">
-                                    Nombre del evento</font>
+                                    Cotización {{ $company->bussiness_name }}</font>
                             </td>
                         </tr>
                         <tr>
@@ -65,7 +66,7 @@
                 <p><b>Selecciona el medio de pago</b></p>
 
                 <div class="container  p-1 my-1" style="border-style: solid;border-width: 1px;border-color:Gainsboro">
-                    <a type="button" class='btn' href="{{ route('evento.openpay') }}"> <img
+                    <a type="button" class='btn' href="{{ route('evento.openpay', $cotizacion->id) }}"> <img
                             src="{{ asset('img/icono-tarjeta.png') }}" width="100" height="50" />&nbsp;&nbsp;&nbsp
                         <b> Realiza tu pago con tarjeta débito o crédito </b></a>
                 </div><br>

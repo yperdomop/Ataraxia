@@ -1,4 +1,13 @@
 <x-app-layout>
+    @if (session('info'))
+        <div class="alert alert-success alert-dismissible fade show" style="background: rgba(0,0,0, 0.80);color:#FFAA37;"
+            role="alert">
+            <center>
+                <h2>{!! session('info') !!}</h2>
+            </center>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <div class=" w-100">
         <div class="container-fluid">
             <h4>

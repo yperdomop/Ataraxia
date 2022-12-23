@@ -12,15 +12,15 @@
                     </h3>
                     <div class="d-flex justify-content-evenly">
                         <div>
-                            <a href="{{ route('evento.gestion') }}"><img src="{{ asset('img/evento-3.png') }}"></a>
+                            <a href="{{ route('evento.gestion') }}"><img src="{{ asset('img/evento-2.png') }}"></a>
                             <h4><br>
-                                <center>Organizar un evento</center>
+                                <center>Asistir a un evento</center>
                             </h4>
                         </div>
                         <div>
-                            <a href=""><img src="{{ asset('img/evento-2.png') }}"></a>
+                            <a href="{{ route('evento.organizar') }}"><img src="{{ asset('img/evento-3.png') }}"></a>
                             <h4><br>
-                                <center>Asistir a un evento</center>
+                                <center>Organizar un evento</center>
                             </h4>
                         </div>
                     </div>

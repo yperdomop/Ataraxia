@@ -31,7 +31,7 @@
             </tr>
         </table>
 
-        <h4><strong>Datos del organizador</strong></h4>
+        <h4><strong>Datos del cotizante</strong></h4>
         <table class="table table-striped table-bordered">
             <thead class="thead-dark">
                 <tr>

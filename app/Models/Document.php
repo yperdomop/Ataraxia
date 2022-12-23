@@ -14,7 +14,8 @@ class Document extends Model
         'documentable_type',
         'document_route',
         'document_type_id',
-        'registred'
+        'registred',
+        'status'
     ];
 
     //relación polimorfica
