@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <h5 class="bg-secondary p-2 text-white "> Gestión de Eventos <br>Crear un Evento</h5>
+    <h5 class="bg-secondary p-2 text-white "> Gestión de Eventos <br>Organizar un evento</h5>
 
     <div class="row">
         <div class="col-8">
@@ -11,7 +11,7 @@
                     </strong>
                 </h4>
             </div>
-            <form method="post" action="{{ route('evento.guardar') }}">
+            <form method="post" action="{{ route('evento.guardarOrganizar') }}">
                 @csrf
                 <p>Los campos con * son obligatorios</p>
                 <div class="form-floating mb-3">

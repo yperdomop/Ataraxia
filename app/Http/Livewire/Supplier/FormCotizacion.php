@@ -72,8 +72,6 @@ class FormCotizacion extends Component
             $this->hoteles = isset($cotizacion->id) ? $this->bd_hoteles->count() : 1;
             $this->restaurantes = isset($cotizacion->id) ? $this->bd_restaurantes->count() : 1;
             $this->transportes = isset($cotizacion->id) ? $this->bd_transportes->count() : 1;
-            $this->logisticas = isset($cotizacion->id) ? $this->bd_logisticas->count() : 1;
-            $this->insumos = isset($cotizacion->id) ? $this->bd_insumos->count() : 1;
         }
         if ($evento->providerTypes->where('id', 1)->count() > 0) {
             $this->hoteles = isset($cotizacion->id) ? $this->bd_hoteles->count() : 1;

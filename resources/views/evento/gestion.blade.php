@@ -1,5 +1,4 @@
 <x-app-layout>
-
     <h5 class="bg-secondary p-2 text-white "> Gestión de Eventos <br>Asistir a un Evento</h5>
 
     <div class="row">
@@ -69,20 +68,26 @@
                         </div>
                         <div class="form-floating mb-3">
                             <input type="number" name="ninos" id="ninos" class="form-control"
-                                placeholder="Pasajeros:Adultos" value="">
+                                placeholder="Pasajeros:Niños" value="">
                             <label for="ninos"> Pasajeros:Niños</label>
                         </div>
                     </div>
                     <div class="form-group col">
                         <div class=" form-floating">
-                            <input type="date" name="adultos" id="adultos" class="form-control"
+                            <input type="date" name="fecha_inicio" id="fecha_inicio" class="form-control"
                                 placeholder="Fecha Inicio" value="">
-                            <label for="adultos"> Fecha Inicio</label>
+                            <label for="fecha_inicio"> Fecha Inicio</label>
+                            @error('fecha_inicio')
+                                <div class="text-danger" style="font-size:12px">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="date" name="ninos" id="ninos" class="form-control"
+                            <input type="date" name="fecha_fin" id="fecha_fin" class="form-control"
                                 placeholder="Fecha Fin" value="">
                             <label for="ninos"> Fecha Fin</label>
+                            @error('fecha_fin')
+                                <div class="text-danger" style="font-size:12px">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 

@@ -56,7 +56,7 @@
 
                     </div>
                     <div class="d-flex justify-content-between">
-                        <a class="btn btn-ataraxia" href="">Volver</a>
+                        <a class="btn btn-ataraxia" href="{{ route('ecommerce.payment', $company) }}">Volver</a>
                         <a class="btn btn-ataraxia" id="pay-button">Pagar</a>
 
                     </div>

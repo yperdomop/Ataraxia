@@ -3,7 +3,7 @@
 @section('title', 'Editar Cotización')
 
 @section('content_header')
-    <a class="btn btn-link" href=""><u>Volver</u></a>
+    <a class="btn btn-link" href="{{ route('supplier.cotizaciones.index', $event) }}"><u>Volver</u></a>
     <h1 class="text-center">Editar Cotización</h1>
 
     <div class="container-fluid">

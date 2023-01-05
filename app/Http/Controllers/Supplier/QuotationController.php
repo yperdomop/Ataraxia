@@ -40,6 +40,7 @@ class QuotationController extends Controller
             'price' => $request->f_total,
             'date' => Carbon::now(),
             'route' => $file,
+            'status' => 'pendiente',
             'company_datum_id' => Auth::user()->company_datum_id,
             'location' => Auth::user()->company->address,
             'event_id' => $event->id,
@@ -136,6 +137,7 @@ class QuotationController extends Controller
 
     public function edit(Event $event, quotation $quotation)
     {
+
         return view('supplier.edit', compact('event', 'quotation'));
     }
 

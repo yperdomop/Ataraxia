@@ -1,5 +1,5 @@
 <x-register-layout>
-    <a class="btn btn-link" href=""> Volver</a>
+    <a class="btn btn-link" href="{{ route('ecommerce.summary', $company) }}"> Volver</a>
     <br>
     <div class="container p-3 my-3" style="border-style: solid;border-width: 2px;border-color:Gainsboro">
         <div class="row">

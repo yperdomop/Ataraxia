@@ -9,14 +9,15 @@
                 <div class="col">
                     <table class="table table-bordered"><br>
                         <thead class="table-dark">
-                            <tr>
+                            <tr style="text-align: center">
 
-                                <th scope="col">Tipo de documento</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col" colspan="2">Opciones</th>
+                                <th class="border border-warning" scope="col">Tipo de documento</th>
+                                <th class="border border-warning" scope="col">Estado</th>
+                                <th class="border border-warning" scope="col" colspan="2">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
+
                             @foreach ($documentos as $documento)
                                 <tr>
                                     <td>

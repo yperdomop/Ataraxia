@@ -53,7 +53,7 @@
                         <img src="{{ asset('img/escudo.png') }}" width="150" height="50">
                     </div>
                     <div class="d-flex justify-content-between">
-                        <a class="btn btn-ataraxia" href="{{ route('evento.pago') }}">Volver</a>
+                        <a class="btn btn-ataraxia" href="">Volver</a>
                         <a class="btn btn-ataraxia" id="pay-button">Pagar</a>
 
                     </div>

@@ -4,21 +4,29 @@
         <h4><strong>Datos del evento</strong></h4>
         <table class="table table-striped table-bordered">
             <thead class="table-dark">
-                <tr>
-                    <th scope="col">Nombre del evento</th>
-                    <th scope="col">Dirección del evento</th>
-                    <th scope="col">Ciudad de evento</th>
-                    <th scope="col">Ciudad de origen</th>
-                    <th scope="col"># de adultos</th>
-                    <th scope="col"># de niños</th>
+                <tr style="text-align: center">
+                    <th class="border border-warning" scope="col">Fecha inicio</th>
+                    <th class="border border-warning" scope="col">Fecha fin</th>
+                    <th class="border border-warning" scope="col">Nombre del evento</th>
+                    <th class="border border-warning" scope="col">Dirección del evento</th>
+                    <th class="border border-warning" scope="col">Ciudad de evento</th>
+                    <th class="border border-warning" scope="col">Ciudad de origen</th>
+                    <th class="border border-warning" scope="col"># de adultos</th>
+                    <th class="border border-warning" scope="col"># de niños</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr style="text-align: center">
+                    <td>{{ $event->start_date }}</td>
+                    <td>{{ $event->end_date }}</td>
                     <td>{{ $event->name }}</td>
                     <td>{{ $event->address }}</td>
                     <td>{{ $event->city_to->name }}</td>
-                    <td>{{ $event->city_from->name }}</td>
+                    <td>
+                        @if ($event->city_from)
+                            {{ $event->city_from->name }}
+                        @endif
+                    </td>
                     <td>{{ $event->adult_passengers }}</td>
                     <td>{{ $event->child_passengers }}</td>
                 </tr>
@@ -34,17 +42,17 @@
         <h4><strong>Datos del cotizante</strong></h4>
         <table class="table table-striped table-bordered">
             <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Compañía</th>
-                    <th scope="col">Representante legal</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Teléfono</th>
-                    <th scope="col">Dirección</th>
-                    <th scope="col">Ciudad</th>
+                <tr style="text-align: center">
+                    <th class="border border-warning" scope="col">Compañía</th>
+                    <th class="border border-warning" scope="col">Representante legal</th>
+                    <th class="border border-warning" scope="col">Correo</th>
+                    <th class="border border-warning" scope="col">Teléfono</th>
+                    <th class="border border-warning" scope="col">Dirección</th>
+                    <th class="border border-warning" scope="col">Ciudad</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr style="text-align: center">
                     <td>{{ $event->company->bussiness_name }}</td>
                     <td>{{ $event->company->legal_representative }}</td>
                     <td>{{ $event->company->email }}</td>

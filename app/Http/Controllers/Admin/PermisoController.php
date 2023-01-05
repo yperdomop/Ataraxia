@@ -35,12 +35,7 @@ class PermisoController extends Controller
         return redirect()->route('admin.permisos.index')->with('info', 'Permiso creado con éxito');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
@@ -57,12 +52,7 @@ class PermisoController extends Controller
         return redirect()->route('admin.permisos.index')->with('info', 'Permiso actualizado con éxito');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Permission $permiso)
     {
         $permiso->delete();

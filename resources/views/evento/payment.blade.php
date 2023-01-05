@@ -72,8 +72,8 @@
                 </div><br>
 
                 <div class="container  p-1 my-1" style="border-style: solid;border-width: 1px;border-color:Gainsboro">
-                    <a href="" class='btn'> <img src="{{ asset('img/icono-pse.png') }}" width="100"
-                            height="50" />
+                    <a type="button"class='btn' href="{{ route('evento.pse', $cotizacion->id) }}" class='btn'>
+                        <img src="{{ asset('img/icono-pse.png') }}" width="100" height="50" />
                         &nbsp;&nbsp;&nbsp<b> PSE(Cuentas de ahorro y corrientes)</b></a>
                 </div><br>
 

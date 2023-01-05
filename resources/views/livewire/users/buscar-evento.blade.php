@@ -13,13 +13,13 @@
     </div>
     <table class="table table-bordered table-striped"><br>
         <thead class="table-dark">
-            <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Ciudad del evento</th>
-                <th scope="col">Fecha</th>
-                <th scope="col">Deporte</th>
-                <th scope="col">Tipo de Proveedor</th>
-                <th scope="col" colspan="2">Opciones</th>
+            <tr style="text-align: center">
+                <th class="border border-warning" scope="col">Nombre</th>
+                <th class="border border-warning" scope="col">Ciudad del evento</th>
+                <th class="border border-warning" scope="col">Fecha</th>
+                <th class="border border-warning" scope="col">Deporte</th>
+                <th class="border border-warning" scope="col">Tipo de Proveedor</th>
+                <th class="border border-warning" scope="col" colspan="2">Opciones</th>
             </tr>
         </thead>
         <tbody>
@@ -38,8 +38,12 @@
                         </ul>
                     </td>
                     <td width="10px">
-                        <a href="{{ route('evento.cotizacion', $event) }}"><img src="{{ asset('img/icono-ver.png') }}"
-                                style="width:50px;height:50px;" title="Ver Detalle"> </a>
+                        @if ($event->quotations->where('status', 'Pagado')->count() == 0)
+                            <a href="{{ route('evento.cotizacion', $event) }}"><img
+                                    src="{{ asset('img/icono-ver.png') }}" style="width:50px;height:50px;"
+                                    title="Ver Detalle"> </a>
+                        @endif
+
                     </td>
 
                 </tr>

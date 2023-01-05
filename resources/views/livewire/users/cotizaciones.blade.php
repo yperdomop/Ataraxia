@@ -1,4 +1,13 @@
 <div>
+    @if (session('info'))
+        <div class="alert alert-success alert-dismissible fade show" style="background: rgba(0,0,0, 0.80);color:#FFAA37;"
+            role="alert">
+            <center>
+                <h2>{!! session('info') !!}</h2>
+            </center>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <div class="row m-3">
         <div class="col-8"</i>
             <h2><i class="fas fa-handshake"></i>
@@ -10,12 +19,12 @@
             <table class="table table-bordered"><br>
                 <thead class="table-dark text-center">
                     <tr>
-                        <th></th>
-                        <th scope="col">Cotización No</th>
-                        <th scope="col">Nombre Proveedor</th>
-                        <th scope="col">Fecha Cotización</th>
-                        <th scope="col">Costo Total</th>
-                        <th scope="col" colspan="2"<th>Opciones</th>
+                        <th class="border border-warning"></th>
+                        <th class="border border-warning" scope="col">Cotización No</th>
+                        <th class="border border-warning" scope="col">Nombre Proveedor</th>
+                        <th class="border border-warning" scope="col">Fecha Cotización</th>
+                        <th class="border border-warning" scope="col">Costo Total</th>
+                        <th class="border border-warning" scope="col" colspan="2"<th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -81,7 +90,8 @@
                 </div>
                 <button class="btn btn-ataraxia m-2" data-bs-toggle="modal" data-bs-target="#comparar"
                     type="button">Comparar cotizaciones</button>
-                <a class="btn btn-ataraxia m-2" href="" role="button">Solicitar otras Cotizaciones</a>
+                <a class="btn btn-ataraxia m-2" href="{{ route('evento.gestion') }}" role="button">Solicitar otras
+                    Cotizaciones</a>
                 <a class="btn btn-ataraxia m-2" href="" role="button">Solicitar Financiación</a>
                 <form class="p-0" action="{{ route('evento.pago') }}" method="post">
                     @csrf
@@ -115,7 +125,8 @@
                                                 <th scope="col" class="border-2" colspan="3">Hospedaje</>
                                                 <th scope="col" class="border-2" colspan="3">Alimentación</th>
                                                 <th scope="col" class="border-2" colspan="3">Transporte</th>
-                                                <th scope="col" class="align-middle border-2" rowspan="2">Opciones
+                                                <th scope="col" class="align-middle border-2" rowspan="2">
+                                                    Opciones
                                                 </th>
                                             </tr>
                                             <tr>

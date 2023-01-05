@@ -9,17 +9,17 @@
     </div>
     <table class="table table-bordered table-striped"><br>
         <thead class="table-dark">
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Costo</th>
-                <th scope="col">Fecha</th>
-                <th scope="col">PDF adjunto</th>
-                <th scope="col" colspan="2">Opciones</th>
+            <tr style="text-align: center">
+                <th class="border border-warning" scope="col">Id</th>
+                <th class="border border-warning" scope="col">Costo</th>
+                <th class="border border-warning" scope="col">Fecha</th>
+                <th class="border border-warning" scope="col">PDF adjunto</th>
+                <th class="border border-warning" scope="col" colspan="2">Opciones</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($event->quotations->sortBy([['date', 'desc']]) as $cotizacion)
-                <tr scope="row">
+                <tr style="text-align: center" scope="row">
                     <td>{{ $cotizacion->id }}</td>
                     <td>{{ '$' . number_format($cotizacion->price, 0, ',', '.') }}</td>
                     <td>{{ $cotizacion->date }}</td>

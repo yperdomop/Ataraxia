@@ -86,6 +86,7 @@ class RegisterController extends Controller
 
         $compra = Purchase_datum::create([
             'company_datum_id' => $compania->id,
+            /*  'purchase_type' => 'Membresia', */
             'price' => $precio->price,
             'membership_price_id' => $precio->id,
             'registred' => 'SYS',

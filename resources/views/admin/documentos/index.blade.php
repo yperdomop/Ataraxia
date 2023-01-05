@@ -9,6 +9,7 @@
             <strong>{{ session('info') }}</strong>
         </div>
     @endif
+
     <h1 class="text-center">Gestión de Documentos</h1>
 @stop
 @section('content')

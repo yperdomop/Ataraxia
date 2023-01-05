@@ -15,6 +15,7 @@ class Quotation extends Model
         'route',
         'company_datum_id',
         'event_id',
+        'status',
     ];
 
     public function company()

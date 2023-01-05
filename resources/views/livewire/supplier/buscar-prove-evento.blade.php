@@ -5,7 +5,7 @@
             <option value="event">Nombre del evento</option>
             <option value="city">Ciudad de origen</option>
         </select>
-        {{--   <input type="text" class="form-control" wire:model="texto" wire:input="buscar">  --}}
+
         <input type="search" id="form1" class="form-control" wire:model="texto" wire:input="buscar" />
         <button type="button" class="btn btn-primary">
             <i class="fas fa-search"></i>
@@ -14,23 +14,29 @@
 
     <table class="table table-bordered table-striped"><br>
         <thead class="table-dark">
-            <tr>
-                <th scope="col">Nombre Compañía</th>
-                <th scope="col">Nombre del evento</th>
-                <th scope="col">Ciudad origen</th>
-                <th scope="col">Fecha del evento</th>
-                <th scope="col">Tipo proveedores solicitados</th>
-                <th scope="col" colspan="2">Opciones</th>
+            <tr style="text-align: center">
+                <th class="border border-warning" scope="col">Nombre Compañía</th>
+                <th class="border border-warning" scope="col">Tipo de evento</th>
+                <th class="border border-warning" scope="col">Nombre del evento</th>
+                <th class="border border-warning" scope="col">Ciudad origen</th>
+                <th class="border border-warning" scope="col">Fecha del evento</th>
+                <th class="border border-warning" scope="col">Tipo proveedores solicitados</th>
+                <th class="border border-warning" scope="col" colspan="2">Opciones</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($events as $event)
-                <tr scope="row">
+                <tr style="text-align: center" scope="row">
                     <td>
                         {{ $event->company->bussiness_name }}
                     </td>
+                    <td> {{ $event->event_type }}</td>
                     <td> {{ $event->name }}</td>
-                    <td>{{ $event->city_from->name }}</td>
+                    <td>
+                        @if ($event->city_from)
+                            {{ $event->city_from->name }}
+                        @endif
+                    </td>
                     <td>{{ $event->date }}</td>
                     <td>
                         <ul>
